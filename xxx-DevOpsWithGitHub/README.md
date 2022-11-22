@@ -2,37 +2,38 @@
 
 ## Introduction
 
-The IoT Hack of the Century will take you on a whirlwind tour in the world of IoT and how it is being used in the modern world of mineral extraction in exotic locations like the Arctic and the wilds of South Africa.
+DevOps is a journey not a destination. Our goal when writing this challenged based hack is to introduce you to GitHub and some common DevOps practices. We also understand that your choice of programming language and DevOps processes might differ from the ones we will be using in this hack, that is OK. Our intent was to select some of the most common programming languages and highlight industry best practices, with an emphasis on showing how GitHub can help you on your DevOps journey, so that you can apply this in your environment with the languages and tools that you use.
 
 ## Learning Objectives
 
-In this hack you will be solving the common business problem that companies in the mineral extraction industry face and how IoT solutions from Azure are brought to bare
+This DevOps with GitHub hack will help you learn:
 
-1. Provision an IoT Hub
-2. Set up an IoT Edge device
-3. Bring Azure Sphere to your solution for scale and resiliency
+1. How to use GitHub to manage source control
+1. How to use GitHub for Project Management
+1. How to use GitHub Actions for CI & CD
+1. Monitoring apps with Application Insights
 
 ## Challenges
 
 - Challenge 00: **[Prerequisites - Ready, Set, GO!](Student/Challenge-00.md)**
 	 - Prepare your workstation to work with Azure.
-- Challenge 01: **[Title of Challenge](Student/Challenge-01.md)**
+- Challenge 01: **[Track your work with GitHub Project Boards](Student/Challenge-01.md)**
 	 - Description of challenge
-- Challenge 02: **[Title of Challenge](Student/Challenge-02.md)**
+- Challenge 02: **[Centralize your code with GitHub Repos](Student/Challenge-02.md)**
 	 - Description of challenge
-- Challenge 03: **[Title of Challenge](Student/Challenge-03.md)**
+- Challenge 03: **[Infrastructure as Code](Student/Challenge-03.md)**
 	 - Description of challenge
-- Challenge 04: **[Title of Challenge](Student/Challenge-04.md)**
+- Challenge 04: **[Continuous Integration](Student/Challenge-04.md)**
 	 - Description of challenge
-- Challenge 05: **[Title of Challenge](Student/Challenge-05.md)**
+- Challenge 05: **[Build and push Docker image to container registry](Student/Challenge-05.md)**
 	 - Description of challenge
-- Challenge 06: **[Title of Challenge](Student/Challenge-06.md)**
+- Challenge 06: **[Continuous Delivery](Student/Challenge-06.md)**
 	 - Description of challenge
-- Challenge 07: **[Title of Challenge](Student/Challenge-07.md)**
+- Challenge 07: **[Branching & Policies](Student/Challenge-07.md)**
 	 - Description of challenge
-- Challenge 08: **[Title of Challenge](Student/Challenge-08.md)**
+- Challenge 08: **[Monitoring: Application Insights](Student/Challenge-08.md)**
 	 - Description of challenge
-- Challenge 09: **[Title of Challenge](Student/Challenge-09.md)**
+- Challenge 09: **[Security](Student/Challenge-09.md)**
 	 - Description of challenge
 
 ## Prerequisites
