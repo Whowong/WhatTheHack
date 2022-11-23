@@ -4,7 +4,7 @@
 
 ## Introduction
 
-DevOps is a very broad topic and you have lots of choices when it comes to the tools that you use. In this challenge you will setup your computer and cloud environment with the minimum required tools. 
+DevOps is a very broad topic, and you have lots of choices when it comes to the tools that you use. In this challenge you will setup your computer and cloud environment with the minimum required tools. 
 
 ## Description
 
@@ -20,3 +20,10 @@ In this challenge we will setup the core components needed to complete this What
 ## Success Criteria
 
 1. You should be able to log in to the Azure Portal and the Azure DevOps Portal.
+
+## Learning Resources
+
+- [What is DevOps?](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-devops)
+- [Azure DevOps vs. GitHub](https://acloudguru.com/blog/engineering/azure-devops-vs-github-comparing-microsofts-devops-twins)
+- [What features and services do I get with Azure DevOps?](https://docs.microsoft.com/en-us/azure/devops/user-guide/services)
+- [Azure DevOps Services vs. Azure DevOps Server](https://docs.microsoft.com/en-us/azure/devops/user-guide/about-azure-devops-services-tfs)
