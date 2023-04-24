@@ -10,7 +10,7 @@ If you are an organization that is interested in attending or hosting a What The
 ![What The Hack Website](/assets/images/wth-logo.png)
 <!-- {% endcomment %} -->
 
-# What is What The Hack?
+# What is Wasfhat The Hack?
 
 "What the Hack" is a set of challenge based hackathons that can be hosted in-person or virtually via Microsoft Teams.
 
