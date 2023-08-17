@@ -1,20 +1,10 @@
-# Challenge 01 - <Title of Challenge> - Coach's Guide 
+# Challenge 01 - Configure Your Development Environment - Coach's Guide 
 
 [< Previous Solution](./Solution-00.md) - **[Home](./README.md)** - [Next Solution >](./Solution-02.md)
 
 ## Notes & Guidance
 
-This is the only section you need to include.
-
-Use general non-bulleted text for the beginning of a solution area for this challenge
-
-- Then move into bullets
-  - And sub-bullets and even
-    - sub-sub-bullets
-
-Break things apart with more than one bullet list
-
-- Like this
-- One
-- Right
-- Here
+- Students **do not** need to install any resources on their local system. The challenge uses Codespaces, which is a cloud-based development container.
+- Rebuilding the container after it's been configured for the project may take several minutes. Highlight how [prebuilds](https://docs.github.com/en/codespaces/prebuilding-your-codespaces) can ensure a Codespace is available for developers within seconds.
+- Ensure attendees have created the secret for Codespaces for `MONGODB_URI`
+- Ensure the features are added for **GitHub CLI**, **Azure CLI** and **MongoDB**
