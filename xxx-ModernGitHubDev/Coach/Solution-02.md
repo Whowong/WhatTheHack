@@ -1,20 +1,8 @@
-# Challenge 02 - <Title of Challenge> - Coach's Guide 
+# Challenge 02 - Add A Feature To The Existing Application - Coach's Guide 
 
 [< Previous Solution](./Solution-01.md) - **[Home](./README.md)** - [Next Solution >](./Solution-03.md)
 
 ## Notes & Guidance
 
-This is the only section you need to include.
-
-Use general non-bulleted text for the beginning of a solution area for this challenge
-
-- Then move into bullets
-  - And sub-bullets and even
-    - sub-sub-bullets
-
-Break things apart with more than one bullet list
-
-- Like this
-- One
-- Right
-- Here
+- Students **do not** need coding experience. If they are unfamiliar with code, they can copy/paste from the [provided Hours.js file](../Student/resources/Hours.js).
+- Ensure students install the [Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) for their Codespace. This can also be done by registering it in the devcontainer.json file.
