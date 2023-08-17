@@ -1,20 +1,10 @@
-# Challenge 03 - <Title of Challenge> - Coach's Guide 
+# Challenge 03 - Continuous Integration And Security - Coach's Guide 
 
 [< Previous Solution](./Solution-02.md) - **[Home](./README.md)** - [Next Solution >](./Solution-04.md)
 
 ## Notes & Guidance
 
-This is the only section you need to include.
-
-Use general non-bulleted text for the beginning of a solution area for this challenge
-
-- Then move into bullets
-  - And sub-bullets and even
-    - sub-sub-bullets
-
-Break things apart with more than one bullet list
-
-- Like this
-- One
-- Right
-- Here
+- Actions typically need to run once before they appear as an option for branch protections
+- Because GHAS is built on GitHub Actions, you may want to briefly explain GitHub actions to the team
+- Feel free to talk about different aspects of CI/CD with the team
+- Ensure the team **DOES NOT** merge the PR
