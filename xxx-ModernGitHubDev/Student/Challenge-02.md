@@ -1,99 +1,43 @@
-# Challenge 02 - <Title of Challenge>
+# Challenge 02 - Add A Feature To The Existing Application
 
 [< Previous Challenge](./Challenge-01.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-03.md)
 
-***This is a template for a single challenge. The italicized text provides hints & examples of what should or should NOT go in each section.  You should remove all italicized & sample text and replace with your content.***
-
-## Pre-requisites (Optional)
-
-*Your hack's "Challenge 0" should cover pre-requisites for the entire hack, and thus this section is optional and may be omitted.  If you wish to spell out specific previous challenges that must be completed before starting this challenge, you may do so here.*
-
 ## Introduction
 
-*This section should provide an overview of the technologies or tasks that will be needed to complete the this challenge.  This includes the technical context for the challenge, as well as any new "lessons" the attendees should learn before completing the challenge.*
-
-*Optionally, the coach or event host is encouraged to present a mini-lesson (with a PPT or video) to set up the context & introduction to each challenge. A summary of the content of that mini-lesson is a good candidate for this Introduction section*
-
-*For example:*
-
-When setting up an IoT device, it is important to understand how 'thingamajigs' work. Thingamajigs are a key part of every IoT device and ensure they are able to communicate properly with edge servers. Thingamajigs require IP addresses to be assigned to them by a server and thus must have unique MAC addresses. In this challenge, you will get hands on with a thingamajig and learn how one is configured.
+The shelter's board knows there's a lot of work to be done on the application. Because they're trying to get things moving in the right direction, they want to make one quick change to ensure their DevOps processes work correctly. To do this, the board would like to display the hours the shelter is open for the current day. The shelter is open from 10am to 4pm Monday-Friday, and 9am to 8pm Saturday and Sunday. They'd like to have this as a new React component in the project so it can be used in different places in the application.
 
 ## Description
 
-*This section should clearly state the goals of the challenge and any high-level instructions you want the students to follow. You may provide a list of specifications required to meet the goals. If this is more than 2-3 paragraphs, it is likely you are not doing it right.*
+With the development environment created and configured, it's time for some development. While the project uses [Next.js](https://nextjs.org)/[React](https://reactjs.org), not everyone is an expert in those frameworks. Even experts can struggle at times to remember syntax. And no developer likes enjoys the tedious tasks which often arise when writing code. [GitHub Copilot](https://github.com/features/copilot) is an AI pair programmer trained on billions of lines of publicly available code and text, designed to offer code suggestions to enhance and streamline your development process.
 
-***NOTE:** Do NOT use ordered lists as that is an indicator of 'step-by-step' instructions. Instead, use bullet lists to list out goals and/or specifications.*
+> **IMPORTANT:** As highlighted earlier, coding experience is **not** required for this hack. You can use the [solution mentioned in challenge notes](#challenge-notes).
 
-***NOTE:** You may use Markdown sub-headers to organize key sections of your challenge description.*
+For this challenge, you will create a new React component named **Hours.js** in the **components** folder. You will add the code necessary to display the hours for the current day of the week. After creating the component, you will update **index.js** in the **pages** folder to import the newly created component and display it on the page.
 
-*Optionally, you may provide resource files such as a sample application, code snippets, or templates as learning aids for the students. These files are stored in the hack's `Student/Resources` folder. It is the coach's responsibility to package these resources into a Resources.zip file and provide it to the students at the start of the hack.*
+> **IMPORTANT:** Do **not** commit the files to the `main` branch. In an upcoming challenge you will create a pull request.
 
-***NOTE:** Do NOT provide direct links to files or folders in the What The Hack repository from the student guide. Instead, you should refer to the Resource.zip file provided by the coach.*
+- Create the `Hours` component by adding a file named **Hours.js** to the **components** folder.
+    - Your coach can provide a completed **Hours.js** file to use.
+- The syntax to import the `Hours` component in **index.js** is `import Hours from '../components/Hours';`, and can be placed below the line which reads `// TODO: Import Hours component`.
+- The syntax to display the `Hours` component in **index.js** is `<Hours />`, and can be added immediately below the line which reads `{/* TODO: Display Hours component */}`.
+- For purposes of this challenge, you can read the current day from the browser without regard for the user's timezone.
 
-***NOTE:** As an exception, you may provide a GitHub 'raw' link to an individual file such as a PDF or Office document, so long as it does not open the contents of the file in the What The Hack repo on the GitHub website.*
 
-***NOTE:** Any direct links to the What The Hack repo will be flagged for review during the review process by the WTH V-Team, including exception cases.*
-
-*Sample challenge text for the IoT Hack Of The Century:*
-
-In this challenge, you will properly configure the thingamajig for your IoT device so that it can communicate with the mother ship.
-
-You can find a sample `thingamajig.config` file in the `/ChallengeXX` folder of the Resources.zip file provided by your coach. This is a good starting reference, but you will need to discover how to set exact settings.
-
-Please configure the thingamajig with the following specifications:
-- Use dynamic IP addresses
-- Only trust the following whitelisted servers: "mothership", "IoTQueenBee" 
-- Deny access to "IoTProxyShip"
-
-You can view an architectural diagram of an IoT thingamajig here: [Thingamajig.PDF](/Student/Resources/Architecture.PDF?raw=true).
 
 ## Success Criteria
 
-*Success criteria goes here. The success criteria should be a list of checks so a student knows they have completed the challenge successfully. These should be things that can be demonstrated to a coach.* 
-
-*The success criteria should not be a list of instructions.*
-
-*Success criteria should always start with language like: "Validate XXX..." or "Verify YYY..." or "Show ZZZ..." or "Demonstrate you understand VVV..."*
-
-*Sample success criteria for the IoT sample challenge:*
-
-To complete this challenge successfully, you should be able to:
-- Verify that the IoT device boots properly after its thingamajig is configured.
-- Verify that the thingamajig can connect to the mothership.
-- Demonstrate that the thingamajic will not connect to the IoTProxyShip
+- You have created a new component named `Hours` which displays the hours for the current day.
+- The `Hours` component is called in **index.js**.
+- The hours are successfully displayed on the site.
 
 ## Learning Resources
 
-_List of relevant links and online articles that should give the attendees the knowledge needed to complete the challenge._
-
-*Think of this list as giving the students a head start on some easy Internet searches. However, try not to include documentation links that are the literal step-by-step answer of the challenge's scenario.*
-
-***Note:** Use descriptive text for each link instead of just URLs.*
-
-*Sample IoT resource links:*
-
-- [What is a Thingamajig?](https://www.bing.com/search?q=what+is+a+thingamajig)
-- [10 Tips for Never Forgetting Your Thingamajic](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-- [IoT & Thingamajigs: Together Forever](https://www.youtube.com/watch?v=yPYZpwSpKmA)
+- [Getting started with React](https://reactjs.org/docs/hello-world.html)
+- [Getting started with GitHub Copilot in Visual Studio Code (Codespaces)](https://docs.github.com/copilot/getting-started-with-github-copilot/getting-started-with-github-copilot-in-visual-studio-code)
+- [Getting your first suggestion with GitHub Copilot](https://docs.github.com/copilot/quickstart#getting-your-first-suggestion) 
 
 ## Tips
 
-*This section is optional and may be omitted.*
-
-*Add tips and hints here to give students food for thought. Sample IoT tips:*
-
-- IoTDevices can fail from a broken heart if they are not together with their thingamajig. Your device will display a broken heart emoji on its screen if this happens.
-- An IoTDevice can have one or more thingamajigs attached which allow them to connect to multiple networks.
-
-## Advanced Challenges (Optional)
-
-*If you want, you may provide additional goals to this challenge for folks who are eager.*
-
-*This section is optional and may be omitted.*
-
-*Sample IoT advanced challenges:*
-
-Too comfortable?  Eager to do more?  Try these additional challenges!
-
-- Observe what happens if your IoTDevice is separated from its thingamajig.
-- Configure your IoTDevice to connect to BOTH the mothership and IoTQueenBee at the same time.
+- All React components need to `import React from 'react';` at the top of the file.
+- GitHub Copilot offers suggestions based on both code and comments. You can describe in natural language the task you are trying to accomplish and Copilot will offer suggestions.
+- Rewording comments can help Copilot offer different suggestions closer to what you are looking for.
