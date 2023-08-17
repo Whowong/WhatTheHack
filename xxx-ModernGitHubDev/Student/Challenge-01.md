@@ -1,4 +1,4 @@
-# Challenge 01 - Configure your development environment
+# Challenge 01 - Configure Your Development Environment
 
 [< Previous Challenge](./Challenge-00.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-02.md)
 
