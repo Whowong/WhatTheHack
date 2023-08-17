@@ -22,15 +22,15 @@ This DevOps with GitHub hack will help you learn how to use:
 
 - Challenge 00: **[Prerequisites - Ready, Set, GO!](Student/Challenge-00.md)**
 	 - Prepare your workstation to work with Azure.
-- Challenge 01: **[Configure your development environment](Student/Challenge-01.md)**
+- Challenge 01: **[Configure Your Development Environment](Student/Challenge-01.md)**
 	 - Setup your development environment in the cloud
-- Challenge 02: **[Add a feature to the existing application](Student/Challenge-02.md)**
+- Challenge 02: **[Add A Feature To The Existing Application](Student/Challenge-02.md)**
 	 - Leverage GitHub Copilot to help you add features to your application
-- Challenge 03: **[Setup continuous integration and ensure security](Student/Challenge-03.md)**
+- Challenge 03: **[Setup Continuous Integration And Ensure Security](Student/Challenge-03.md)**
 	 - Setup continuous integration and integrate GitHub Advanced Security into your pipeline
-- Challenge 04: **[Create a deployment environment](Student/Challenge-04.md)**
+- Challenge 04: **[Create A Deployment Environment](Student/Challenge-04.md)**
 	 - Use IaC to provision your clound environment
-- Challenge 05: **[Setup continuous deployment](Student/Challenge-05.md)**
+- Challenge 05: **[Setup Continuous Deployment](Student/Challenge-05.md)**
 	 - Deploy your application to Azure with Continuous Delivery
 
 ## Prerequisites
