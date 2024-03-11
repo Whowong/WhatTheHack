@@ -1,6 +1,7 @@
 {
     "name" : "Azure Serverless WTH in Codespaces",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "workspaceFolder": "/workspaces/WhatTheHack/015-Serverless/Student",
     "features": {
         "ghcr.io/devcontainers/features/common-utils": {},
         "ghcr.io/devcontainers/features/azure-cli": {},
