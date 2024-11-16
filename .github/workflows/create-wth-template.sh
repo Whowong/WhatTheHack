@@ -53,6 +53,15 @@ CreateDirectoryStructure() {
   
   #add a file to allow git to store an "empty" directory
   touch $rootPath/Student/Resources/.gitkeep
+
+  # create the .devcontainer directory
+  mkdir -p $pathArg/.devcontainer/$wthDirectoryName
+
+  # copy the generic devcontainer.json template to the new hack's .devcontainer folder
+  cp 000-HowToHack/devcontainer.json $pathArg/.devcontainer/$wthDirectoryName/devcontainer.json
+
+  # update the "name" field in the devcontainer.json file to the name of the new hack
+  sed -i "s/\"name\": \".*\"/\"name\": \"$nameOfHackArg\"/" $pathArg/.devcontainer/$wthDirectoryName/devcontainer.json
 }
 
 PreprocessTemplateFile() {
