@@ -60,6 +60,7 @@ CreateDirectoryStructure() {
 
   # copy the generic devcontainer.json template to the new hack's .devcontainer folder
   echo "Copying the new devcontainer file to the new folder"
+  ls
   cp 000-HowToHack/devcontainer.json $pathArg/.devcontainer/$wthDirectoryName/devcontainer.json
 
   # update the "name" field in the devcontainer.json file to the name of the new hack
