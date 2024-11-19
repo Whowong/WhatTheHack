@@ -30,8 +30,8 @@ jobs:
         run: ${{ github.workspace }}/.github/workflows/create-wth-template.sh -p ${{ github.workspace }} -c ${{ github.event.inputs.numberOfChallenges}} -n ${{ github.event.inputs.hackName }} -v -d
       - name: Push branch
         run: |
-          pwd
           git add *
+          git add .devcontainer
           git commit -m 'Created WhatTheHack template stub'
           git push -u origin ${{ env.BRANCH_NAME }}
 
