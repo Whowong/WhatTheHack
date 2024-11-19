@@ -57,13 +57,12 @@ CreateDirectoryStructure() {
   # create the .devcontainer directory
   echo "creating the new devcontainer directory: $pathArg/.devcontainer/$wthDirectoryName"
   mkdir -p $pathArg/.devcontainer/$wthDirectoryName
-  ls $pathArg/.devcontainer
   
   # copy the generic devcontainer.json template to the new hack's .devcontainer folder
   echo "Copying the new devcontainer file to the new folder"
-  ls 000-HowToHack
   cp 000-HowToHack/devcontainer.json $pathArg/.devcontainer/$wthDirectoryName/devcontainer.json
-
+  ls $pathArg/.devcontainer/$wthDirectoryName
+  
   # update the "name" field in the devcontainer.json file to the name of the new hack
   echo "Updating the name in the file"
   sed -i "s/\"name\": \".*\"/\"name\": \"$nameOfHackArg\"/" $pathArg/.devcontainer/$wthDirectoryName/devcontainer.json
