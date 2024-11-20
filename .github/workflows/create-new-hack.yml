@@ -31,7 +31,6 @@ jobs:
       - name: Push branch
         run: |
           git add *
-          git add .devcontainer
           git commit -m 'Created WhatTheHack template stub'
           git push -u origin ${{ env.BRANCH_NAME }}
 
