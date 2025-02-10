@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the expected repository name
-EXPECTED_REPO="Whowong/WhatTheHack"
+EXPECTED_REPO="Whowong/WhatTheHac"
 
 # Get the current repository name
 CURRENT_REPO=$(basename $(git rev-parse --show-toplevel))
