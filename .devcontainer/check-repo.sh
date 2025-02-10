@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Define the expected repository name
-EXPECTED_REPO="WhatTheHack"
+EXPECTED_REPO="Whowong/WhatTheHack"
 
 # Get the current repository name
-CURRENT_REPO=$(basename $(git rev-parse --show-toplevel))
+CURRENT_REPO=$(git remote get-url origin | sed 's|https://github.com/||')
 
 # Check if the current repository is the expected one
 if [ "$CURRENT_REPO" != "$EXPECTED_REPO" ]; then
