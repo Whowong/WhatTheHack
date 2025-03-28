@@ -1,4 +1,4 @@
-# What The Hack - AIWithConfluentOnAzure
+# What The Hack - AI With Confluent On Azure
 
 ## Introduction
 
@@ -16,15 +16,15 @@ In this hack you will be solving the common business problem that companies in t
 
 - Challenge 00: **[Prerequisites - Ready, Set, GO!](Student/Challenge-00.md)**
 	 - Prepare your workstation to work with Azure.
-- Challenge 01: **[Title of Challenge](Student/Challenge-01.md)**
+- Challenge 01: **[Configuration of Agentic Resources and Deployment of Backend](Student/Challenge-01.md)**
 	 - Description of challenge
-- Challenge 02: **[Title of Challenge](Student/Challenge-02.md)**
+- Challenge 02: **[Configuration of Chat Interface and Frontend](Student/Challenge-02.md)**
 	 - Description of challenge
-- Challenge 03: **[Title of Challenge](Student/Challenge-03.md)**
+- Challenge 03: **[Simulation of Employee - Reports, Status etc](Student/Challenge-03.md)**
 	 - Description of challenge
-- Challenge 04: **[Title of Challenge](Student/Challenge-04.md)**
+- Challenge 04: **[Simulation of Suppliers - Replenishments](Student/Challenge-04.md)**
 	 - Description of challenge
-- Challenge 05: **[Title of Challenge](Student/Challenge-05.md)**
+- Challenge 05: **[Simulation of Customers - Purchases and Returns](Student/Challenge-05.md)**
 	 - Description of challenge
 
 ## Prerequisites
