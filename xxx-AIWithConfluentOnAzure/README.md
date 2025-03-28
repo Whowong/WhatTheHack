@@ -2,15 +2,20 @@
 
 ## Introduction
 
-The IoT Hack of the Century will take you on a whirlwind tour in the world of IoT and how it is being used in the modern world of mineral extraction in exotic locations like the Arctic and the wilds of South Africa.
+This hackathon immerses you in building a real-time AI agent using **Confluent Cloud on Microsoft Azure**. You’ll learn how Confluent’s data streaming platform—based on Apache Kafka—can connect and process retail data in real time, enabling AI-driven insights that keep pace with constantly changing business conditions [1][2]. Whether it’s ingesting product SKUs or synchronizing inventory levels, Confluent Cloud on Azure offers a unified, scalable, and secure platform to design near real-time pipelines and deliver accurate, intelligent solutions.
+
+Throughout this hack, you’ll capture data from diverse sources—such as transaction logs, returns, and purchase records—and then transform or enrich that data using Apache Flink or ksqlDB. The result is an always up-to-date data backbone, ready to power AI-driven applications that swiftly respond to customer needs, supplier demands, and dynamic inventory scenarios [3][4].
+
 
 ## Learning Objectives
 
-In this hack you will be solving the common business problem that companies in the mineral extraction industry face and how IoT solutions from Azure are brought to bare
+By completing this hack, you will:
 
-1. Provision an IoT Hub
-2. Set up an IoT Edge device
-3. Bring Azure Sphere to your solution for scale and resiliency
+- **Set up a real-time streaming environment** on Confluent Cloud in Azure, incorporating best practices for scalability, reliability, and security.  
+- **Ingest and process diverse data sources** using Apache Kafka, exploring how pre-built Confluent connectors facilitate end-to-end data pipelines.  
+- **Apply basic stream processing** through ksqlDB or Apache Flink to merge, filter, or aggregate event data in real time.  
+- **Sync transformed data to Azure services** like Cosmos DB or Azure AI Search, ensuring your AI agent always has a near real-time view of retail operations.  
+- **Lay the groundwork for AI-driven decision-making**, demonstrating how real-time data improves accuracy and responsiveness for both customers and internal stakeholders.
 
 ## Challenges
 
@@ -32,9 +37,15 @@ In this hack you will be solving the common business problem that companies in t
 - Your own Azure subscription with Owner access
 - Visual Studio Code
 - Azure CLI
-- An AVNET X231 device
+
+## References
+- 1 https://www.confluent.io/apache-kafka-vs-confluent/
+- 2 https://learn.microsoft.com/en-us/azure/partner-solutions/apache-kafka-confluent-cloud/overview
+- 3 https://learn.microsoft.com/en-us/azure/partner-solutions/apache-kafka-confluent-cloud/create
+- 4 https://www.confluent.io/hub/ 
 
 ## Contributors
 
-- Jane Q. Public
-- Joe T. Muppet
+- Andy Huang
+- Israel Ekpo
+- Juan Llovet de Casso
