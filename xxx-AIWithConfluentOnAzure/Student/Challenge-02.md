@@ -19,9 +19,8 @@ In this challenge, you'll configure and deploy the frontend user interface that 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
-- Verify that the IoT device boots properly after its thingamajig is configured.
-- Verify that the thingamajig can connect to the mothership.
-- Demonstrate that the thingamajic will not connect to the IoTProxyShip
+- Show that your frontend and related Azure resources have been deployed.
+- Verify that the frontend can communicate with the backend API and receive a valid response.
 
 ## Learning Resources
 
