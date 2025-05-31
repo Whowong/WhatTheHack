@@ -1,66 +1,49 @@
-# Challenge 03 - <Title of Challenge>
+# Challenge 03 - Simulation of Employee Persona
 
 [< Previous Challenge](./Challenge-02.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-04.md)
 
-***This is a template for a single challenge. The italicized text provides hints & examples of what should or should NOT go in each section.  You should remove all italicized & sample text and replace with your content.***
 
-## Pre-requisites (Optional)
+## Pre-requisites
 
-*Your hack's "Challenge 0" should cover pre-requisites for the entire hack, and thus this section is optional and may be omitted.  If you wish to spell out specific previous challenges that must be completed before starting this challenge, you may do so here.*
+You must complete **Challenge 01** and **Challenge 02** before starting this challenge. The backend API and frontend interface must be fully deployed and functional, as this challenge builds on top of the running application infrastructure.
+
 
 ## Introduction
 
-*This section should provide an overview of the technologies or tasks that will be needed to complete the this challenge.  This includes the technical context for the challenge, as well as any new "lessons" the attendees should learn before completing the challenge.*
+In this challenge, you'll simulate the experience of an employee interacting with the AI agent to perform various business-critical operations. This persona has access to operational data such as purchases, returns, and inventory, and can also perform updates to the product catalog in near real time.
 
-*Optionally, the coach or event host is encouraged to present a mini-lesson (with a PPT or video) to set up the context & introduction to each challenge. A summary of the content of that mini-lesson is a good candidate for this Introduction section*
+The goal of this challenge is to observe how changes initiated through the agent are processed and reflected across systems in near real time using Confluent Cloud on Azure. These updates—whether querying data or modifying records—flow through Kafka topics, are processed via stream processors like Flink or ksqlDB, and are reflected in the destination datastore with minimal delay.
 
-*For example:*
-
-When setting up an IoT device, it is important to understand how 'thingamajigs' work. Thingamajigs are a key part of every IoT device and ensure they are able to communicate properly with edge servers. Thingamajigs require IP addresses to be assigned to them by a server and thus must have unique MAC addresses. In this challenge, you will get hands on with a thingamajig and learn how one is configured.
 
 ## Description
 
-*This section should clearly state the goals of the challenge and any high-level instructions you want the students to follow. You may provide a list of specifications required to meet the goals. If this is more than 2-3 paragraphs, it is likely you are not doing it right.*
+In this challenge, you will authenticate as an employee and issue commands to the AI agent to retrieve and update retail operations data. These interactions are routed through the backend API, processed via Confluent Cloud's real-time data infrastructure, and ultimately reflected in the destination datastore.
 
-***NOTE:** Do NOT use ordered lists as that is an indicator of 'step-by-step' instructions. Instead, use bullet lists to list out goals and/or specifications.*
+Please implement the following capabilities for the employee persona:
 
-***NOTE:** You may use Markdown sub-headers to organize key sections of your challenge description.*
+- Authenticate using an employee ID and 4-digit PIN.
+- Retrieve summaries for a specific date:
+  - Total purchases
+  - Total replenishments
+  - Total returns
+  - Net sales (purchases - returns)
+- Query current inventory level of a specific SKU.
+- Modify inventory-related data:
+  - Change the maximum inventory level of a specific SKU.
+  - Update the unit price of a specific SKU.
+  - Add a new SKU to the product catalog.
+  - Modify the list of SKUs a vendor is authorized to replenish.
 
-*Optionally, you may provide resource files such as a sample application, code snippets, or templates as learning aids for the students. These files are stored in the hack's `Student/Resources` folder. It is the coach's responsibility to package these resources into a Resources.zip file and provide it to the students at the start of the hack.*
+All modifications should propagate through Confluent Cloud and be reflected in the destination data store (e.g., Cosmos DB or Azure AI Search) in near real time.
 
-***NOTE:** Do NOT provide direct links to files or folders in the What The Hack repository from the student guide. Instead, you should refer to the Resource.zip file provided by the coach.*
-
-***NOTE:** As an exception, you may provide a GitHub 'raw' link to an individual file such as a PDF or Office document, so long as it does not open the contents of the file in the What The Hack repo on the GitHub website.*
-
-***NOTE:** Any direct links to the What The Hack repo will be flagged for review during the review process by the WTH V-Team, including exception cases.*
-
-*Sample challenge text for the IoT Hack Of The Century:*
-
-In this challenge, you will properly configure the thingamajig for your IoT device so that it can communicate with the mother ship.
-
-You can find a sample `thingamajig.config` file in the `/ChallengeXX` folder of the Resources.zip file provided by your coach. This is a good starting reference, but you will need to discover how to set exact settings.
-
-Please configure the thingamajig with the following specifications:
-- Use dynamic IP addresses
-- Only trust the following whitelisted servers: "mothership", "IoTQueenBee" 
-- Deny access to "IoTProxyShip"
-
-You can view an architectural diagram of an IoT thingamajig here: [Thingamajig.PDF](/Student/Resources/Architecture.PDF?raw=true).
 
 ## Success Criteria
 
-*Success criteria goes here. The success criteria should be a list of checks so a student knows they have completed the challenge successfully. These should be things that can be demonstrated to a coach.* 
-
-*The success criteria should not be a list of instructions.*
-
-*Success criteria should always start with language like: "Validate XXX..." or "Verify YYY..." or "Show ZZZ..." or "Demonstrate you understand VVV..."*
-
-*Sample success criteria for the IoT sample challenge:*
-
 To complete this challenge successfully, you should be able to:
-- Verify that the IoT device boots properly after its thingamajig is configured.
-- Verify that the thingamajig can connect to the mothership.
-- Demonstrate that the thingamajic will not connect to the IoTProxyShip
+- Show that employee users can authenticate using ID and PIN.
+- Show at least three successful read operations.
+- Show at least two successful write operations.
+- Verify that data changes propagate through Confluent Cloud and are reflected in the destination data store in near real time.
 
 ## Learning Resources
 
