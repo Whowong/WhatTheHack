@@ -19,8 +19,6 @@ The goal of this challenge is to observe how customer-facing operations impact t
 
 Customers authenticate using a customer ID and 4-digit PIN. Once signed in, they should be able to browse available SKUs, check stock status, make purchases, and return eligible items.
 
-Please implement the following capabilities for the customer persona:
-
 - Authenticate using customer ID and 4-digit PIN.
 - Retrieve:
   - A list of all SKUs available in the store, regardless of inventory.
