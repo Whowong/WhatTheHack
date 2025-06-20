@@ -19,8 +19,6 @@ The goal of this challenge is to observe how changes initiated through the agent
 
 In this challenge, you will authenticate as an employee and issue commands to the AI agent to retrieve and update retail operations data. These interactions are routed through the backend API, processed via Confluent Cloud's real-time data infrastructure, and ultimately reflected in the destination datastore.
 
-Please implement the following capabilities for the employee persona:
-
 - Authenticate using an employee ID and 4-digit PIN.
 - Retrieve summaries for a specific date:
   - Total purchases
