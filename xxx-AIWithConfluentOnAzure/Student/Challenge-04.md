@@ -19,8 +19,6 @@ The goal of this challenge is to observe how inventory replenishment operations 
 
 Vendors will authenticate into the system using their vendor ID and 4-digit PIN. Once authenticated, the vendor will use the AI agent to retrieve SKU-level data and issue replenishment commands.
 
-Please implement the following capabilities for the vendor persona:
-
 - Authenticate using vendor ID and 4-digit PIN.
 - Retrieve:
   - A list of SKUs the vendor is authorized to replenish.
