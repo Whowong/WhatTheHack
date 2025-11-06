@@ -2,99 +2,140 @@
 
 **[Home](../README.md)** - [Next Challenge >](./Challenge-01.md)
 
-**_This is a template for "Challenge Zero" which focuses on getting prerequisites set up for the hack. The italicized text provides hints & examples of what should or should NOT go in each section._**
-
-**_We have included links to some common What The Hack pre-reqs in this template. All common prerequisite links go to the WTH-CommonPrerequisites page where there are more details on what each tool's purpose is._**
-
-**_You should remove any common pre-reqs that are not required for your hack. Then add additional pre-reqs that are required for your hack in the Description section below._**
-
-**_You should remove all italicized & sample text in this template and replace with your content._**
-
 ## Introduction
 
-Thank you for participating in the AIWithConfluentOnAzure What The Hack. Before you can hack, you will need to set up some prerequisites.
+In this challenge, you will provision all required infrastructure for the hackathon—both in Azure and Confluent Cloud—using automated Terraform modules. The focus of this challenge is to set up the cloud resources needed for data ingestion, streaming, schema validation, and AI search.
+
+By the end of this challenge, you should have:
+
+- Confluent Cloud configured with Kafka topics, Schema Registry, and Source/Sink Connectors
+- Azure resources deployed, including Cosmos DB, Azure Storage, Azure OpenAI, Redis Cache, and Azure AI Search
+- MCP-powered AI agents running and able to communicate with the deployed infrastructure.
 
 ## Common Prerequisites
 
-We have compiled a list of common tools and software that will come in handy to complete most What The Hack Azure-based hacks!
+We have compiled a list of common tools and software that you will need to complete Challenge 1 and deploy the Terraform-based infrastructure to Azure and Confluent Cloud.
 
-You might not need all of them for the hack you are participating in. However, if you work with Azure on a regular basis, these are all things you should consider having in your toolbox.
+You may not need all of them outside this challenge. However, if you work with Azure or Confluent Cloud on a regular basis, these are essential components for your development toolkit.
 
-<!-- If you are editing this template manually, be aware that these links are only designed to work if this Markdown file is in the /xxx-HackName/Student/ folder of your hack. -->
+* **Azure Subscription**
 
-- [Azure Subscription](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-subscription)
-- [Windows Subsystem for Linux](../../000-HowToHack/WTH-Common-Prerequisites.md#windows-subsystem-for-linux)
-- [Managing Cloud Resources](../../000-HowToHack/WTH-Common-Prerequisites.md#managing-cloud-resources)
-  - [Azure Portal](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-portal)
-  - [Azure CLI](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-cli)
-    - [Note for Windows Users](../../000-HowToHack/WTH-Common-Prerequisites.md#note-for-windows-users)
-    - [Azure PowerShell CmdLets](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-powershell-cmdlets)
-  - [Azure Cloud Shell](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-cloud-shell)
-- [Visual Studio Code](../../000-HowToHack/WTH-Common-Prerequisites.md#visual-studio-code)
-  - [VS Code plugin for ARM Templates](../../000-HowToHack/WTH-Common-Prerequisites.md#visual-studio-code-plugins-for-arm-templates)
-- [Azure Storage Explorer](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-storage-explorer)
+  * You must have access to an active Azure subscription with permissions to create resources.
+* **Managing Cloud Resources**
+
+  * **Azure Portal**
+    [https://portal.azure.com](https://portal.azure.com)
+    Used to visually validate resources deployed by Terraform.
+  * **Azure CLI**
+    [https://learn.microsoft.com/cli/azure/install-azure-cli](https://learn.microsoft.com/cli/azure/install-azure-cli)
+    Required to authenticate and verify your subscription and resource group.
+
+    * After installation, login using:
+
+      ```bash
+      az login
+      ```
+  * **Terraform CLI**
+    [https://developer.hashicorp.com/terraform/downloads](https://developer.hashicorp.com/terraform/downloads)
+    Required to deploy infrastructure modules for Azure and Confluent Cloud.
+
+    * After installation, you should be able to run the following command with the Terraform CLI:
+      ```bash
+      terraform init
+      ```
+* **Confluent Cloud CLI**
+
+  * Required to authenticate to Confluent Cloud and interact with Kafka topics and connectors
+    [https://docs.confluent.io/confluent-cli/current/install.html](https://docs.confluent.io/confluent-cli/current/install.html)
+
+    Use the following command to authenticate with Confluent Cloud via the CLI:
+    ```bash
+    confluent --help
+
+    ```
+
+Optional but helpful:
+
+* **Visual Studio Code**
+
+  * Recommended IDE for editing Terraform configuration files
+    [https://code.visualstudio.com](https://code.visualstudio.com)
+
+* **Azure Storage Explorer**
+
+  * Helpful for inspecting Blob Storage input files during validation
+    [https://azure.microsoft.com/features/storage-explorer/](https://azure.microsoft.com/features/storage-explorer/)
+    
 
 ## Description
 
-_This section should clearly state any additional prerequisite tools that need to be installed or set up in the Azure environment that the student will hack in._
+In this challenge, you will:
 
-_While ordered lists are generally not welcome in What The Hack challenge descriptions, you can use one here in Challenge Zero IF and only IF the steps you are asking the student to perform are not core to the learning objectives of the hack._
+1. **Clone the Hackathon Repository** (contains all Terraform modules)
+2. **Update Terraform variables** with your Azure subscription ID, principal IDs, and Confluent API keys
+3. **Run Terraform** to provision the infrastructure
+4. **Confirm data flows through connectors**
 
-_For example, if the hack is on IoT Devices and you want the student to deploy an ARM/Bicep template that sets up the environment they will hack in without them needing to understand how ARM/Bicep templates work, you can provide step-by-step instructions on how to deploy the ARM/Bicep template._
+### What the Terraform automation will create
 
-_Optionally, you may provide resource files such as a sample application, code snippets, or templates as learning aids for the students. These files are stored in the hack's `Student/Resources` folder. It is the coach's responsibility to package these resources into a Resources.zip file and provide it to the students at the start of the hack. You should leave the sample text below in that refers to the Resources.zip file._
+| Platform            | Resource Provisioned                                                                                       |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Azure**           | Azure OpenAI, Cosmos DB, Azure AI Search, Azure Redis Cache, Azure Storage Account                         |
+| **Confluent Cloud** | Kafka Cluster, Schema Registry, Kafka topics, Cosmos DB & Blob Source connectors, AI Search Sink connector |
+| **AI Agents / MCP** | Deployment of microservices + MCP servers that expose capabilities to agents                               |
 
-**\*NOTE:** Do NOT provide direct links to files or folders in the What The Hack repository from the student guide. Instead, you should refer to the Resources.zip file provided by the coach.\*
+### What you will verify
 
-**\*NOTE:** Any direct links to the What The Hack repo will be flagged for review during the review process by the WTH V-Team, including exception cases.\*
-
-_Sample challenge zero text for the IoT Hack Of The Century:_
-
-Now that you have the common pre-requisites installed on your workstation, there are prerequisites specifc to this hack.
-
-Your coach will provide you with a Resources.zip file that contains resources you will need to complete the hack. If you plan to work locally, you should unpack it on your workstation. If you plan to use the Azure Cloud Shell, you should upload it to the Cloud Shell and unpack it there.
-
-Please install these additional tools:
-
-- [Azure IoT Tools](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools) extension for Visual Studio Code
-- .NET SDK 6.0 or later installed on your development machine. This can be downloaded from [here](https://www.microsoft.com/net/download/all) for multiple platforms.
-
-In the `/Challenge00/` folder of the Resources.zip file, you will find an ARM template, `setupIoTEnvironment.json` that sets up the initial hack environment in Azure you will work with in subsequent challenges.
-
-Please deploy the template by running the following Azure CLI commands from the location of the template file:
-```
-az group create --name myIoT-rg --location eastus
-az group deployment create -g myIoT-rg --name HackEnvironment -f setupIoTEnvironment.json
-```
+* AI agents respond and can list the 8 departments
+* Source connectors flow data from Cosmos DB and Blob Storage → Kafka topics
+* Sink connector pushes data from Kafka → Azure AI Search
 
 ## Success Criteria
 
-_Success criteria goes here. The success criteria should be a list of checks so a student knows they have completed the challenge successfully. These should be things that can be demonstrated to a coach._
+To complete the challenge successfully, all of the following must be true:
 
-_The success criteria should not be a list of instructions._
+* Terraform deploys successfully** and resources appear in Azure Portal and Confluent Cloud
+* Source connectors are live and pushing data** from Cosmos DB and Blob Storage into Kafka topics
+* Sink connector is pushing data into Azure AI Search** (net sales + net inventory count topics)
+* The MCP-powered AI agent can:
 
-_Success criteria should always start with language like: "Validate XXX..." or "Verify YYY..." or "Show ZZZ..." or "Demonstrate you understand VVV..."_
+* Respond when prompted
+* State its name
+* List all eight departments in the grocery store
 
-_Sample success criteria for the IoT prerequisites challenge:_
+Completion checklist:
 
-To complete this challenge successfully, you should be able to:
-
-- Verify that you have a bash shell with the Azure CLI available.
-- Verify that the ARM template has deployed the following resources in Azure:
-  - Azure IoT Hub
-  - Virtual Network
-  - Jumpbox VM
+| Objective                         | Verification Step                            |
+| --------------------------------- | -------------------------------------------- |
+| Azure + Confluent resources exist | Terraform output + portal checks             |
+| Source connectors working         | Messages visible in Kafka topics             |
+| Sink connector working            | Index documents visible in Azure AI Search   |
+| Agent connected                   | Agent responds with name + lists departments |
 
 ## Learning Resources
 
-_List of relevant links and online articles that should give the attendees the knowledge needed to complete the challenge._
 
-_Think of this list as giving the students a head start on some easy Internet searches. However, try not to include documentation links that are the literal step-by-step answer of the challenge's scenario._
+* **Install Azure CLI**
+  [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
 
-**\*Note:** Use descriptive text for each link instead of just URLs.\*
+* **Install Terraform CLI**
+  [Terraform CLI](https://developer.hashicorp.com/terraform/downloads)
 
-_Sample IoT resource links:_
+* **Install Confluent CLI**
+  [Confluent CLI](https://docs.confluent.io/confluent-cli/current/install.html)
 
-- [What is a Thingamajig?](https://www.bing.com/search?q=what+is+a+thingamajig)
-- [10 Tips for Never Forgetting Your Thingamajic](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-- [IoT & Thingamajigs: Together Forever](https://www.youtube.com/watch?v=yPYZpwSpKmA)
+* **Azure Service Principal authentication**
+  [Azure Service Principal Setup](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)
+
+* **Confluent Cloud getting started**
+  [Confluent Cloud on Azure](https://docs.confluent.io/cloud/current/get-started/index.html)
+
+* **Confluent Source & Sink Connectors**
+  [Kafka Connectors from Confluent](https://docs.confluent.io/cloud/current/connectors/index.html)
+
+* **Azure AI Search documentation**
+  [Azure AI Search Docs](https://learn.microsoft.com/azure/search/search-what-is-azure-search)
+
+* **Azure Cosmos DB documentation**
+  [Azure Cosmos DB Docs](https://learn.microsoft.com/azure/cosmos-db/introduction)
+

@@ -1,54 +1,94 @@
-# Challenge 01 - Configuration of Agentic Resources and Deployment of Backend
+# Challenge 01 - Build the Flink Data Pipeline (Merge Streaming Data)
 
 [< Previous Challenge](./Challenge-00.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-02.md)
 
 ## Introduction
 
-In this challenge, you'll focus on deploying the backend API that will serve as the foundation for your real-time AI agent. This API will eventually consume data streamed through Confluent Cloud on Azure and surface intelligent responses based on the latest available information.
+In this challenge, you will create the streaming data pipeline that powers real-time inventory and sales updates for the online grocery store. Using Apache Flink on Confluent Cloud, you will map Kafka topics to Flink tables and merge multiple data streams (purchases, returns, pricing, departments, and replenishments) into two aggregated output tables:
+
+* `net_sales`
+* `net_inventory_count`
+
+These tables will continuously update as new events stream into Kafka topics.
+
+---
 
 ## Description
 
-*Need to Update once we confirm architecture*
+During this challenge, you will:
 
+1. Connect to the Apache Flink SQL editor in Confluent Cloud.
+2. Create Flink tables mapped to existing Kafka topics:
+
+   * `product_sku`
+   * `product_pricing`
+   * `product_departments`
+   * `purchases`
+   * `returns`
+   * `replenishments`
+3. Write Flink SQL merge logic that continuously updates:
+
+   * The `net_sales` table
+   * The `net_inventory_count` table
+
+### Required Merging Logic
+
+* Net Sales
+
+  * Purchases add to the net sales total for each SKU.
+  * Returns subtract from the net sales total for each SKU.
+
+* Net Inventory Count
+
+  * Purchases subtract from the inventory count.
+  * Replenishments add to the inventory count.
+  * Returns:
+
+    * If the product belongs to the appliance department, returns add back to inventory.
+    * Returns from all other departments are ignored (treated as perishable or damaged).
+
+### Expected Outcome
+
+After your SQL statements are running, every new message streaming into Kafka should update:
+
+* Net sales for the SKU
+* Net inventory count for the SKU
+
+in real time.
+
+---
 
 ## Success Criteria
 
-To complete this challenge successfully, you should be able to:
-- Show that your Azure resources and API have been deployed
-- Verify that the API is reachable and responsive.
+To complete this challenge successfully, the following must be true:
+
+* All Kafka topics listed above are mapped to Flink tables.
+* Flink SQL merge statements for `net_sales` and `net_inventory_count` are created and running.
+* Sales and inventory values update continuously as new messages stream in.
+* Logic behaves correctly:
+
+  * Purchases increase net sales and decrease inventory.
+  * Replenishments increase inventory.
+  * Returns decrease net sales.
+  * Only appliance returns increase inventory count; all others are ignored.
+
+Completion checklist:
+
+* [ ] Flink tables created for all source Kafka topics
+* [ ] Merge query running for `net_sales`
+* [ ] Merge query running for `net_inventory_count`
+* [ ] Inventory and sales update in real time during event flow
+
+---
 
 ## Learning Resources
 
-_List of relevant links and online articles that should give the attendees the knowledge needed to complete the challenge._
+* Apache Flink SQL documentation
+  [Apache Flink Docs](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/overview/)
 
-*Think of this list as giving the students a head start on some easy Internet searches. However, try not to include documentation links that are the literal step-by-step answer of the challenge's scenario.*
+* Confluent Cloud Flink quickstart
+  [Confluent Cloud Quickstart on Apache Flink](https://docs.confluent.io/cloud/current/flink/get-started/index.html)
 
-***Note:** Use descriptive text for each link instead of just URLs.*
+* Flink SQL merge and upsert concepts
+  [Flink SQL Data Processing with Merge](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/insert/)
 
-*Sample IoT resource links:*
-
-- [What is a Thingamajig?](https://www.bing.com/search?q=what+is+a+thingamajig)
-- [10 Tips for Never Forgetting Your Thingamajic](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-- [IoT & Thingamajigs: Together Forever](https://www.youtube.com/watch?v=yPYZpwSpKmA)
-
-## Tips
-
-*This section is optional and may be omitted.*
-
-*Add tips and hints here to give students food for thought. Sample IoT tips:*
-
-- IoTDevices can fail from a broken heart if they are not together with their thingamajig. Your device will display a broken heart emoji on its screen if this happens.
-- An IoTDevice can have one or more thingamajigs attached which allow them to connect to multiple networks.
-
-## Advanced Challenges (Optional)
-
-*If you want, you may provide additional goals to this challenge for folks who are eager.*
-
-*This section is optional and may be omitted.*
-
-*Sample IoT advanced challenges:*
-
-Too comfortable?  Eager to do more?  Try these additional challenges!
-
-- Observe what happens if your IoTDevice is separated from its thingamajig.
-- Configure your IoTDevice to connect to BOTH the mothership and IoTQueenBee at the same time.

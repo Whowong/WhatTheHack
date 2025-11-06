@@ -1,59 +1,66 @@
-# Challenge 02 - Configuration of Chat Interface and Frontend
+# Challenge 02 - Supplier Experience
 
 [< Previous Challenge](./Challenge-01.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-03.md)
 
 
 ## Pre-requisites
 
-You must complete **Challenge 01** before starting this challenge. The backend API must be successfully deployed and reachable, as the frontend will depend on it for communication and functionality.
+You must complete **Challenge 01** before starting this challenge. The data pipeline with Flink SQL is necessary for this experience to function properly.
 
 ## Introduction
 
-In this challenge, you'll configure and deploy the frontend user interface that interacts with your backend API. This frontend UI will allow users to send and receive messages to the AI agent powered by real-time streaming data from Confluent Cloud. **Need to update as I am just filling in generic verbiage**
-
+In this challenge, you will assume the role of a supplier interacting with the AI agent experience. The purpose of this challenge is to demonstrate how the data pipeline created in previous challenges provides real-time, accurate inventory information to the agent through MCP services backed by Apache Flink. As inventory levels change, Flink continuously merges data streams and updates the net inventory count table, ensuring that the supplier receives the most up-to-date information at all times.
 
 ## Description
 
-**Need to Update as we get details of infrastructure.
+During this challenge, you will:
+
+1. Log into the supplier agent experience.
+2. Use the agent to query inventory levels across departments and product SKUs.
+3. Replenish inventory by instructing the agent to update stock levels for specific SKUs or entire departments.
+4. Verify in Azure AI Search that inventory data is being updated.
+5. Confirm that the AI agent responds with accurate, real-time inventory values by querying the MCP service.
+
+Tasks to complete:
+
+* View inventory levels for product SKUs within a specific department.
+* View inventory level of a specific product SKU.
+* Replenish inventory for a specific SKU.
+* Replenish all SKUs within a department.
+* Verify that inventory changes are reflected in Azure AI Search.
+* Verify that the agent reflects accurate inventory levels based on the streaming data pipeline.
 
 ## Success Criteria
 
-To complete this challenge successfully, you should be able to:
-- Show that your frontend and related Azure resources have been deployed.
-- Verify that the frontend can communicate with the backend API and receive a valid response.
+This challenge is complete when the following conditions are met:
+
+* The supplier agent can display real-time inventory levels for any SKU.
+* The supplier agent can display real-time inventory levels per department.
+* Replenishment actions result in updated inventory values in the net inventory count table.
+* Azure AI Search reflects the updated inventory counts for specific SKUs.
+* The agent retrieves updated values from MCP services and responds accurately after inventory changes.
+
+Completion checklist:
+
+* [ ] Agent successfully retrieves inventory by SKU.
+* [ ] Agent successfully retrieves inventory by department.
+* [ ] Replenishment action updates inventory for an individual SKU.
+* [ ] Replenishment action updates inventory for all SKUs within a department.
+* [ ] Updated inventory values are reflected in Azure AI Search.
+* [ ] Updated inventory values are returned correctly by the agent.
+
+---
 
 ## Learning Resources
 
-_List of relevant links and online articles that should give the attendees the knowledge needed to complete the challenge._
+* Working with Apache Flink SQL in Confluent Cloud
+  [https://docs.confluent.io/cloud/current/flink/get-started/index.html](https://docs.confluent.io/cloud/current/flink/get-started/index.html)
 
-*Think of this list as giving the students a head start on some easy Internet searches. However, try not to include documentation links that are the literal step-by-step answer of the challenge's scenario.*
+* Using Azure AI Search as a real-time index
+  [https://learn.microsoft.com/azure/search/search-what-is-azure-search](https://learn.microsoft.com/azure/search/search-what-is-azure-search)
 
-***Note:** Use descriptive text for each link instead of just URLs.*
+* Schema Registry and data contracts
+  [https://docs.confluent.io/platform/current/schema-registry/index.html](https://docs.confluent.io/platform/current/schema-registry/index.html)
 
-*Sample IoT resource links:*
-
-- [What is a Thingamajig?](https://www.bing.com/search?q=what+is+a+thingamajig)
-- [10 Tips for Never Forgetting Your Thingamajic](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-- [IoT & Thingamajigs: Together Forever](https://www.youtube.com/watch?v=yPYZpwSpKmA)
-
-## Tips
-
-*This section is optional and may be omitted.*
-
-*Add tips and hints here to give students food for thought. Sample IoT tips:*
-
-- IoTDevices can fail from a broken heart if they are not together with their thingamajig. Your device will display a broken heart emoji on its screen if this happens.
-- An IoTDevice can have one or more thingamajigs attached which allow them to connect to multiple networks.
-
-## Advanced Challenges (Optional)
-
-*If you want, you may provide additional goals to this challenge for folks who are eager.*
-
-*This section is optional and may be omitted.*
-
-*Sample IoT advanced challenges:*
-
-Too comfortable?  Eager to do more?  Try these additional challenges!
-
-- Observe what happens if your IoTDevice is separated from its thingamajig.
-- Configure your IoTDevice to connect to BOTH the mothership and IoTQueenBee at the same time.
+* Kafka Connect Source and Sink Connectors
+  [https://docs.confluent.io/cloud/current/connectors/index.html](https://docs.confluent.io/cloud/current/connectors/index.html)
