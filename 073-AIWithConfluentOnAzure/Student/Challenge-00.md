@@ -65,7 +65,7 @@ Optional but helpful:
 
   * Helpful for inspecting Blob Storage input files during validation
     [https://azure.microsoft.com/features/storage-explorer/](https://azure.microsoft.com/features/storage-explorer/)
-    
+
 
 ## Description
 
@@ -130,6 +130,9 @@ Completion checklist:
 * **Confluent Cloud getting started**
   [Confluent Cloud on Azure](https://docs.confluent.io/cloud/current/get-started/index.html)
 
+* **Confluent Connector Hub**
+  [Azure Connectors for Confluent](https://www.confluent.io/hub/plugins?query=azure)
+  
 * **Confluent Source & Sink Connectors**
   [Kafka Connectors from Confluent](https://docs.confluent.io/cloud/current/connectors/index.html)
 
