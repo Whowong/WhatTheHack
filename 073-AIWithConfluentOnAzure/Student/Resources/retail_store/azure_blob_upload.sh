@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# Function to upload files to blob store
 upload_to_blob_storage() {
 
   STORAGE_ACCOUNT_NAME="${AZURE_STORAGE_ACCOUNT_NAME}"
