@@ -18,20 +18,15 @@ This challenge requires interaction across multiple personas. You will switch be
 
 During this challenge, you will:
 
-- Log into the employee agent experience
-- Query real-time inventory and cumulative transaction metrics
+- Log into the employee agent experience and explore its comprehensive capabilities
+- Query real-time inventory and cumulative transaction metrics for any product SKU
+- View inventory levels for individual SKUs and entire departments
 - Use other personas (customer and supplier) to trigger purchase, return, and replenishment events
-- Confirm that the employee agent responds with accurate values based on the updated data pipeline
+- Retrieve cumulative purchase, return, and replenishment units for any SKU after events occur
+- Confirm that the employee agent responds with accurate net inventory counts and net sales values
+- Verify that all data matches what is observed in Azure AI Search and Flink output
 
-Tasks to complete:
-
-* View inventory levels for any product SKU
-* View inventory levels for all product SKUs within a department
-* Retrieve cumulative purchase units for any SKU after a purchase event
-* Retrieve cumulative return units for any SKU after a return event
-* Retrieve cumulative replenishment units for any SKU after a supplier replenishment event
-* Retrieve the net inventory count for any SKU after any event
-* Retrieve the net sales numbers for any SKU after events are finalized
+This challenge requires interaction across multiple personas. You will switch between customer, supplier, and employee tabs or windows to simulate real-world concurrent activity. Each action triggers updates to the net inventory count and net sales tables, and the employee agent should always return accurate, real-time data.
 
 ## Success Criteria
 

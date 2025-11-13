@@ -16,19 +16,12 @@ In this challenge, you will assume the role of a customer interacting with the c
 
 During this challenge, you will:
 
-- Log into the customer agent experience
-- View inventory levels before purchasing items
-- Perform a purchase action for one or more product SKUs
-- Perform a return action for selected product SKUs
-- Validate that inventory and sales data update in real time
-
-Tasks to complete:
-
-* View inventory levels for a specific product SKU before purchasing
-* Purchase product SKUs from different departments and record the quantities purchased
-* Return product SKUs from each department and record the quantities returned
-* After each purchase and return event, view the updated inventory to confirm changes
-* Ensure that inventory updates occur within a three-second window
+- Log into the customer agent experience and explore its capabilities
+- View inventory levels for specific product SKUs before making purchases
+- Purchase product SKUs from different departments and record the quantities purchased
+- Return product SKUs from each department and record the quantities returned
+- Validate that inventory and sales data update in real time after each action
+- Ensure that all inventory updates are visible within a three-second window
 
 ## Success Criteria
 

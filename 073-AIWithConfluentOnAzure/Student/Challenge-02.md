@@ -15,20 +15,12 @@ In this challenge, you will assume the role of a supplier interacting with the A
 
 During this challenge, you will:
 
-- Log into the supplier agent experience
-- Use the agent to query inventory levels across departments and product SKUs
-- Replenish inventory by instructing the agent to update stock levels for specific SKUs or entire departments
-- Verify in Azure AI Search that inventory data is being updated
-- Confirm that the AI agent responds with accurate, real-time inventory values by querying the MCP service
-
-Tasks to complete:
-
-* View inventory levels for product SKUs within a specific department
-* View inventory level of a specific product SKU
-* Replenish inventory for a specific SKU
-* Replenish all SKUs within a department
-* Verify that inventory changes are reflected in Azure AI Search
-* Verify that the agent reflects accurate inventory levels based on the streaming data pipeline
+- Log into the supplier agent experience and explore its capabilities
+- View inventory levels for product SKUs within specific departments
+- View inventory levels for individual product SKUs
+- Replenish inventory for specific SKUs or entire departments through the agent
+- Verify that inventory changes are reflected in Azure AI Search
+- Confirm that the AI agent responds with accurate, real-time inventory values from the streaming data pipeline
 
 ## Success Criteria
 
