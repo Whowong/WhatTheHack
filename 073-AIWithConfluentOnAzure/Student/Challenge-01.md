@@ -4,12 +4,14 @@
 
 ## Introduction
 
-In this challenge, you will create the streaming data pipeline that powers real-time inventory and sales updates for the online grocery store. Using Apache Flink on Confluent Cloud, you will map Kafka topics to Flink tables and merge multiple data streams (purchases, returns, pricing, departments, and replenishments) into two aggregated output tables:
+Welcome to the command center of a modern online grocery store. Every second, customers are buying, returning, and restocking items. Our goal is to build a real-time streaming pipeline that tracks every penny earned and every item in stock as it happens.
 
-* `net_sales`
-* `net_inventory_count`
+Using Apache Flink on Confluent Cloud, you'll merge multiple data streams (purchases, returns, pricing, departments, and replenishments) into two critical business metrics:
 
-These tables will continuously update as new events stream into Kafka topics.
+* `net_sales` - Real-time revenue tracking
+* `net_inventory_count` - Live inventory levels
+
+Every event streaming into Kafka will instantly update your business metrics in real-time.
 
 ## Description
 
