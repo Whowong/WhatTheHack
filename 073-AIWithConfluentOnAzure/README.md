@@ -20,17 +20,15 @@ By completing this hack, you will:
 ## Challenges
 
 - Challenge 00: **[Prerequisites - Ready, Set, GO!](Student/Challenge-00.md)**
-	 - Prepare your workstation to work with Azure.
-- Challenge 01: **[Configuration of Agentic Resources and Deployment of Backend](Student/Challenge-01.md)**
-	 - Description of challenge
-- Challenge 02: **[Configuration of Chat Interface and Frontend](Student/Challenge-02.md)**
-	 - Description of challenge
-- Challenge 03: **[Simulation of Employee - Reports, Status etc](Student/Challenge-03.md)**
-	 - Description of challenge
-- Challenge 04: **[Simulation of Suppliers - Replenishments](Student/Challenge-04.md)**
-	 - Description of challenge
-- Challenge 05: **[Simulation of Customers - Purchases and Returns](Student/Challenge-05.md)**
-	 - Description of challenge
+	 - Prepare your Azure and Confluent Cloud environments with required infrastructure
+- Challenge 01: **[Build the Flink Data Pipeline](Student/Challenge-01.md)**
+	 - Create streaming data pipeline that merges multiple data streams using Apache Flink
+- Challenge 02: **[Supplier Experience](Student/Challenge-02.md)**
+	 - Interact with the AI agent as a supplier to query and replenish inventory
+- Challenge 03: **[Customer Experience](Student/Challenge-03.md)**
+	 - Simulate customer purchases and returns with real-time inventory updates
+- Challenge 04: **[Employee Experience](Student/Challenge-04.md)**
+	 - Access comprehensive operational insights across all transactions
 
 ## Prerequisites
 

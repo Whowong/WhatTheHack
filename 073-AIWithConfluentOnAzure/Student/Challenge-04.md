@@ -18,51 +18,34 @@ This challenge requires interaction across multiple personas. You will switch be
 
 During this challenge, you will:
 
-1. Log into the employee agent experience.
-2. Query real-time inventory and cumulative transaction metrics.
-3. Use other personas (customer and supplier) to trigger purchase, return, and replenishment events.
-4. Confirm that the employee agent responds with accurate values based on the updated data pipeline.
+- Log into the employee agent experience
+- Query real-time inventory and cumulative transaction metrics
+- Use other personas (customer and supplier) to trigger purchase, return, and replenishment events
+- Confirm that the employee agent responds with accurate values based on the updated data pipeline
 
 Tasks to complete:
 
-* View inventory levels for any product SKU.
-* View inventory levels for all product SKUs within a department.
-* Retrieve cumulative purchase units for any SKU after a purchase event.
-* Retrieve cumulative return units for any SKU after a return event.
-* Retrieve cumulative replenishment units for any SKU after a supplier replenishment event.
-* Retrieve the net inventory count for any SKU after any event.
-* Retrieve the net sales numbers for any SKU after events are finalized.
+* View inventory levels for any product SKU
+* View inventory levels for all product SKUs within a department
+* Retrieve cumulative purchase units for any SKU after a purchase event
+* Retrieve cumulative return units for any SKU after a return event
+* Retrieve cumulative replenishment units for any SKU after a supplier replenishment event
+* Retrieve the net inventory count for any SKU after any event
+* Retrieve the net sales numbers for any SKU after events are finalized
 
 ## Success Criteria
 
-This challenge is complete when the following conditions are met:
+To complete this challenge successfully, you should be able to:
 
-* The employee agent can display inventory levels for individual SKUs.
-* The employee agent can display inventory levels for all SKUs in a department.
-* Cumulative purchase, return, and replenishment values for any SKU are retrieved accurately.
-* The agent provides accurate net inventory counts and net sales values after transactions.
-* Inventory and sales values shown by the agent match what is observed in Azure AI Search and Flink output.
-
-Completion checklist:
-
-* [ ] Employee agent retrieves current inventory for a SKU.
-* [ ] Employee agent retrieves inventory for a department.
-* [ ] Cumulative purchase units update after customer purchase events.
-* [ ] Cumulative return units update after customer return events.
-* [ ] Cumulative replenishment units update after supplier replenishment events.
-* [ ] Net inventory count is accurate after each event type.
-* [ ] Net sales values update correctly after each event type.
+- Verify the employee agent can display inventory levels for individual SKUs
+- Verify the employee agent can display inventory levels for all SKUs in a department
+- Verify cumulative purchase, return, and replenishment values for any SKU are retrieved accurately
+- Verify the agent provides accurate net inventory counts and net sales values after transactions
+- Verify inventory and sales values shown by the agent match what is observed in Azure AI Search and Flink output
 
 ## Learning Resources
 
-* Confluent Cloud Flink quickstart
-  [https://docs.confluent.io/cloud/current/flink/get-started/index.html](https://docs.confluent.io/cloud/current/flink/get-started/index.html)
-
-* Flink SQL upsert and aggregate patterns
-  [https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/insert/](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/insert/)
-
-* Azure AI Search indexing concepts
-  [https://learn.microsoft.com/azure/search/search-what-is-azure-search](https://learn.microsoft.com/azure/search/search-what-is-azure-search)
-
-* Kafka event streaming fundamentals
-  [https://kafka.apache.org/documentation/](https://kafka.apache.org/documentation/)
+- [Confluent Cloud Flink quickstart](https://docs.confluent.io/cloud/current/flink/get-started/index.html)
+- [Flink SQL upsert and aggregate patterns](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/insert/)
+- [Azure AI Search indexing concepts](https://learn.microsoft.com/azure/search/search-what-is-azure-search)
+- [Kafka event streaming fundamentals](https://kafka.apache.org/documentation/)

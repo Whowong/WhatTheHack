@@ -69,9 +69,11 @@ Optional but helpful:
 
 ## Description
 
+Your coach will provide you with a Resources.zip file (or access to a Codespaces environment) that contains the Terraform modules and configuration files needed to complete this challenge. If you plan to work locally, unpack the Resources.zip file on your workstation. If using Codespaces, the devcontainer will have the necessary dependencies pre-installed.
+
 In this challenge, you will:
 
-1. **Clone the Hackathon Repository** (contains all Terraform modules)
+1. **Clone the Hackathon Repository** (contains all Terraform modules) if not using Codespaces
 2. **Update Terraform variables** with your Azure subscription ID, principal IDs, and Confluent API keys
 3. **Run Terraform** to provision the infrastructure
 4. **Confirm data flows through connectors**
@@ -84,33 +86,17 @@ In this challenge, you will:
 | **Confluent Cloud** | Kafka Cluster, Schema Registry, Kafka topics, Cosmos DB & Blob Source connectors, AI Search Sink connector |
 | **AI Agents / MCP** | Deployment of microservices + MCP servers that expose capabilities to agents                               |
 
-### What you will verify
-
-* AI agents respond and can list the 8 departments
-* Source connectors flow data from Cosmos DB and Blob Storage → Kafka topics
-* Sink connector pushes data from Kafka → Azure AI Search
-
 ## Success Criteria
 
-To complete the challenge successfully, all of the following must be true:
+To complete this challenge successfully, you should be able to:
 
-* Terraform deploys successfully** and resources appear in Azure Portal and Confluent Cloud
-* Source connectors are live and pushing data** from Cosmos DB and Blob Storage into Kafka topics
-* Sink connector is pushing data into Azure AI Search** (net sales + net inventory count topics)
-* The MCP-powered AI agent can:
-
-* Respond when prompted
-* State its name
-* List all eight departments in the grocery store
-
-Completion checklist:
-
-| Objective                         | Verification Step                            |
-| --------------------------------- | -------------------------------------------- |
-| Azure + Confluent resources exist | Terraform output + portal checks             |
-| Source connectors working         | Messages visible in Kafka topics             |
-| Sink connector working            | Index documents visible in Azure AI Search   |
-| Agent connected                   | Agent responds with name + lists departments |
+- Verify Terraform deploys successfully and resources appear in Azure Portal and Confluent Cloud
+- Verify source connectors are live and pushing data from Cosmos DB and Blob Storage into Kafka topics
+- Verify sink connector is pushing data into Azure AI Search (net sales + net inventory count topics)
+- Demonstrate the MCP-powered AI agent can:
+  - Respond when prompted
+  - State its name
+  - List all eight departments in the grocery store
 
 ## Learning Resources
 

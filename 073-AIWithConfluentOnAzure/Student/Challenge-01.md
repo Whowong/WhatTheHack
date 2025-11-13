@@ -11,25 +11,13 @@ In this challenge, you will create the streaming data pipeline that powers real-
 
 These tables will continuously update as new events stream into Kafka topics.
 
----
-
 ## Description
 
 During this challenge, you will:
 
-1. Connect to the Apache Flink SQL editor in Confluent Cloud.
-2. Create Flink tables mapped to existing Kafka topics:
-
-   * `product_sku`
-   * `product_pricing`
-   * `product_departments`
-   * `purchases`
-   * `returns`
-   * `replenishments`
-3. Write Flink SQL merge logic that continuously updates:
-
-   * The `net_sales` table
-   * The `net_inventory_count` table
+- Connect to the Apache Flink SQL editor in Confluent Cloud
+- Create Flink tables mapped to existing Kafka topics: `product_sku`, `product_pricing`, `product_departments`, `purchases`, `returns`, and `replenishments`
+- Write Flink SQL merge logic that continuously updates the `net_sales` table and the `net_inventory_count` table
 
 ### Required Merging Logic
 
@@ -47,7 +35,6 @@ During this challenge, you will:
     * If the product belongs to the appliance department, returns add back to inventory.
     * Returns from all other departments are ignored (treated as perishable or damaged).
 
-### Expected Outcome
 
 After your SQL statements are running, every new message streaming into Kafka should update:
 
@@ -56,39 +43,22 @@ After your SQL statements are running, every new message streaming into Kafka sh
 
 in real time.
 
----
-
 ## Success Criteria
 
-To complete this challenge successfully, the following must be true:
+To complete this challenge successfully, you should be able to:
 
-* All Kafka topics listed above are mapped to Flink tables.
-* Flink SQL merge statements for `net_sales` and `net_inventory_count` are created and running.
-* Sales and inventory values update continuously as new messages stream in.
-* Logic behaves correctly:
-
-  * Purchases increase net sales and decrease inventory.
-  * Replenishments increase inventory.
-  * Returns decrease net sales.
-  * Only appliance returns increase inventory count; all others are ignored.
-
-Completion checklist:
-
-* [ ] Flink tables created for all source Kafka topics
-* [ ] Merge query running for `net_sales`
-* [ ] Merge query running for `net_inventory_count`
-* [ ] Inventory and sales update in real time during event flow
-
----
+- Verify all Kafka topics listed above are mapped to Flink tables
+- Verify Flink SQL merge statements for `net_sales` and `net_inventory_count` are created and running
+- Verify sales and inventory values update continuously as new messages stream in
+- Demonstrate logic behaves correctly:
+  - Purchases increase net sales and decrease inventory
+  - Replenishments increase inventory
+  - Returns decrease net sales
+  - Only appliance returns increase inventory count; all others are ignored
 
 ## Learning Resources
 
-* Apache Flink SQL documentation
-  [Apache Flink Docs](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/overview/)
-
-* Confluent Cloud Flink quickstart
-  [Confluent Cloud Quickstart on Apache Flink](https://docs.confluent.io/cloud/current/flink/get-started/index.html)
-
-* Flink SQL merge and upsert concepts
-  [Flink SQL Data Processing with Merge](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/insert/)
+- [Apache Flink SQL documentation](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/overview/)
+- [Confluent Cloud Flink quickstart](https://docs.confluent.io/cloud/current/flink/get-started/index.html)
+- [Flink SQL merge and upsert concepts](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/insert/)
 

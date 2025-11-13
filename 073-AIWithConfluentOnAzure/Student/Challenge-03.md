@@ -16,48 +16,33 @@ In this challenge, you will assume the role of a customer interacting with the c
 
 During this challenge, you will:
 
-1. Log into the customer agent experience.
-2. View inventory levels before purchasing items.
-3. Perform a purchase action for one or more product SKUs.
-4. Perform a return action for selected product SKUs.
-5. Validate that inventory and sales data update in real time.
+- Log into the customer agent experience
+- View inventory levels before purchasing items
+- Perform a purchase action for one or more product SKUs
+- Perform a return action for selected product SKUs
+- Validate that inventory and sales data update in real time
 
 Tasks to complete:
 
-* View inventory levels for a specific product SKU before purchasing.
-* Purchase product SKUs from different departments and record the quantities purchased.
-* Return product SKUs from each department and record the quantities returned.
-* After each purchase and return event, view the updated inventory to confirm changes.
-* Ensure that inventory updates occur within a three-second window.
+* View inventory levels for a specific product SKU before purchasing
+* Purchase product SKUs from different departments and record the quantities purchased
+* Return product SKUs from each department and record the quantities returned
+* After each purchase and return event, view the updated inventory to confirm changes
+* Ensure that inventory updates occur within a three-second window
 
 ## Success Criteria
 
-This challenge is complete when the following conditions are met:
+To complete this challenge successfully, you should be able to:
 
-* The customer agent displays the inventory level of a SKU before a purchase.
-* After a purchase, inventory is reduced and net sales are updated.
-* After a return, inventory and net sales are updated following the business rules defined in the Flink merge logic.
-* All inventory updates are visible within three seconds of the action being completed.
-* The agent retrieves accurate, real-time values via MCP services backed by Azure AI Search.
-
-Completion checklist:
-
-* [ ] Customer can view inventory for a SKU before purchasing.
-* [ ] Customer executes a purchase and observes updated values.
-* [ ] Customer executes a return and observes updated values.
-* [ ] Updated inventory and sales values are reflected within the required three-second threshold.
-* [ ] Inventory and sales values shown by the agent match values in Azure AI Search and Flink.
+- Verify the customer agent displays the inventory level of a SKU before a purchase
+- Verify after a purchase, inventory is reduced and net sales are updated
+- Verify after a return, inventory and net sales are updated following the business rules defined in the Flink merge logic
+- Verify all inventory updates are visible within three seconds of the action being completed
+- Verify the agent retrieves accurate, real-time values via MCP services backed by Azure AI Search
 
 ## Learning Resources
 
-* Confluent Cloud Flink quickstart
-  [https://docs.confluent.io/cloud/current/flink/get-started/index.html](https://docs.confluent.io/cloud/current/flink/get-started/index.html)
-
-* Event processing and upsert patterns in Apache Flink
-  [https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/insert/](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/insert/)
-
-* Azure AI Search indexing concepts
-  [https://learn.microsoft.com/azure/search/search-what-is-azure-search](https://learn.microsoft.com/azure/search/search-what-is-azure-search)
-
-* Kafka event streaming fundamentals
-  [https://kafka.apache.org/documentation/](https://kafka.apache.org/documentation/)
+- [Confluent Cloud Flink quickstart](https://docs.confluent.io/cloud/current/flink/get-started/index.html)
+- [Event processing and upsert patterns in Apache Flink](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/insert/)
+- [Azure AI Search indexing concepts](https://learn.microsoft.com/azure/search/search-what-is-azure-search)
+- [Kafka event streaming fundamentals](https://kafka.apache.org/documentation/)

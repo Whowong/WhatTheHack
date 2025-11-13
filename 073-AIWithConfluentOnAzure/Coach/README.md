@@ -11,17 +11,15 @@ This hack includes an optional [lecture presentation](Lectures.pptx) that featur
 ## Coach's Guides
 
 - Challenge 00: **[Prerequisites - Ready, Set, GO!](./Solution-00.md)**
-	 - Prepare your workstation to work with Azure.
-- Challenge 01: **[Title of Challenge](./Solution-01.md)**
-	 - Description of challenge
-- Challenge 02: **[Title of Challenge](./Solution-02.md)**
-	 - Description of challenge
-- Challenge 03: **[Title of Challenge](./Solution-03.md)**
-	 - Description of challenge
-- Challenge 04: **[Title of Challenge](./Solution-04.md)**
-	 - Description of challenge
-- Challenge 05: **[Title of Challenge](./Solution-05.md)**
-	 - Description of challenge
+	 - Prepare Azure and Confluent Cloud environments with required infrastructure
+- Challenge 01: **[Build the Flink Data Pipeline](./Solution-01.md)**
+	 - Create streaming data pipeline that merges multiple data streams using Apache Flink
+- Challenge 02: **[Supplier Experience](./Solution-02.md)**
+	 - Interact with the AI agent as a supplier to query and replenish inventory
+- Challenge 03: **[Customer Experience](./Solution-03.md)**
+	 - Simulate customer purchases and returns with real-time inventory updates
+- Challenge 04: **[Employee Experience](./Solution-04.md)**
+	 - Access comprehensive operational insights across all transactions
 
 ## Coach Prerequisites
 
