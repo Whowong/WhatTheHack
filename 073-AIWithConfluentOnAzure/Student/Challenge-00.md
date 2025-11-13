@@ -73,7 +73,7 @@ Your coach will provide you with a Resources.zip file (or access to a Codespaces
 
 In this challenge, you will:
 
-1. **Clone the Hackathon Repository** (contains all Terraform modules) if not using Codespaces
+1. **Locate the Terraform modules** in the Resources folder (provided via Resources.zip or Codespaces)
 2. **Update Terraform variables** with your Azure subscription ID, principal IDs, and Confluent API keys
 3. **Run Terraform** to provision the infrastructure
 4. **Confirm data flows through connectors**
