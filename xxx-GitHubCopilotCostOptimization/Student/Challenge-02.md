@@ -12,51 +12,27 @@ The key insight: credit cost = (input tokens × input rate) + (output tokens × 
 
 Complete the same coding task from your baseline using different GitHub Copilot models and configurations. Your goal is to understand the cost-quality tradeoff and discover when cheaper models with constraints beat expensive models without them.
 
-### Part A: Model Comparison
+### Model Comparison
 
-Complete your baseline coding task using each available model/reasoning level combination:
+Experiment with the available models in your GitHub Copilot configuration (GPT-4o, Claude Sonnet, Claude Haiku if available, etc.). Complete your baseline coding task with different models and record the total credits consumed, output quality, iteration count, and response verbosity for each.
 
-- GPT-4o (standard agent mode)
-- Claude Sonnet (standard agent mode)
-- Claude Haiku (if available via custom agent)
-- Any other models available in your GitHub Copilot configuration
+### Output Constraints
 
-For each model:
+Explore how output constraints affect cost. Choose one model and complete the same task with different constraint approaches: no constraints, code-only output, structured formats, or word limits. Measure how these constraints affect token count and credit cost.
 
-- Record total credits consumed
-- Record output quality (does it meet acceptance criteria?)
-- Record number of iterations needed to reach a working solution
-- Note the model's response verbosity (tokens generated)
+### Auto Mode
 
-### Part B: Output Constraints
-
-Choose one model from Part A and complete the same task multiple times with different output constraints:
-
-- No constraints (baseline)
-- "Output code only, minimal explanation"
-- Structured output (e.g., JSON schema for configuration, specific code format)
-- Tight word limits for explanations ("explain in <50 words")
-
-Measure how output constraints affect both token count and credit cost.
-
-### Part C: Auto Mode Exploration
-
-If available, use GitHub Copilot's Auto mode (task-aware routing with cache-aware model selection) to complete the same task:
-
-- Observe which models Auto mode selects for different subtasks
-- Note when Auto mode chooses to leverage cache vs. switch models
-- Compare total credit cost vs. manually selecting a single model
-- Understand the 10% discount Auto mode provides for cache-friendly routing
+If GitHub Copilot's Auto mode is available, try it on the same task. Observe which models it selects for different subtasks, when it leverages cache, and how total cost compares to manual model selection. Understand the tradeoffs of automatic routing vs. manual control.
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Demonstrate completion of the baseline task using at least three different models
-- Show measured credit costs for each model with identical input conditions
-- Verify that output quality met acceptance criteria for each model tested
-- Demonstrate credit cost reduction from applying output constraints to at least one model
-- Show comparative data proving that a cheaper model with constraints can beat an expensive model without constraints on total credit cost
+- Demonstrate completion of the baseline task using multiple different models
+- Show measured credit costs for each model with comparable input conditions
+- Verify that output quality met acceptance criteria across model tests
+- Demonstrate credit cost reduction from applying output constraints
+- Show comparative data proving that a cheaper model with constraints can beat an expensive model without constraints
 - Explain when Auto mode provides value vs. manual model selection
 
 ## Learning Resources
@@ -69,15 +45,9 @@ To complete this challenge successfully, you should be able to:
 
 - Input tokens are cheaper than output tokens for most models
 - Verbose explanations cost credits—request code-only output when you don't need narration
-- Haiku-class models can be 85-90% cheaper than Sonnet/GPT-4 class models
-- Auto mode's 10% discount comes from cache-aware routing, but only when task boundaries align with cache boundaries
+- Haiku-class models can be significantly cheaper than Sonnet/GPT-4 class models
+- Auto mode's discount comes from cache-aware routing, but only when task boundaries align with cache boundaries
 - The best model isn't always the smartest one—it's the one that solves your problem at the lowest cost
-
-***NOTE:** Do NOT provide direct links to files or folders in the What The Hack repository from the student guide. Instead, you should refer to the Resource.zip file provided by the coach.*
-
-***NOTE:** As an exception, you may provide a GitHub 'raw' link to an individual file such as a PDF or Office document, so long as it does not open the contents of the file in the What The Hack repo on the GitHub website.*
-
-***NOTE:** Any direct links to the What The Hack repo will be flagged for review during the review process by the WTH V-Team, including exception cases.*
 
 *Sample challenge text for the IoT Hack Of The Century:*
 

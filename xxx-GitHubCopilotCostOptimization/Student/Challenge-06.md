@@ -10,49 +10,17 @@ Your coach has already completed this task and established a "par" score—the c
 
 ## Description
 
-All teams will receive the same coding task with defined acceptance criteria. The task includes:
-
-- Functional requirements that must be implemented
-- Tests that must pass
-- Documentation that must exist
-- Code quality standards that must be met
+All teams will receive the same coding task with defined acceptance criteria from your coach. The task specification (found in the `/Challenge06/` folder of Resources.zip) includes functional requirements, tests that must pass, required documentation, and code quality standards.
 
 ### Competition Rules
 
-Your team must:
+Complete all functional requirements, ensure provided tests pass, include required documentation, and meet code quality standards. Document your complete approach in a "scorecard" showing total credits consumed, prompt sequence used, models selected, and optimization techniques applied from Challenges 1-5.
 
-- Complete all functional requirements described in the task specification (found in the `/Challenge06/` folder of Resources.zip)
-- Ensure all provided tests pass
-- Include required documentation
-- Meet code quality standards (no linting errors, proper typing where applicable)
-- Document your complete approach in a "scorecard" that includes:
-  - Total credits consumed
-  - Prompt sequence used
-  - Model(s) selected and reasoning levels
-  - Optimization techniques applied from Challenges 1-5
-  - Any custom techniques or strategies
+Track every GitHub Copilot interaction throughout the challenge: inline completions, chat, edits, workspace references, and cumulative total credits. The team with the lowest total credit score that meets all acceptance criteria wins (tie-breaker: fastest completion time).
 
-### Measurement
+### Strategy
 
-Track every interaction with GitHub Copilot throughout the challenge:
-
-- Inline completions credit cost
-- Chat interactions credit cost
-- Edit commands credit cost
-- Any workspace or codebase references
-- Total cumulative credits for the complete task
-
-The team with the lowest total credit score that meets all acceptance criteria wins. In case of a tie, the team that completes first breaks the tie.
-
-### Strategic Considerations
-
-Consider applying these techniques from previous challenges:
-
-- Use scoped instructions (Challenge 01) to avoid loading global context unnecessarily
-- Select the most efficient model for each subtask (Challenge 02)
-- Disable any MCP tools you won't need (Challenge 03)
-- Use `/compact` at strategic breakpoints if needed (Challenge 04)
-- Start with the spec: write tests first to create deterministic feedback loops (Challenge 05)
+Consider applying techniques from previous challenges: scoped instructions, efficient model selection, pruned MCP tools, strategic `/compact` usage, and spec-first development with tests written before implementation.
 
 ## Success Criteria
 

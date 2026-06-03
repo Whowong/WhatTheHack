@@ -4,61 +4,25 @@
 
 ## Introduction
 
-Every MCP tool you enable adds 100-500 tokens per agent loop step. A session with 10 unused tools can burn thousands of extra tokens before you've written a line of code. Meanwhile, cache invalidation—triggered by switching models, toggling MCP servers, or editing system prompts mid-session—wipes your cache and forces a costly cold restart.
+Every MCP tool you enable adds token overhead per agent loop step. A session with many unused tools can burn extra tokens before you've written a line of code. Meanwhile, cache invalidation—triggered by switching models, toggling MCP servers, or editing system prompts mid-session—wipes your cache and forces a costly cold restart.
 
-In this challenge, you'll learn to configure lean sessions and maintain high cache hit rates. The engineering target is 97-98% cache efficiency.
+In this challenge, you'll learn to configure lean sessions and maintain high cache hit rates.
 
 ## Description
 
-This challenge has two parts: tool sprawl management and cache invalidation awareness. Both directly impact your per-session costs.
+This challenge explores tool sprawl management and cache invalidation awareness. Both directly impact your per-session costs.
 
-### Part A: Tool Sprawl Audit
+### Tool Sprawl Audit
 
-The starter codebase may have multiple MCP tools or GitHub Copilot extensions enabled. Your task:
+The starter codebase may have multiple MCP tools or GitHub Copilot extensions enabled. Audit your current configuration to identify which tools are actually being used. Complete your baseline coding task with all tools enabled, then identify which ones were invoked (check VS Code Output panel for tool calls). Disable unused tools and repeat the task to measure credit savings.
 
-- List all currently enabled MCP tools and extensions in your GitHub Copilot configuration
-- Complete your baseline coding task with all tools enabled, recording token counts and credits
-- Identify which tools were actually invoked during the task (check VS Code Output panel for tool calls)
-- Disable any tools that weren't used
-- Repeat the baseline task with your pruned tool configuration
-- Measure credit savings from reducing tool overhead
+Understand that each tool adds token overhead even when never used: tool name, description, parameter schemas, and availability announcements all cost tokens on every agent step.
 
-Each tool adds token overhead to every agent step, even if never used. The overhead includes:
+### Cache Invalidation Experiment
 
-- Tool name and description (recurring cost)
-- Tool parameter schemas (recurring cost)
-- Tool availability announcements (recurring cost)
+Complete the same refactor task twice under different session conditions. First, run a "clean session" where you configure once and complete the work without changes. Then run a "messy session" where you deliberately change configuration mid-task (switch models, toggle MCP servers, edit instructions). Compare total credits and cache hit rates between the two approaches.
 
-### Part B: Cache Invalidation Experiment
-
-Complete the same refactor task twice under different session conditions:
-
-**Clean Session:**
-- Start a fresh VS Code session
-- Configure your chosen model and tool set
-- Complete the entire refactor without changing any configuration
-- Record total credits and observe cache hit rate in Output panel
-
-**Messy Session:**
-- Start a fresh VS Code session
-- Begin the refactor
-- Midway through, switch to a different model
-- Then toggle an MCP server off and back on
-- Then edit your `.github/copilot-instructions.md` file
-- Complete the refactor
-- Record total credits and observe cache hit rate
-
-Compare the two approaches. Each configuration change invalidates the cache and triggers a cold restart penalty.
-
-### Cache Invalidation Triggers
-
-Document your understanding of what invalidates GitHub Copilot's cache:
-
-- Switching models mid-session
-- Changing system instructions (editing copilot-instructions.md)
-- Toggling MCP tools or extensions
-- Switching between Agent mode and Chat mode
-- Large context window changes (auto-compaction)
+Document what triggers cache invalidation in GitHub Copilot: model switching, instruction edits, tool changes, mode switching, and large context changes.
 
 ## Success Criteria
 
@@ -69,8 +33,8 @@ To complete this challenge successfully, you should be able to:
 - Verify which tools were actually invoked during your task (via VS Code Output panel logs)
 - Show comparative credit costs between clean session and messy session for the same refactor
 - Demonstrate measurable cache hit rate difference between the two session approaches
-- Explain at least three triggers that invalidate GitHub Copilot's cache
-- Achieve 95%+ cache hit rate on a multi-turn coding task
+- Explain multiple triggers that invalidate GitHub Copilot's cache
+- Achieve high cache hit rate on a multi-turn coding task
 
 ## Learning Resources
 
