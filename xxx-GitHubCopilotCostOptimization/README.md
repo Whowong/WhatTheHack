@@ -4,7 +4,7 @@
 
 GitHub Copilot transforms developer productivity, but with usage-based billing (UBB), every token counts. This What The Hack teaches engineering teams how to maximize code quality while minimizing AI credit spend through smart engineering practices.
 
-You'll learn to control the three cost levers: what enters the context (instructions, attachments, MCP tools), what the model produces (model selection, output constraints), and how efficiently you use the session (cache management, context window hygiene, deterministic feedback loops). By the end, you'll understand that most Copilot cost optimization isn't about restricting usage—it's about engineering better inputs and workflows that help the agent succeed faster.
+You'll learn to control the three cost levers: what enters the context (instructions, attachments, MCP tools), what the model produces (model selection, output constraints), and how efficiently you use the session (cache management, context window hygiene, deterministic feedback loops). By the end, you'll understand that most Copilot cost optimization isn't about restricting usage, it's about engineering better inputs and workflows that help the agent succeed faster.
 
 ## Learning Objectives
 
@@ -19,8 +19,8 @@ In this hack, you will learn practical techniques to optimize GitHub Copilot usa
 
 ## Challenges
 
-- Challenge 00: **[Prerequisites & Baseline](Student/Challenge-00.md)**
-   - Set up the hack environment, confirm UBB tracking is working, and establish your baseline credit spend
+- Challenge 00: **[Prerequisites](Student/Challenge-00.md)**
+   - Set up the hack environment
 - Challenge 01: **[Context Engineering](Student/Challenge-01.md)**
    - Audit and restructure global instructions into scoped files, and replace broad references with pinned attachments
 - Challenge 02: **[Model Selection & Output Constraints](Student/Challenge-02.md)**
@@ -36,11 +36,9 @@ In this hack, you will learn practical techniques to optimize GitHub Copilot usa
 
 ## Prerequisites
 
-- GitHub Copilot subscription with usage-based billing (UBB) enabled
-- Visual Studio Code with GitHub Copilot extension installed
-- Access to GitHub Copilot usage dashboard
-- Basic understanding of software development concepts (testing, linting, version control)
-- Familiarity with command-line tools and development environments
+- GitHub Copilot subscription
+- GitHub Copilot Fundamentals
+- Visual Studio Code OR IDE of choice with GitHub Copilot extension installed
 
 ## Repository Contents
 
