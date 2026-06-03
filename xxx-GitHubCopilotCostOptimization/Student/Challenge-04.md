@@ -26,9 +26,6 @@ Restart the same multi-turn task using proactive `/compact` at natural breakpoin
 
 Demonstrate when `/clear` is appropriate by starting a task where you realize mid-way that your approach is fundamentally wrong. Use `/clear` to wipe context and start fresh with a corrected approach. Understand the cold cache penalty from `/clear` vs. preserved cache with `/compact`.
 
-### Context Management Strategy
-
-Develop and document your team's rules for context management: when to compact, what constitutes "natural breakpoints," when to clear vs. compact, and how to balance cache preservation vs. context hygiene.
 
 ## Success Criteria
 
@@ -39,7 +36,6 @@ To complete this challenge successfully, you should be able to:
 - Verify that proactive `/compact` maintained output quality throughout the multi-turn task
 - Demonstrate appropriate use of `/clear` when the context becomes fundamentally misaligned
 - Explain the difference in cache impact between `/compact` (preserves cache) and `/clear` (cold restart)
-- Document your team's context management strategy with specific decision criteria
 
 ## Learning Resources
 
