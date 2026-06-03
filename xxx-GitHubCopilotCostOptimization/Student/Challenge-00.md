@@ -1,100 +1,55 @@
-# Challenge 00 - Prerequisites - Ready, Set, GO!
+# Challenge 00 - Prerequisites & Baseline
 
 **[Home](../README.md)** - [Next Challenge >](./Challenge-01.md)
 
-**_This is a template for "Challenge Zero" which focuses on getting prerequisites set up for the hack. The italicized text provides hints & examples of what should or should NOT go in each section._**
-
-**_We have included links to some common What The Hack pre-reqs in this template. All common prerequisite links go to the WTH-CommonPrerequisites page where there are more details on what each tool's purpose is._**
-
-**_You should remove any common pre-reqs that are not required for your hack. Then add additional pre-reqs that are required for your hack in the Description section below._**
-
-**_You should remove all italicized & sample text in this template and replace with your content._**
-
 ## Introduction
 
-Thank you for participating in the GitHubCopilotCostOptimization What The Hack. Before you can hack, you will need to set up some prerequisites.
+Thank you for participating in the GitHub Copilot Cost Optimization What The Hack. Before you begin optimizing, you need to set up your environment to measure GitHub Copilot usage costs accurately. This challenge establishes your baseline—the "before" measurement that all subsequent challenges will compare against.
 
-## Common Prerequisites
-
-We have compiled a list of common tools and software that will come in handy to complete most What The Hack Azure-based hacks!
-
-You might not need all of them for the hack you are participating in. However, if you work with Azure on a regular basis, these are all things you should consider having in your toolbox.
-
-<!-- If you are editing this template manually, be aware that these links are only designed to work if this Markdown file is in the /xxx-HackName/Student/ folder of your hack. -->
-
-- [Azure Subscription](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-subscription)
-- [Windows Subsystem for Linux](../../000-HowToHack/WTH-Common-Prerequisites.md#windows-subsystem-for-linux)
-- [Managing Cloud Resources](../../000-HowToHack/WTH-Common-Prerequisites.md#managing-cloud-resources)
-  - [Azure Portal](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-portal)
-  - [Azure CLI](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-cli)
-    - [Note for Windows Users](../../000-HowToHack/WTH-Common-Prerequisites.md#note-for-windows-users)
-    - [Azure PowerShell CmdLets](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-powershell-cmdlets)
-  - [Azure Cloud Shell](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-cloud-shell)
-- [Visual Studio Code](../../000-HowToHack/WTH-Common-Prerequisites.md#visual-studio-code)
-  - [VS Code plugin for ARM Templates](../../000-HowToHack/WTH-Common-Prerequisites.md#visual-studio-code-plugins-for-arm-templates)
-- [Azure Storage Explorer](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-storage-explorer)
+Understanding where credits go is essential to optimization. In this challenge, you'll confirm that usage-based billing (UBB) is active, learn how to read token breakdowns in VS Code, and complete a baseline coding task to capture your starting credit spend.
 
 ## Description
 
-_This section should clearly state any additional prerequisite tools that need to be installed or set up in the Azure environment that the student will hack in._
+Your coach will provide you with a Resources.zip file that contains a starter codebase for this hack. The codebase is intentionally configured with sub-optimal GitHub Copilot settings—you'll be optimizing these in later challenges.
 
-_While ordered lists are generally not welcome in What The Hack challenge descriptions, you can use one here in Challenge Zero IF and only IF the steps you are asking the student to perform are not core to the learning objectives of the hack._
+Please complete the following setup steps:
 
-_For example, if the hack is on IoT Devices and you want the student to deploy an ARM/Bicep template that sets up the environment they will hack in without them needing to understand how ARM/Bicep templates work, you can provide step-by-step instructions on how to deploy the ARM/Bicep template._
+1. Extract the Resources.zip file to your local workstation
+2. Open Visual Studio Code and install/update the GitHub Copilot extension to the latest version
+3. Verify your GitHub Copilot subscription has usage-based billing (UBB) enabled by checking your billing settings
+4. Enable token usage visibility in VS Code:
+   - Open the Output panel (View > Output)
+   - Select "GitHub Copilot Chat" from the dropdown
+   - Verify you can see token counts and credit usage per interaction
+5. Confirm you can access your GitHub Copilot usage dashboard to view cumulative credit spend
+6. Open the starter codebase in VS Code and familiarize yourself with its structure
 
-_Optionally, you may provide resource files such as a sample application, code snippets, or templates as learning aids for the students. These files are stored in the hack's `Student/Resources` folder. It is the coach's responsibility to package these resources into a Resources.zip file and provide it to the students at the start of the hack. You should leave the sample text below in that refers to the Resources.zip file._
+### Baseline Measurement
 
-**\*NOTE:** Do NOT provide direct links to files or folders in the What The Hack repository from the student guide. Instead, you should refer to the Resources.zip file provided by the coach.\*
+Once your environment is configured, complete the baseline coding task:
 
-**\*NOTE:** Any direct links to the What The Hack repo will be flagged for review during the review process by the WTH V-Team, including exception cases.\*
+1. Locate the `baseline-task.md` file in the `/Challenge00/` folder of the Resources.zip
+2. Complete the coding task described using GitHub Copilot Chat in your normal working style (don't optimize yet!)
+3. Record the total credits consumed for this task from the VS Code Output panel
+4. Document your approach: which features you used (inline completions, chat, edits, workspace references)
+5. Save your baseline measurements—you'll compare all future challenges against this
 
-_Sample challenge zero text for the IoT Hack Of The Century:_
-
-Now that you have the common pre-requisites installed on your workstation, there are prerequisites specifc to this hack.
-
-Your coach will provide you with a Resources.zip file that contains resources you will need to complete the hack. If you plan to work locally, you should unpack it on your workstation. If you plan to use the Azure Cloud Shell, you should upload it to the Cloud Shell and unpack it there.
-
-Please install these additional tools:
-
-- [Azure IoT Tools](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools) extension for Visual Studio Code
-- .NET SDK 6.0 or later installed on your development machine. This can be downloaded from [here](https://www.microsoft.com/net/download/all) for multiple platforms.
-
-In the `/Challenge00/` folder of the Resources.zip file, you will find an ARM template, `setupIoTEnvironment.json` that sets up the initial hack environment in Azure you will work with in subsequent challenges.
-
-Please deploy the template by running the following Azure CLI commands from the location of the template file:
-```
-az group create --name myIoT-rg --location eastus
-az group deployment create -g myIoT-rg --name HackEnvironment -f setupIoTEnvironment.json
-```
+This baseline represents your "before" state. In subsequent challenges, you'll apply optimization techniques and measure the credit reduction compared to this baseline.
 
 ## Success Criteria
 
-_Success criteria goes here. The success criteria should be a list of checks so a student knows they have completed the challenge successfully. These should be things that can be demonstrated to a coach._
-
-_The success criteria should not be a list of instructions._
-
-_Success criteria should always start with language like: "Validate XXX..." or "Verify YYY..." or "Show ZZZ..." or "Demonstrate you understand VVV..."_
-
-_Sample success criteria for the IoT prerequisites challenge:_
-
 To complete this challenge successfully, you should be able to:
 
-- Verify that you have a bash shell with the Azure CLI available.
-- Verify that the ARM template has deployed the following resources in Azure:
-  - Azure IoT Hub
-  - Virtual Network
-  - Jumpbox VM
+- Verify that usage-based billing (UBB) is active on your GitHub Copilot subscription
+- Demonstrate that the VS Code Output panel shows token breakdowns for GitHub Copilot interactions
+- Show that you can access the GitHub Copilot usage dashboard and view your current credit consumption
+- Verify that the starter codebase from Resources.zip is open in VS Code
+- Demonstrate that you have completed the baseline coding task and recorded the credit spend
+- Show your documented baseline measurements including total credits and approach used
 
 ## Learning Resources
 
-_List of relevant links and online articles that should give the attendees the knowledge needed to complete the challenge._
-
-_Think of this list as giving the students a head start on some easy Internet searches. However, try not to include documentation links that are the literal step-by-step answer of the challenge's scenario._
-
-**\*Note:** Use descriptive text for each link instead of just URLs.\*
-
-_Sample IoT resource links:_
-
-- [What is a Thingamajig?](https://www.bing.com/search?q=what+is+a+thingamajig)
-- [10 Tips for Never Forgetting Your Thingamajic](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-- [IoT & Thingamajigs: Together Forever](https://www.youtube.com/watch?v=yPYZpwSpKmA)
+- [GitHub Copilot Usage-Based Billing Overview](https://docs.github.com/en/copilot/about-github-copilot/what-is-github-copilot#pricing-for-github-copilot)
+- [Understanding GitHub Copilot Tokens and Credits](https://docs.github.com/en/copilot)
+- [Visual Studio Code Output Panel Documentation](https://code.visualstudio.com/docs/getstarted/userinterface#_output-panel)
+- [GitHub Copilot Extension for VS Code](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)

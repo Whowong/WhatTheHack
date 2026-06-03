@@ -1,32 +1,85 @@
-# Challenge 04 - <Title of Challenge>
+# Challenge 04 - Context Window Management
 
 [< Previous Challenge](./Challenge-03.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-05.md)
 
-***This is a template for a single challenge. The italicized text provides hints & examples of what should or should NOT go in each section.  You should remove all italicized & sample text and replace with your content.***
-
-## Pre-requisites (Optional)
-
-*Your hack's "Challenge 0" should cover pre-requisites for the entire hack, and thus this section is optional and may be omitted.  If you wish to spell out specific previous challenges that must be completed before starting this challenge, you may do so here.*
-
 ## Introduction
 
-*This section should provide an overview of the technologies or tasks that will be needed to complete the this challenge.  This includes the technical context for the challenge, as well as any new "lessons" the attendees should learn before completing the challenge.*
+Context windows grow with every interaction. As your session accumulates messages, attachments, and generated code, the context window fills. Beyond 60-70% utilization, quality degrades—responses become less accurate, the model "forgets" earlier decisions, and credits burn faster as you pay to transmit bloated context.
 
-*Optionally, the coach or event host is encouraged to present a mini-lesson (with a PPT or video) to set up the context & introduction to each challenge. A summary of the content of that mini-lesson is a good candidate for this Introduction section*
-
-*For example:*
-
-When setting up an IoT device, it is important to understand how 'thingamajigs' work. Thingamajigs are a key part of every IoT device and ensure they are able to communicate properly with edge servers. Thingamajigs require IP addresses to be assigned to them by a server and thus must have unique MAC addresses. In this challenge, you will get hands on with a thingamajig and learn how one is configured.
+In this challenge, you'll learn when and how to use `/compact` (the steering wheel) vs. `/clear` (the reset button). The biggest avoidable cost isn't running `/compact` too often—it's running it too late, after context rot has already degraded quality and forced expensive recovery loops.
 
 ## Description
 
-*This section should clearly state the goals of the challenge and any high-level instructions you want the students to follow. You may provide a list of specifications required to meet the goals. If this is more than 2-3 paragraphs, it is likely you are not doing it right.*
+Complete a multi-turn coding task designed to intentionally grow your context window past 60-70% utilization. You'll compare two approaches: proactive compaction vs. reactive recovery.
 
-***NOTE:** Do NOT use ordered lists as that is an indicator of 'step-by-step' instructions. Instead, use bullet lists to list out goals and/or specifications.*
+### Part A: Context Rot Observation
 
-***NOTE:** You may use Markdown sub-headers to organize key sections of your challenge description.*
+Start a coding task that involves multiple related features or refactors. Intentionally:
 
-*Optionally, you may provide resource files such as a sample application, code snippets, or templates as learning aids for the students. These files are stored in the hack's `Student/Resources` folder. It is the coach's responsibility to package these resources into a Resources.zip file and provide it to the students at the start of the hack.*
+- Add numerous file attachments
+- Request verbose explanations
+- Include implementation details in chat responses
+- Allow the context window to grow without intervention
+
+Monitor context window utilization (visible in VS Code status bar or Output panel). Once you reach 70-80% capacity:
+
+- Observe quality degradation (inconsistencies, forgotten requirements, repeated questions)
+- Record credits consumed to reach this point
+- Note any incorrect outputs or rework needed
+
+### Part B: Proactive Compaction
+
+Restart the same multi-turn task using proactive `/compact`:
+
+- Use `/compact` at natural breakpoints (after completing a feature, before switching topics)
+- Target: keep context window below 60% utilization throughout
+- Monitor how compaction summarizes previous work while preserving state
+- Compare credits consumed vs. Part A
+- Compare output quality vs. Part A
+
+### Part C: Emergency Reset
+
+Demonstrate when `/clear` is appropriate:
+
+- Start a task where you realize mid-way that your approach is fundamentally wrong
+- Use `/clear` to wipe context and start fresh with corrected approach
+- Understand the cold cache penalty from `/clear` vs. preserved cache with `/compact`
+- Measure the credit cost difference
+
+### Context Window Hygiene Rules
+
+Develop and document your team's rules for context management:
+
+- At what context utilization percentage do you run `/compact`?
+- What are "natural breakpoints" for your workflow (feature completion, test passing, architecture decision)?
+- When is `/clear` better than `/compact` (fundamental direction change, context poisoning)?
+- How do you balance cache preservation vs. context hygiene?
+
+## Success Criteria
+
+To complete this challenge successfully, you should be able to:
+
+- Demonstrate observable quality degradation when context window exceeds 70% utilization
+- Show credit cost comparison between no-compaction (Part A) and proactive compaction (Part B) approaches
+- Verify that proactive `/compact` maintained output quality throughout the multi-turn task
+- Demonstrate appropriate use of `/clear` when the context becomes fundamentally misaligned
+- Explain the difference in cache impact between `/compact` (preserves cache) and `/clear` (cold restart)
+- Document your team's context management rules with specific utilization thresholds
+
+## Learning Resources
+
+- [Understanding Context Windows and Token Limits](https://www.anthropic.com/index/prompting-long-context)
+- [GitHub Copilot Chat Commands Documentation](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-chat)
+- [Managing Long Conversations with AI Assistants](https://www.promptingguide.ai/)
+
+## Tips
+
+- Context rot starts around 60-70% window utilization—don't wait until 90%
+- `/compact` is the steering wheel (summarize, preserve state)—use it proactively
+- `/clear` is the reset button (wipe everything)—use it when direction changes
+- Natural breakpoints: feature complete, tests passing, architecture decision made
+- The cost isn't running `/compact`—it's NOT running `/compact` until quality has already degraded
+- Compact before you feel the pain, not after
 
 ***NOTE:** Do NOT provide direct links to files or folders in the What The Hack repository from the student guide. Instead, you should refer to the Resource.zip file provided by the coach.*
 

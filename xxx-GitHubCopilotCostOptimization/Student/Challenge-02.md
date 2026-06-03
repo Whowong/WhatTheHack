@@ -1,32 +1,77 @@
-# Challenge 02 - <Title of Challenge>
+# Challenge 02 - Model Selection & Output Constraints
 
 [< Previous Challenge](./Challenge-01.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-03.md)
 
-***This is a template for a single challenge. The italicized text provides hints & examples of what should or should NOT go in each section.  You should remove all italicized & sample text and replace with your content.***
-
-## Pre-requisites (Optional)
-
-*Your hack's "Challenge 0" should cover pre-requisites for the entire hack, and thus this section is optional and may be omitted.  If you wish to spell out specific previous challenges that must be completed before starting this challenge, you may do so here.*
-
 ## Introduction
 
-*This section should provide an overview of the technologies or tasks that will be needed to complete the this challenge.  This includes the technical context for the challenge, as well as any new "lessons" the attendees should learn before completing the challenge.*
+Not all tasks need the most powerful model. A cheaper model with tight output constraints can often outperform an expensive model that produces verbose responses. In this challenge, you'll learn to match models to task complexity and apply output constraints that reduce token generation without sacrificing quality.
 
-*Optionally, the coach or event host is encouraged to present a mini-lesson (with a PPT or video) to set up the context & introduction to each challenge. A summary of the content of that mini-lesson is a good candidate for this Introduction section*
-
-*For example:*
-
-When setting up an IoT device, it is important to understand how 'thingamajigs' work. Thingamajigs are a key part of every IoT device and ensure they are able to communicate properly with edge servers. Thingamajigs require IP addresses to be assigned to them by a server and thus must have unique MAC addresses. In this challenge, you will get hands on with a thingamajig and learn how one is configured.
+The key insight: credit cost = (input tokens × input rate) + (output tokens × output rate). While you control input through context engineering, output constraints are your lever for controlling what the model generates.
 
 ## Description
 
-*This section should clearly state the goals of the challenge and any high-level instructions you want the students to follow. You may provide a list of specifications required to meet the goals. If this is more than 2-3 paragraphs, it is likely you are not doing it right.*
+Complete the same coding task from your baseline using different GitHub Copilot models and configurations. Your goal is to understand the cost-quality tradeoff and discover when cheaper models with constraints beat expensive models without them.
 
-***NOTE:** Do NOT use ordered lists as that is an indicator of 'step-by-step' instructions. Instead, use bullet lists to list out goals and/or specifications.*
+### Part A: Model Comparison
 
-***NOTE:** You may use Markdown sub-headers to organize key sections of your challenge description.*
+Complete your baseline coding task using each available model/reasoning level combination:
 
-*Optionally, you may provide resource files such as a sample application, code snippets, or templates as learning aids for the students. These files are stored in the hack's `Student/Resources` folder. It is the coach's responsibility to package these resources into a Resources.zip file and provide it to the students at the start of the hack.*
+- GPT-4o (standard agent mode)
+- Claude Sonnet (standard agent mode)
+- Claude Haiku (if available via custom agent)
+- Any other models available in your GitHub Copilot configuration
+
+For each model:
+
+- Record total credits consumed
+- Record output quality (does it meet acceptance criteria?)
+- Record number of iterations needed to reach a working solution
+- Note the model's response verbosity (tokens generated)
+
+### Part B: Output Constraints
+
+Choose one model from Part A and complete the same task multiple times with different output constraints:
+
+- No constraints (baseline)
+- "Output code only, minimal explanation"
+- Structured output (e.g., JSON schema for configuration, specific code format)
+- Tight word limits for explanations ("explain in <50 words")
+
+Measure how output constraints affect both token count and credit cost.
+
+### Part C: Auto Mode Exploration
+
+If available, use GitHub Copilot's Auto mode (task-aware routing with cache-aware model selection) to complete the same task:
+
+- Observe which models Auto mode selects for different subtasks
+- Note when Auto mode chooses to leverage cache vs. switch models
+- Compare total credit cost vs. manually selecting a single model
+- Understand the 10% discount Auto mode provides for cache-friendly routing
+
+## Success Criteria
+
+To complete this challenge successfully, you should be able to:
+
+- Demonstrate completion of the baseline task using at least three different models
+- Show measured credit costs for each model with identical input conditions
+- Verify that output quality met acceptance criteria for each model tested
+- Demonstrate credit cost reduction from applying output constraints to at least one model
+- Show comparative data proving that a cheaper model with constraints can beat an expensive model without constraints on total credit cost
+- Explain when Auto mode provides value vs. manual model selection
+
+## Learning Resources
+
+- [GitHub Copilot Model Selection Guide](https://docs.github.com/en/copilot)
+- [Prompt Engineering: Output Formatting Techniques](https://www.promptingguide.ai/)
+- [Understanding Model Pricing and Token Rates](https://docs.github.com/en/copilot/about-github-copilot)
+
+## Tips
+
+- Input tokens are cheaper than output tokens for most models
+- Verbose explanations cost credits—request code-only output when you don't need narration
+- Haiku-class models can be 85-90% cheaper than Sonnet/GPT-4 class models
+- Auto mode's 10% discount comes from cache-aware routing, but only when task boundaries align with cache boundaries
+- The best model isn't always the smartest one—it's the one that solves your problem at the lowest cost
 
 ***NOTE:** Do NOT provide direct links to files or folders in the What The Hack repository from the student guide. Instead, you should refer to the Resource.zip file provided by the coach.*
 

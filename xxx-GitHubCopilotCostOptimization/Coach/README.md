@@ -1,27 +1,29 @@
-# What The Hack - GitHubCopilotCostOptimization - Coach Guide
+# What The Hack - GitHub Copilot Cost Optimization - Coach Guide
 
 ## Introduction
 
-Welcome to the coach's guide for the GitHubCopilotCostOptimization What The Hack. Here you will find links to specific guidance for coaches for each of the challenges.
+Welcome to the coach's guide for the GitHub Copilot Cost Optimization What The Hack. Here you will find links to specific guidance for coaches for each of the challenges.
 
-This hack includes an optional [lecture presentation](Lectures.pptx) that features short presentations to introduce key topics associated with each challenge. It is recommended that the host present each short presentation before attendees kick off that challenge.
+This hack teaches teams to maximize code quality while minimizing GitHub Copilot credit spend under usage-based billing (UBB). The focus is on practical engineering techniques: context engineering, model selection, session hygiene, and spec-driven development.
 
 **NOTE:** If you are a Hackathon participant, this is the answer guide. Don't cheat yourself by looking at these during the hack! Go learn something. :)
 
 ## Coach's Guides
 
-- Challenge 00: **[Prerequisites - Ready, Set, GO!](./Solution-00.md)**
-	 - Prepare your workstation to work with Azure.
-- Challenge 01: **[Title of Challenge](./Solution-01.md)**
-	 - Description of challenge
-- Challenge 02: **[Title of Challenge](./Solution-02.md)**
-	 - Description of challenge
-- Challenge 03: **[Title of Challenge](./Solution-03.md)**
-	 - Description of challenge
-- Challenge 04: **[Title of Challenge](./Solution-04.md)**
-	 - Description of challenge
-- Challenge 05: **[Title of Challenge](./Solution-05.md)**
-	 - Description of challenge
+- Challenge 00: **[Prerequisites & Baseline](./Solution-00.md)**
+   - Set up the hack environment and establish baseline credit spend measurements
+- Challenge 01: **[Context Engineering](./Solution-01.md)**
+   - Optimize instruction architecture and attachment precision
+- Challenge 02: **[Model Selection & Output Constraints](./Solution-02.md)**
+   - Compare models and apply output constraints to reduce costs
+- Challenge 03: **[Session Configuration (Tools + Cache)](./Solution-03.md)**
+   - Manage MCP tool sprawl and understand cache invalidation
+- Challenge 04: **[Context Window Management](./Solution-04.md)**
+   - Use /compact proactively to maintain quality and control costs
+- Challenge 05: **[Spec-Driven Development](./Solution-05.md)**
+   - Leverage deterministic controls as token controls
+- Challenge 06: **[Token Golf Competition](./Solution-06.md)**
+   - Competitive coding challenge optimizing for lowest credit spend
 
 ## Coach Prerequisites
 
@@ -33,21 +35,71 @@ The guide covers the common preparation steps a coach needs to do before any Wha
 
 Before the hack, it is the Coach's responsibility to download and package up the contents of the `/Student/Resources` folder of this hack into a "Resources.zip" file. The coach should then provide a copy of the Resources.zip file to all students at the start of the hack.
 
+The Student/Resources folder should contain:
+
+- **Starter codebase** with intentionally sub-optimal GitHub Copilot configuration:
+  - Bloated `.github/copilot-instructions.md` (~1500 tokens) for Challenge 01
+  - Multiple MCP tools enabled (some unnecessary) for Challenge 03
+  - Sample code with opportunities for spec-first vs. trial-and-error comparison
+- **Baseline coding task** (baseline-task.md) for Challenge 00
+- **Token Golf task specification** for Challenge 06 with acceptance criteria
+
 Always refer students to the [What The Hack website](https://aka.ms/wth) for the student guide: [https://aka.ms/wth](https://aka.ms/wth)
 
 **NOTE:** Students should **not** be given a link to the What The Hack repo before or during a hack. The student guide does **NOT** have any links to the Coach's guide or the What The Hack repo on GitHub.
 
-### Additional Coach Prerequisites (Optional)
+### Additional Coach Prerequisites
 
-_Please list any additional pre-event setup steps a coach would be required to set up such as, creating or hosting a shared dataset, or deploying a lab environment._
+**Coach must complete Challenge 06 (Token Golf) before the hack:**
+
+- Complete the Token Golf coding task yourself to establish "par" score
+- Document your credit spend and techniques used
+- This "par" becomes the benchmark teams compete against
+
+**Prepare measurement tools:**
+
+- Confirm all students have UBB enabled on their GitHub Copilot subscriptions
+- Verify token visibility in VS Code Output panel (GitHub Copilot Chat)
+- Test access to GitHub Copilot usage dashboard
 
 ## Azure Requirements
 
-This hack requires students to have access to an Azure subscription where they can create and consume Azure resources. These Azure requirements should be shared with a stakeholder in the organization that will be providing the Azure subscription(s) that will be used by the students.
+This hack does not require Azure resources. All work is done locally with GitHub Copilot in Visual Studio Code.
 
-_Please list Azure subscription requirements._
+## Suggested Hack Agenda
 
-_For example:_
+This hack can be delivered as a half-day or full-day event:
+
+### Half-Day Format (4 hours)
+- Challenge 00: Prerequisites & Baseline (30 minutes)
+- Challenge 01: Context Engineering (45 minutes)
+- Challenge 02: Model Selection & Output Constraints (45 minutes)
+- Challenge 03: Session Configuration (30 minutes)
+- Challenge 05: Spec-Driven Development (45 minutes)
+- Challenge 06: Token Golf Competition (45 minutes)
+
+### Full-Day Format (6-7 hours)
+- Challenge 00: Prerequisites & Baseline (45 minutes)
+- Challenge 01: Context Engineering (60 minutes)
+- Challenge 02: Model Selection & Output Constraints (60 minutes)
+- Break (15 minutes)
+- Challenge 03: Session Configuration (45 minutes)
+- Challenge 04: Context Window Management (45 minutes)
+- Challenge 05: Spec-Driven Development (60 minutes)
+- Break (15 minutes)
+- Challenge 06: Token Golf Competition (60 minutes)
+- Debrief & Winning Strategies (30 minutes)
+
+## Repository Contents
+
+- `./Coach`
+  - Coach's Guide and related files
+- `./Coach/Solutions`
+  - Solution files with example measurements and techniques for each challenge
+- `./Student`
+  - Student's Challenge Guide
+- `./Student/Resources`
+  - Starter codebase, baseline task, Token Golf specification (Must be packaged up by the coach and provided to students at start of event)
 
 - Azure resources that will be consumed by a student implementing the hack's challenges
 - Azure permissions required by a student to complete the hack's challenges.

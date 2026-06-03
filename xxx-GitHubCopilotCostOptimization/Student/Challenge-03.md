@@ -1,32 +1,90 @@
-# Challenge 03 - <Title of Challenge>
+# Challenge 03 - Session Configuration (Tools + Cache)
 
 [< Previous Challenge](./Challenge-02.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-04.md)
 
-***This is a template for a single challenge. The italicized text provides hints & examples of what should or should NOT go in each section.  You should remove all italicized & sample text and replace with your content.***
-
-## Pre-requisites (Optional)
-
-*Your hack's "Challenge 0" should cover pre-requisites for the entire hack, and thus this section is optional and may be omitted.  If you wish to spell out specific previous challenges that must be completed before starting this challenge, you may do so here.*
-
 ## Introduction
 
-*This section should provide an overview of the technologies or tasks that will be needed to complete the this challenge.  This includes the technical context for the challenge, as well as any new "lessons" the attendees should learn before completing the challenge.*
+Every MCP tool you enable adds 100-500 tokens per agent loop step. A session with 10 unused tools can burn thousands of extra tokens before you've written a line of code. Meanwhile, cache invalidation—triggered by switching models, toggling MCP servers, or editing system prompts mid-session—wipes your cache and forces a costly cold restart.
 
-*Optionally, the coach or event host is encouraged to present a mini-lesson (with a PPT or video) to set up the context & introduction to each challenge. A summary of the content of that mini-lesson is a good candidate for this Introduction section*
-
-*For example:*
-
-When setting up an IoT device, it is important to understand how 'thingamajigs' work. Thingamajigs are a key part of every IoT device and ensure they are able to communicate properly with edge servers. Thingamajigs require IP addresses to be assigned to them by a server and thus must have unique MAC addresses. In this challenge, you will get hands on with a thingamajig and learn how one is configured.
+In this challenge, you'll learn to configure lean sessions and maintain high cache hit rates. The engineering target is 97-98% cache efficiency.
 
 ## Description
 
-*This section should clearly state the goals of the challenge and any high-level instructions you want the students to follow. You may provide a list of specifications required to meet the goals. If this is more than 2-3 paragraphs, it is likely you are not doing it right.*
+This challenge has two parts: tool sprawl management and cache invalidation awareness. Both directly impact your per-session costs.
 
-***NOTE:** Do NOT use ordered lists as that is an indicator of 'step-by-step' instructions. Instead, use bullet lists to list out goals and/or specifications.*
+### Part A: Tool Sprawl Audit
 
-***NOTE:** You may use Markdown sub-headers to organize key sections of your challenge description.*
+The starter codebase may have multiple MCP tools or GitHub Copilot extensions enabled. Your task:
 
-*Optionally, you may provide resource files such as a sample application, code snippets, or templates as learning aids for the students. These files are stored in the hack's `Student/Resources` folder. It is the coach's responsibility to package these resources into a Resources.zip file and provide it to the students at the start of the hack.*
+- List all currently enabled MCP tools and extensions in your GitHub Copilot configuration
+- Complete your baseline coding task with all tools enabled, recording token counts and credits
+- Identify which tools were actually invoked during the task (check VS Code Output panel for tool calls)
+- Disable any tools that weren't used
+- Repeat the baseline task with your pruned tool configuration
+- Measure credit savings from reducing tool overhead
+
+Each tool adds token overhead to every agent step, even if never used. The overhead includes:
+
+- Tool name and description (recurring cost)
+- Tool parameter schemas (recurring cost)
+- Tool availability announcements (recurring cost)
+
+### Part B: Cache Invalidation Experiment
+
+Complete the same refactor task twice under different session conditions:
+
+**Clean Session:**
+- Start a fresh VS Code session
+- Configure your chosen model and tool set
+- Complete the entire refactor without changing any configuration
+- Record total credits and observe cache hit rate in Output panel
+
+**Messy Session:**
+- Start a fresh VS Code session
+- Begin the refactor
+- Midway through, switch to a different model
+- Then toggle an MCP server off and back on
+- Then edit your `.github/copilot-instructions.md` file
+- Complete the refactor
+- Record total credits and observe cache hit rate
+
+Compare the two approaches. Each configuration change invalidates the cache and triggers a cold restart penalty.
+
+### Cache Invalidation Triggers
+
+Document your understanding of what invalidates GitHub Copilot's cache:
+
+- Switching models mid-session
+- Changing system instructions (editing copilot-instructions.md)
+- Toggling MCP tools or extensions
+- Switching between Agent mode and Chat mode
+- Large context window changes (auto-compaction)
+
+## Success Criteria
+
+To complete this challenge successfully, you should be able to:
+
+- Show a list of all MCP tools enabled before and after your audit
+- Demonstrate credit savings from disabling unused tools on the baseline task
+- Verify which tools were actually invoked during your task (via VS Code Output panel logs)
+- Show comparative credit costs between clean session and messy session for the same refactor
+- Demonstrate measurable cache hit rate difference between the two session approaches
+- Explain at least three triggers that invalidate GitHub Copilot's cache
+- Achieve 95%+ cache hit rate on a multi-turn coding task
+
+## Learning Resources
+
+- [Model Context Protocol (MCP) Overview](https://modelcontextprotocol.io/)
+- [GitHub Copilot Extension Management](https://docs.github.com/en/copilot)
+- [Understanding LLM Caching Strategies](https://www.anthropic.com/index/prompt-caching)
+
+## Tips
+
+- Each MCP tool costs tokens even when never invoked—they're advertised to the model at every step
+- Cache hit rates above 97-98% are achievable with clean session hygiene
+- Switching models mid-session is one of the most expensive cache invalidations
+- Auto mode routes along cache boundaries to minimize invalidation
+- If you must change configuration mid-task, finish your current subtask first to preserve cache value
 
 ***NOTE:** Do NOT provide direct links to files or folders in the What The Hack repository from the student guide. Instead, you should refer to the Resource.zip file provided by the coach.*
 

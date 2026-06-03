@@ -1,53 +1,75 @@
-# Challenge 01 - <Title of Challenge>
+# Challenge 01 - Context Engineering
 
 [< Previous Challenge](./Challenge-00.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-02.md)
 
-***This is a template for a single challenge. The italicized text provides hints & examples of what should or should NOT go in each section.  You should remove all italicized & sample text and replace with your content.***
-
-## Pre-requisites (Optional)
-
-*Your hack's "Challenge 0" should cover pre-requisites for the entire hack, and thus this section is optional and may be omitted.  If you wish to spell out specific previous challenges that must be completed before starting this challenge, you may do so here.*
-
 ## Introduction
 
-*This section should provide an overview of the technologies or tasks that will be needed to complete the this challenge.  This includes the technical context for the challenge, as well as any new "lessons" the attendees should learn before completing the challenge.*
+Every token sent to GitHub Copilot has a cost. Context that persists across every interaction—like global `.github/copilot-instructions.md` files—creates recurring costs that compound quickly. Meanwhile, broad workspace references like `#Codebase` pull in unnecessary files, adding tokens you don't need.
 
-*Optionally, the coach or event host is encouraged to present a mini-lesson (with a PPT or video) to set up the context & introduction to each challenge. A summary of the content of that mini-lesson is a good candidate for this Introduction section*
-
-*For example:*
-
-When setting up an IoT device, it is important to understand how 'thingamajigs' work. Thingamajigs are a key part of every IoT device and ensure they are able to communicate properly with edge servers. Thingamajigs require IP addresses to be assigned to them by a server and thus must have unique MAC addresses. In this challenge, you will get hands on with a thingamajig and learn how one is configured.
+In this challenge, you'll learn to engineer your context precisely. You'll audit an over-stuffed global instructions file, restructure it into scoped path-specific files, and replace broad references with pinned attachments. The goal: reduce the base cost of every Copilot interaction while maintaining quality.
 
 ## Description
 
-*This section should clearly state the goals of the challenge and any high-level instructions you want the students to follow. You may provide a list of specifications required to meet the goals. If this is more than 2-3 paragraphs, it is likely you are not doing it right.*
+The starter codebase includes an intentionally bloated `.github/copilot-instructions.md` file (~1500 tokens) that loads on every GitHub Copilot interaction. Your task is to optimize the context architecture through two experiments.
 
-***NOTE:** Do NOT use ordered lists as that is an indicator of 'step-by-step' instructions. Instead, use bullet lists to list out goals and/or specifications.*
+### Part A: Instruction Scoping
 
-***NOTE:** You may use Markdown sub-headers to organize key sections of your challenge description.*
+Audit the global instructions file and identify rules that:
 
-*Optionally, you may provide resource files such as a sample application, code snippets, or templates as learning aids for the students. These files are stored in the hack's `Student/Resources` folder. It is the coach's responsibility to package these resources into a Resources.zip file and provide it to the students at the start of the hack.*
+- Only apply to specific file types or directories
+- Are redundant with existing linters, type checkers, or code standards
+- Could be converted to GitHub Copilot Skills that activate conditionally
+- Genuinely need to be global (keep these minimal)
 
-***NOTE:** Do NOT provide direct links to files or folders in the What The Hack repository from the student guide. Instead, you should refer to the Resource.zip file provided by the coach.*
+Restructure your instructions:
 
-***NOTE:** As an exception, you may provide a GitHub 'raw' link to an individual file such as a PDF or Office document, so long as it does not open the contents of the file in the What The Hack repo on the GitHub website.*
+- Keep only universal rules (target: under 500 tokens) in the global `.github/copilot-instructions.md`
+- Move language-specific rules to `.github/copilot-instructions-LANGUAGE.md` files (e.g., `copilot-instructions-python.md`)
+- Move directory-specific rules to path-scoped instruction files (e.g., `src/api/.github/copilot-instructions.md`)
+- Convert task-specific patterns to GitHub Copilot Skills where appropriate
 
-***NOTE:** Any direct links to the What The Hack repo will be flagged for review during the review process by the WTH V-Team, including exception cases.*
+### Part B: Attachment Precision
 
-*Sample challenge text for the IoT Hack Of The Century:*
+The starter codebase may include prompts that reference `#Codebase` or other broad workspace selectors. Identify one coding task where you can:
 
-In this challenge, you will properly configure the thingamajig for your IoT device so that it can communicate with the mother ship.
+- Replace a broad `#Codebase` reference with specific pinned files/line ranges
+- Demonstrate the token difference between the two approaches
+- Verify the output quality remains equivalent
 
-You can find a sample `thingamajig.config` file in the `/ChallengeXX` folder of the Resources.zip file provided by your coach. This is a good starting reference, but you will need to discover how to set exact settings.
+### Measurement
 
-Please configure the thingamajig with the following specifications:
-- Use dynamic IP addresses
-- Only trust the following whitelisted servers: "mothership", "IoTQueenBee" 
-- Deny access to "IoTProxyShip"
+Complete the same coding task from Challenge 00 (baseline) three times:
 
-You can view an architectural diagram of an IoT thingamajig here: [Thingamajig.PDF](/Student/Resources/Architecture.PDF?raw=true).
+- Attempt 1: Using the original bloated global instructions (~1500 tokens)
+- Attempt 2: Using your optimized instruction architecture
+- Attempt 3: Using optimized instructions + pinned attachments instead of broad references
+
+Record credits consumed for each attempt and calculate the reduction percentage.
 
 ## Success Criteria
+
+To complete this challenge successfully, you should be able to:
+
+- Demonstrate that your restructured global `.github/copilot-instructions.md` is under 500 tokens
+- Show path-specific or language-specific instruction files you created with rules moved from the global file
+- Verify that at least one task-specific pattern has been converted to a GitHub Copilot Skill
+- Show token count comparison between using `#Codebase` vs. pinned file attachments for a specific task
+- Demonstrate credit reduction across three attempts of the baseline coding task
+- Verify that code quality remained equivalent across all three attempts
+
+## Learning Resources
+
+- [GitHub Copilot Instructions Documentation](https://docs.github.com/en/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot)
+- [GitHub Copilot Skills Overview](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-skills)
+- [Understanding Context Windows in Large Language Models](https://www.anthropic.com/index/prompting-long-context)
+
+## Tips
+
+- Persistent instructions are recurring costs—they load on every call
+- Skills are conditional costs—they only load when invoked
+- Attachments are per-call costs—you control exactly what's included
+- The engineering target: keep always-on global instructions under 1000 tokens
+- Scoped instructions should be discoverable: if a rule only applies to `/api`, put the instruction file in `/api/.github/`
 
 *Success criteria goes here. The success criteria should be a list of checks so a student knows they have completed the challenge successfully. These should be things that can be demonstrated to a coach.* 
 
