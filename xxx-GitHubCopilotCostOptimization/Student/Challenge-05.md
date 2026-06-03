@@ -26,10 +26,6 @@ Then prompt GitHub Copilot with references to your spec and tests, instructing i
 
 Observe and record: iterations needed, total credits consumed, whether the agent closed the loop quickly, and final code quality.
 
-### Understanding Feedback Loops
-
-Rank feedback mechanisms by cost and latency to understand which are most efficient. Document how deterministic controls (tests catching errors, type checkers providing instant feedback, CI signals) reduce token spend compared to agent trial-and-error loops.
-
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
