@@ -16,9 +16,9 @@ Complete the same coding task from your baseline using different GitHub Copilot 
 
 Experiment with the available models in your GitHub Copilot configuration (GPT-4o, Claude Sonnet, Claude Haiku if available, etc.). Complete your baseline coding task with different models and record the total credits consumed, output quality, iteration count, and response verbosity for each.
 
-### Output Constraints
+### Reasoning Levels
 
-Explore how output constraints affect cost. Choose one model and complete the same task with different constraint approaches: no constraints, code-only output, structured formats, or word limits. Measure how these constraints affect token count and credit cost.
+Explore how different reasoning levels affect credit utilization
 
 ### Auto Mode
 
