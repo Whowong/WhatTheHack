@@ -4,67 +4,42 @@
 
 ## Introduction
 
-Context windows grow with every interaction. As your session accumulates messages, attachments, and generated code, the context window fills. Beyond 60-70% utilization, quality degrades—responses become less accurate, the model "forgets" earlier decisions, and credits burn faster as you pay to transmit bloated context.
+Context windows grow with every interaction. As your session accumulates messages, attachments, and generated code, the context window fills. When utilization gets too high, quality degrades—responses become less accurate, the model "forgets" earlier decisions, and credits burn faster as you pay to transmit bloated context.
 
 In this challenge, you'll learn when and how to use `/compact` (the steering wheel) vs. `/clear` (the reset button). The biggest avoidable cost isn't running `/compact` too often—it's running it too late, after context rot has already degraded quality and forced expensive recovery loops.
 
 ## Description
 
-Complete a multi-turn coding task designed to intentionally grow your context window past 60-70% utilization. You'll compare two approaches: proactive compaction vs. reactive recovery.
+Complete a multi-turn coding task designed to intentionally grow your context window. You'll compare two approaches: proactive compaction vs. reactive recovery.
 
-### Part A: Context Rot Observation
+### Context Rot Observation
 
-Start a coding task that involves multiple related features or refactors. Intentionally:
+Start a coding task that involves multiple related features or refactors. Intentionally let the context window grow by adding numerous file attachments, requesting verbose explanations, and allowing the conversation to accumulate without intervention.
 
-- Add numerous file attachments
-- Request verbose explanations
-- Include implementation details in chat responses
-- Allow the context window to grow without intervention
+Monitor context window utilization (visible in VS Code status bar or Output panel) and observe what happens as it fills. Look for quality degradation signals like inconsistencies, forgotten requirements, or repeated questions. Record credits consumed and note any incorrect outputs or rework needed.
 
-Monitor context window utilization (visible in VS Code status bar or Output panel). Once you reach 70-80% capacity:
+### Proactive Compaction
 
-- Observe quality degradation (inconsistencies, forgotten requirements, repeated questions)
-- Record credits consumed to reach this point
-- Note any incorrect outputs or rework needed
+Restart the same multi-turn task using proactive `/compact` at natural breakpoints (after completing a feature, before switching topics). Keep the context window lean throughout and monitor how compaction summarizes previous work while preserving state. Compare credits consumed and output quality vs. the unmanaged approach.
 
-### Part B: Proactive Compaction
+### Emergency Reset
 
-Restart the same multi-turn task using proactive `/compact`:
+Demonstrate when `/clear` is appropriate by starting a task where you realize mid-way that your approach is fundamentally wrong. Use `/clear` to wipe context and start fresh with a corrected approach. Understand the cold cache penalty from `/clear` vs. preserved cache with `/compact`.
 
-- Use `/compact` at natural breakpoints (after completing a feature, before switching topics)
-- Target: keep context window below 60% utilization throughout
-- Monitor how compaction summarizes previous work while preserving state
-- Compare credits consumed vs. Part A
-- Compare output quality vs. Part A
+### Context Management Strategy
 
-### Part C: Emergency Reset
-
-Demonstrate when `/clear` is appropriate:
-
-- Start a task where you realize mid-way that your approach is fundamentally wrong
-- Use `/clear` to wipe context and start fresh with corrected approach
-- Understand the cold cache penalty from `/clear` vs. preserved cache with `/compact`
-- Measure the credit cost difference
-
-### Context Window Hygiene Rules
-
-Develop and document your team's rules for context management:
-
-- At what context utilization percentage do you run `/compact`?
-- What are "natural breakpoints" for your workflow (feature completion, test passing, architecture decision)?
-- When is `/clear` better than `/compact` (fundamental direction change, context poisoning)?
-- How do you balance cache preservation vs. context hygiene?
+Develop and document your team's rules for context management: when to compact, what constitutes "natural breakpoints," when to clear vs. compact, and how to balance cache preservation vs. context hygiene.
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Demonstrate observable quality degradation when context window exceeds 70% utilization
-- Show credit cost comparison between no-compaction (Part A) and proactive compaction (Part B) approaches
+- Demonstrate observable quality degradation when context window grows too large
+- Show credit cost comparison between unmanaged context growth and proactive compaction approaches
 - Verify that proactive `/compact` maintained output quality throughout the multi-turn task
 - Demonstrate appropriate use of `/clear` when the context becomes fundamentally misaligned
 - Explain the difference in cache impact between `/compact` (preserves cache) and `/clear` (cold restart)
-- Document your team's context management rules with specific utilization thresholds
+- Document your team's context management strategy with specific decision criteria
 
 ## Learning Resources
 
@@ -74,7 +49,7 @@ To complete this challenge successfully, you should be able to:
 
 ## Tips
 
-- Context rot starts around 60-70% window utilization—don't wait until 90%
+- Context rot starts when the window gets too full—don't wait until the last moment
 - `/compact` is the steering wheel (summarize, preserve state)—use it proactively
 - `/clear` is the reset button (wipe everything)—use it when direction changes
 - Natural breakpoints: feature complete, tests passing, architecture decision made

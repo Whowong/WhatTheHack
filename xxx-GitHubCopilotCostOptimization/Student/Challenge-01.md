@@ -10,52 +10,37 @@ In this challenge, you'll learn to engineer your context precisely. You'll audit
 
 ## Description
 
-The starter codebase includes an intentionally bloated `.github/copilot-instructions.md` file (~1500 tokens) that loads on every GitHub Copilot interaction. Your task is to optimize the context architecture through two experiments.
+The starter codebase includes an intentionally bloated `.github/copilot-instructions.md` file that loads on every GitHub Copilot interaction. Your challenge is to reduce the base cost of every interaction through context optimization.
 
-### Part A: Instruction Scoping
+### Instruction Scoping
 
-Audit the global instructions file and identify rules that:
+Audit the global instructions file and restructure it for efficiency:
 
-- Only apply to specific file types or directories
-- Are redundant with existing linters, type checkers, or code standards
-- Could be converted to GitHub Copilot Skills that activate conditionally
-- Genuinely need to be global (keep these minimal)
+- Identify which rules apply universally vs. only to specific languages or directories
+- Minimize the global file by moving scoped rules to appropriate locations
+- Consider converting task-specific patterns to GitHub Copilot Skills that activate conditionally
+- Discover how language-specific and path-specific instruction files work
 
-Restructure your instructions:
+### Attachment Precision
 
-- Keep only universal rules (target: under 500 tokens) in the global `.github/copilot-instructions.md`
-- Move language-specific rules to `.github/copilot-instructions-LANGUAGE.md` files (e.g., `copilot-instructions-python.md`)
-- Move directory-specific rules to path-scoped instruction files (e.g., `src/api/.github/copilot-instructions.md`)
-- Convert task-specific patterns to GitHub Copilot Skills where appropriate
+Experiment with workspace references to understand their token cost:
 
-### Part B: Attachment Precision
+- Compare using `#Codebase` vs. pinning specific files for the same coding task
+- Measure the token difference between broad and precise attachment strategies
+- Verify that output quality remains equivalent with more precise attachments
 
-The starter codebase may include prompts that reference `#Codebase` or other broad workspace selectors. Identify one coding task where you can:
-
-- Replace a broad `#Codebase` reference with specific pinned files/line ranges
-- Demonstrate the token difference between the two approaches
-- Verify the output quality remains equivalent
-
-### Measurement
-
-Complete the same coding task from Challenge 00 (baseline) three times:
-
-- Attempt 1: Using the original bloated global instructions (~1500 tokens)
-- Attempt 2: Using your optimized instruction architecture
-- Attempt 3: Using optimized instructions + pinned attachments instead of broad references
-
-Record credits consumed for each attempt and calculate the reduction percentage.
+Use the baseline coding task from Challenge 00 to measure the impact of your optimizations. Compare credit consumption before and after restructuring to demonstrate measurable savings.
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Demonstrate that your restructured global `.github/copilot-instructions.md` is under 500 tokens
+- Demonstrate that your restructured global `.github/copilot-instructions.md` is significantly smaller than the original
 - Show path-specific or language-specific instruction files you created with rules moved from the global file
 - Verify that at least one task-specific pattern has been converted to a GitHub Copilot Skill
 - Show token count comparison between using `#Codebase` vs. pinned file attachments for a specific task
-- Demonstrate credit reduction across three attempts of the baseline coding task
-- Verify that code quality remained equivalent across all three attempts
+- Demonstrate measurable credit reduction on the baseline coding task
+- Verify that code quality remained equivalent after optimization
 
 ## Learning Resources
 

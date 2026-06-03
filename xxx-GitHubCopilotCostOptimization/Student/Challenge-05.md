@@ -12,74 +12,34 @@ In this challenge, you'll demonstrate that spec-first development isn't just goo
 
 You'll implement the same feature twice: once with no spec (trial-and-error), and once with spec-first (deterministic feedback). Compare credit spend and output correctness between the two approaches.
 
-### Part A: Trial-and-Error Development
+### Trial-and-Error Development
 
-Implement a moderately complex feature using only a vague prompt:
+Implement a moderately complex feature using only a vague prompt. Provide GitHub Copilot with a high-level goal without tests, types, interfaces, or acceptance criteria. Let the agent explore, make mistakes, and iterate naturally.
 
-- Provide GitHub Copilot with a high-level goal (e.g., "add user authentication")
-- Do NOT provide tests, types, interfaces, or acceptance criteria
-- Do NOT establish linting or type-checking as part of your workflow
-- Let the agent explore, make mistakes, and iterate
+Observe and record: retry loops, total credits consumed, discovery time, recovery effort, and final code quality.
 
-Observe and record:
+### Spec-First Development
 
-- How many retry loops occur (agent generates code, you test, it fails, agent fixes)
-- Total credits consumed
-- Time spent on discovery (agent asking clarifying questions)
-- Time spent on recovery (fixing incorrect implementations)
-- Final code quality
+Implement the same feature using spec-first approach. Before prompting GitHub Copilot, establish your specification: type definitions or interfaces, failing test cases (TDD style), clear acceptance criteria, and enabled linters/type checkers.
 
-### Part B: Spec-First Development
+Then prompt GitHub Copilot with references to your spec and tests, instructing it to implement the feature to make tests pass.
 
-Implement the same feature using spec-first approach:
+Observe and record: iterations needed, total credits consumed, whether the agent closed the loop quickly, and final code quality.
 
-**Before prompting GitHub Copilot, create:**
-- Type definitions or interfaces that define the shape of your solution
-- Test cases that specify expected behavior (these can fail initially—TDD style)
-- Clear acceptance criteria in your prompt or attached specification file
-- Enable linters and type checkers in your workflow
+### Understanding Feedback Loops
 
-**Then prompt GitHub Copilot with:**
-- A link to your type definitions/interfaces
-- A link to your failing tests
-- Clear acceptance criteria
-- Instruction: "Implement this feature to make these tests pass"
-
-Observe and record:
-
-- How many iterations needed (should be significantly fewer)
-- Total credits consumed
-- Whether the agent closed the loop in one pass vs. multiple retries
-- Final code quality
-
-### The Feedback Loop Hierarchy
-
-Rank feedback mechanisms by cost and latency:
-
-- **Fastest/Cheapest:** Type errors (instant feedback, zero credit cost)
-- **Fast/Cheap:** Linter violations (seconds, zero credit cost)
-- **Medium:** Unit tests (seconds, zero credit cost)
-- **Slow/Expensive:** Agent trial-and-error (minutes, high credit cost)
-
-### Key Concepts
-
-Document your understanding of how deterministic controls reduce token spend:
-
-- When tests catch errors deterministically, the agent doesn't spend turns discovering the error through iteration
-- Type checkers provide instant feedback loops (zero credits) vs. agent debugging (high credits)
-- The research → plan → implement loop: sessions that skip research/planning burn tokens regenerating context after the first wrong turn
-- CI signals (test pass/fail, lint pass/fail, security scan results) close loops in one tool call instead of three model turns
+Rank feedback mechanisms by cost and latency to understand which are most efficient. Document how deterministic controls (tests catching errors, type checkers providing instant feedback, CI signals) reduce token spend compared to agent trial-and-error loops.
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Demonstrate completion of a feature using trial-and-error (Part A) and spec-first (Part B) approaches
+- Demonstrate completion of a feature using both trial-and-error and spec-first approaches
 - Show measured credit costs for both approaches with the same feature complexity
 - Verify that spec-first approach required fewer retry loops than trial-and-error
-- Demonstrate at least 30% credit reduction using spec-first vs. trial-and-error
+- Demonstrate significant credit reduction using spec-first vs. trial-and-error
 - Show that spec-first output met acceptance criteria with fewer iterations
-- Explain how at least three deterministic controls (tests, types, linters) act as token controls
+- Explain how deterministic controls (tests, types, linters) act as token controls
 - Document your feedback loop hierarchy ranking mechanisms by speed and cost
 
 ## Learning Resources
