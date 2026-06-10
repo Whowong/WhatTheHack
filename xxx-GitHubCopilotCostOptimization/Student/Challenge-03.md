@@ -4,48 +4,61 @@
 
 ## Introduction
 
-Every MCP tool you enable adds token overhead per agent loop step. A session with many unused tools can burn extra tokens before you've written a line of code. Meanwhile, cache invalidation—triggered by switching models, toggling MCP servers, or editing system prompts mid-session—wipes your cache and forces a costly cold restart.
+Every MCP tool you enable adds token overhead to every agent step. Each tool's name, description, and parameter schema are advertised to the model on every request—even if the tool is never invoked. A session with many unused tools burns credits before you've written a line of code.
 
-In this challenge, you'll learn to configure lean sessions and maintain high cache hit rates.
+Meanwhile, changing configuration mid-session can trigger cache invalidation, forcing expensive cold restarts where previously cached context must be reprocessed.
+
+In this challenge, you'll measure the real cost of tool sprawl and observe how session hygiene affects your credit spend.
 
 ## Description
 
-This challenge explores tool sprawl management and cache invalidation awareness. Both directly impact your per-session costs.
+This challenge has two parts: measuring MCP tool overhead and observing cache invalidation behavior.
 
-### Tool Sprawl Audit
+### Part 1: Measure MCP Tool Overhead
 
-The starter codebase may have multiple MCP tools or GitHub Copilot extensions enabled. Audit your current configuration to identify which tools are actually being used. Complete your baseline coding task with all tools enabled, then identify which ones were invoked (check VS Code Output panel for tool calls). Disable unused tools and repeat the task to measure credit savings.
+Use GitHub Copilot to scan/find something in the `microsoft/TypeScript` repository and report back.
 
-Understand that each tool adds token overhead even when never used: tool name, description, parameter schemas, and availability announcements all cost tokens on every agent step.
+If you don't have MCP servers enabled already, try the GitHub MCP server with all its tools. Complete the task with all tools enabled and record your credit spend.
 
-### Cache Invalidation Experiment
+Next, identify which MCP tools were actually used.
 
-Complete the same refactor task twice under different session conditions. First, run a "clean session" where you configure once and complete the work without changes. Then run a "messy session" where you deliberately change configuration mid-task (switch models, toggle MCP servers, edit instructions). Compare total credits and cache hit rates between the two approaches.
+Disable the unused tools, repeat the scan, and measure the credit difference. Each unused tool adds token overhead on every agent step because its schema is included in the system prompt.
 
-Document what triggers cache invalidation in GitHub Copilot: model switching, instruction edits, tool changes, mode switching, and large context changes.
+### Part 2: Observe Cache Invalidation
+
+Complete the repository scan twice more under different conditions:
+
+**Clean Session:** Configure your tools once, then complete the entire scan without making any configuration changes. Record total credits.
+
+**Messy Session:** Start the scan, but mid-way through deliberately make configuration changes—disable a tool, edit your `.github/copilot-instructions.md` file, or switch to a different reasoning effort level. Finish the scan and record total credits.
+
+Observe which configuration changes cause measurable credit spikes. These spikes indicate cache invalidation—when GitHub Copilot must reprocess previously cached context.
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Show a list of all MCP tools enabled before and after your audit
-- Demonstrate credit savings from disabling unused tools on the baseline task
-- Verify which tools were actually invoked during your task (via VS Code Output panel logs)
-- Show comparative credit costs between clean session and messy session for the same refactor
-- Demonstrate measurable cache hit rate difference between the two session approaches
-- Explain multiple triggers that invalidate GitHub Copilot's cache
-- Achieve high cache hit rate on a multi-turn coding task
+- Show which MCP tools were enabled at the start using the `/context` command
+- Complete the TypeScript repository scan and generate a report with file paths and dependencies
+- Identify which tools were actually invoked by examining VS Code Output panel logs
+- Demonstrate measurable credit savings from disabling unused tools on the same scan task
+- Show comparative credit costs between clean session and messy session approaches
+- Explain which configuration changes you observed causing cache invalidation
+- Document your findings: tool count before/after, credits before/after, credit difference between clean/messy sessions
 
 ## Learning Resources
 
-- [Model Context Protocol (MCP) Overview](https://modelcontextprotocol.io/)
-- [GitHub Copilot Extension Management](https://docs.github.com/en/copilot)
-- [Understanding LLM Caching Strategies](https://www.anthropic.com/index/prompt-caching)
+- [Managing Context in GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/context-management)
+- [Model Context Protocol Tools Specification](https://modelcontextprotocol.io/specification/2025-06-18/server/tools.md)
+- [Anthropic Prompt Caching](https://claude.com/blog/prompt-caching)
+- [GitHub Copilot Usage-Based Billing](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises)
 
 ## Tips
 
-- Each MCP tool costs tokens even when never invoked—they're advertised to the model at every step
-- Cache hit rates above 97-98% are achievable with clean session hygiene
-- Switching models mid-session is one of the most expensive cache invalidations
-- Auto mode routes along cache boundaries to minimize invalidation
-- If you must change configuration mid-task, finish your current subtask first to preserve cache value
+- Use `/context` to see which tools are enabled and how much of your token budget they consume
+- The VS Code Output panel (View → Output → "GitHub Copilot") shows actual tool invocations
+- Each MCP tool's schema (name, description, parameters) is sent to the model on every request
+- System prompt changes (like editing instruction files or toggling tools) can invalidate cached context
+- Use `/usage` to see your credit breakdown after each task
+- The GitHub MCP server typically includes tools like: search_code, get_file_contents, create_issue, search_users, list_pull_requests
+- For this scanning task, you likely only need search_code and get_file_contents
