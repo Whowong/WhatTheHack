@@ -1,64 +1,145 @@
-# Challenge 05 - Spec-Driven Development - Coach's Guide 
+# Challenge 05 - Spec-Driven Development with Spec Kit - Coach's Guide
 
 [< Previous Solution](./Solution-04.md) - **[Home](./README.md)** - [Next Solution >](./Solution-06.md)
 
 ## Notes & Guidance
 
-This challenge proves that deterministic controls (tests, types, linters) are token controls. When GitHub Copilot has a spec to code against, it closes the loop in one call instead of three model turns of trial-and-error.
+This challenge introduces students to **GitHub Spec Kit**, a tool that enables spec-driven development with GitHub Copilot. The core insight: when you give Copilot structured context (specs), it reduces token usage and improves output quality.
 
 ### Key Concepts to Explain
 
-**The Feedback Loop Hierarchy (Cost & Latency):**
+**Spec Kit Workflow:**
 
-1. **Type errors:** Instant feedback, zero credits
-2. **Linter violations:** Seconds, zero credits  
-3. **Unit tests:** Seconds, zero credits
-4. **Agent trial-and-error:** Minutes, high credit cost
-
-**Spec-First Approach:**
-- Write failing tests before implementation (TDD)
-- Define types/interfaces that constrain the solution space
-- Establish clear acceptance criteria in the prompt
-- Let the agent code against the spec
+1. **Constitution:** Project-wide rules and constraints (architecture, standards, patterns)
+2. **Spec:** What to build (requirements, acceptance criteria, user stories)
+3. **Plan:** How to build it (architecture, stack, structure)
+4. **Tasks:** Actionable work items (small, ordered, executable)
+5. **Implement:** Execute tasks with Copilot
 
 **Why This Reduces Cost:**
-- Tests catch errors deterministically instead of agent discovering through iteration
-- Type checkers provide instant feedback vs. agent debugging
-- Clear acceptance criteria prevent "did I meet the requirements?" prompting
-- The research → plan → implement loop prevents expensive backtracking
+
+- Spec becomes persistent context — no need to repeat in every prompt
+- Constitution provides guardrails that apply automatically
+- Structured workflow prevents expensive backtracking
+- Small tasks produce more predictable outputs than large prompts
+- Clarification step catches ambiguity before implementation
 
 ### Expected Time
 
-60 minutes:
-- 25 minutes: Implement feature trial-and-error style (Part A)
-- 25 minutes: Implement same feature spec-first (Part B)
-- 10 minutes: Compare and document findings
+45-60 minutes:
+- 10 minutes: Installation and setup
+- 10 minutes: Constitution and spec creation
+- 10 minutes: Plan and task generation
+- 15 minutes: Implementation with Copilot
+- 10 minutes: Reflection and discussion
+
+### Setup Troubleshooting
+
+**uv Not Installed:**
+
+Students need the `uv` package manager. Install with:
+```bash
+# macOS/Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+See: [Install uv](https://github.com/github/spec-kit/blob/main/docs/install/uv.md)
+
+**Specify CLI Installation:**
+
+```bash
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
+```
+
+Replace `vX.Y.Z` with the latest tag from [Releases](https://github.com/github/spec-kit/releases).
+
+**Alternative Installation (pipx):**
+
+If students prefer pipx:
+```bash
+pipx install git+https://github.com/github/spec-kit.git@vX.Y.Z
+```
+
+**Spec Kit Commands Not Appearing in Copilot Chat:**
+
+1. Verify `.github/prompts/` folder exists with Spec Kit files
+2. Reload VS Code window (Ctrl+Shift+P → "Developer: Reload Window")
+3. Ensure Copilot Chat extension is up to date
+
+**Integration Issues:**
+
+If `--integration copilot` fails, try initializing without integration first:
+```bash
+uvx --from git+https://github.com/github/spec-kit.git specify init my-project
+```
+Then manually copy prompt files to `.github/prompts/`.
 
 ### Success Criteria Validation
 
-Students should demonstrate at least 30% credit reduction using spec-first vs. trial-and-error for the same feature complexity.
+Students should be able to demonstrate:
+
+1. **Setup Complete:** `.specify/` and `.github/prompts/` folders exist
+2. **Constitution Created:** `constitution.md` with project rules
+3. **Spec Generated:** `spec.md` with requirements and acceptance criteria
+4. **Plan Produced:** Architecture and structure decisions documented
+5. **Tasks Listed:** Ordered list of small, actionable items
+6. **Implementation Started:** At least one task executed with Copilot
 
 ### Common Blockers
 
-**Students Don't Know How to Write Specs:**
+**Students Skip Steps:**
 
-Guide them:
-1. Start with types/interfaces (what shape is the solution?)
-2. Write failing tests (what behavior must exist?)
-3. Document acceptance criteria (when am I done?)
+Emphasize the workflow is sequential by design. Each step builds on the previous. Skipping to `/speckit.implement` without a spec produces the same results as ad-hoc prompting.
 
-**Students Skip Research/Plan Phases:**
+**Vague Constitution:**
 
-Explain: The agent can help write your spec! Ask "what tests should I write for feature X?" before asking "implement feature X."
+Guide them to be specific. Bad: "Good code." Good: "Node.js with TypeScript, Express framework, repository pattern, input validation with Joi."
+
+**Spec Too Large:**
+
+If the spec covers too much, `/speckit.plan` and `/speckit.tasks` become unwieldy. Encourage smaller, focused specs for individual features.
+
+**Students Want to Edit Generated Files:**
+
+This is fine! The generated specs/plans are starting points. Encourage editing for accuracy before proceeding.
 
 ### Hints to Share
 
-- "Write the test first" is both good TDD and good token economics
-- Let the agent help write your tests if you provide requirements
-- Type errors are free feedback—leverage them before prompting for fixes
-- The most expensive code is code you have to regenerate after discovering the approach was wrong
-- Research → plan → implement is cheaper than implement → discover wrong → regenerate → recover
+- Use `/speckit.clarify` whenever you feel the spec is ambiguous — it's designed to ask the right questions
+- The constitution applies to everything — write it once, benefit everywhere
+- Review the plan before generating tasks — it's easier to fix architecture issues at the plan stage
+- Tasks should be small enough to complete in a single Copilot interaction
+- You can re-run any command to regenerate — the workflow is iterative
+
+### Reflection Discussion Points
+
+After completion, discuss with students:
+
+1. **What changed?** They didn't need to repeat context in every prompt
+2. **What was NOT repeated?** Requirements, architecture decisions, coding standards
+3. **Predictability:** Outputs should be more consistent when following the spec
+4. **Token impact:** Fewer retries, less context repetition = lower token usage
 
 ### Key Insight for Students
 
-The single most leveraged answer to "how do I make my team more efficient with GitHub Copilot" is: give them fast deterministic feedback loops. Tests, types, and linters close loops in zero credits instead of expensive model turns.
+> **Spec becomes your context. Not the chat.**
+
+Traditional prompting requires repeating context every time. With Spec Kit, the spec IS the context that Copilot references. This is both better engineering and better token economics.
+
+### Demo Script (If Students Struggle)
+
+1. Initialize project: Show the generated folder structure
+2. Run `/speckit.constitution` and show resulting file
+3. Run `/speckit.specify` with a simple requirement
+4. Show how `/speckit.plan` produces architecture from the spec
+5. Run `/speckit.tasks` and show the task breakdown
+6. Execute one task with `/speckit.implement`
+
+### Connection to Other Challenges
+
+- **Challenge 04 (Prompt Architecture):** Spec Kit is a formalized version of structured prompting
+- **Challenge 06 (Token Golf):** Spec Kit naturally reduces tokens by eliminating context repetition
+- **Challenge 07 (Infrastructure):** Constitution can encode infrastructure standards
