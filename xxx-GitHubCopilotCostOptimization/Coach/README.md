@@ -12,16 +12,16 @@ This hack teaches teams to maximize code quality while minimizing GitHub Copilot
 
 - Challenge 00: **[Prerequisites & Baseline](./Solution-00.md)**
    - Set up the hack environment and establish baseline credit spend measurements
-- Challenge 01: **[Context Engineering](./Solution-01.md)**
-   - Optimize instruction architecture and attachment precision
-- Challenge 02: **[Model Selection & Output Constraints](./Solution-02.md)**
-   - Compare models and apply output constraints to reduce costs
-- Challenge 03: **[Session Configuration (Tools + Cache)](./Solution-03.md)**
-   - Manage MCP tool sprawl and understand cache invalidation
-- Challenge 04: **[Context Window Management](./Solution-04.md)**
-   - Use /compact proactively to maintain quality and control costs
-- Challenge 05: **[Spec-Driven Development](./Solution-05.md)**
+- Challenge 01: **[Spec-Driven Development](./Solution-01.md)**
    - Leverage deterministic controls as token controls
+- Challenge 02: **[Context Engineering](./Solution-02.md)**
+   - Optimize instruction architecture and attachment precision
+- Challenge 03: **[Model Selection & Output Constraints](./Solution-03.md)**
+   - Compare models and apply output constraints to reduce costs
+- Challenge 04: **[Session Configuration (Tools + Cache)](./Solution-04.md)**
+   - Manage MCP tool sprawl and understand cache invalidation
+- Challenge 05: **[Context Window Management](./Solution-05.md)**
+   - Use /compact proactively to maintain quality and control costs
 - Challenge 06: **[Token Golf Competition](./Solution-06.md)**
    - Competitive coding challenge optimizing for lowest credit spend
 
@@ -38,8 +38,8 @@ Before the hack, it is the Coach's responsibility to download and package up the
 The Student/Resources folder should contain:
 
 - **Starter codebase** with intentionally sub-optimal GitHub Copilot configuration:
-  - Bloated `.github/copilot-instructions.md` (~1500 tokens) for Challenge 01
-  - Multiple MCP tools enabled (some unnecessary) for Challenge 03
+  - Bloated `.github/copilot-instructions.md` (~1500 tokens) for Challenge 02
+  - Multiple MCP tools enabled (some unnecessary) for Challenge 04
   - Sample code with opportunities for spec-first vs. trial-and-error comparison
 - **Baseline coding task** (baseline-task.md) for Challenge 00
 - **Token Golf task specification** for Challenge 06 with acceptance criteria
@@ -72,20 +72,20 @@ This hack can be delivered as a half-day or full-day event:
 
 ### Half-Day Format (4 hours)
 - Challenge 00: Prerequisites & Baseline (30 minutes)
-- Challenge 01: Context Engineering (45 minutes)
-- Challenge 02: Model Selection & Output Constraints (45 minutes)
-- Challenge 03: Session Configuration (30 minutes)
-- Challenge 05: Spec-Driven Development (45 minutes)
+- Challenge 01: Spec-Driven Development (45 minutes)
+- Challenge 02: Context Engineering (45 minutes)
+- Challenge 03: Model Selection & Output Constraints (45 minutes)
+- Challenge 04: Session Configuration (30 minutes)
 - Challenge 06: Token Golf Competition (45 minutes)
 
 ### Full-Day Format (6-7 hours)
 - Challenge 00: Prerequisites & Baseline (45 minutes)
-- Challenge 01: Context Engineering (60 minutes)
-- Challenge 02: Model Selection & Output Constraints (60 minutes)
+- Challenge 01: Spec-Driven Development (60 minutes)
+- Challenge 02: Context Engineering (60 minutes)
 - Break (15 minutes)
-- Challenge 03: Session Configuration (45 minutes)
-- Challenge 04: Context Window Management (45 minutes)
-- Challenge 05: Spec-Driven Development (60 minutes)
+- Challenge 03: Model Selection & Output Constraints (60 minutes)
+- Challenge 04: Session Configuration (45 minutes)
+- Challenge 05: Context Window Management (45 minutes)
 - Break (15 minutes)
 - Challenge 06: Token Golf Competition (60 minutes)
 - Debrief & Winning Strategies (30 minutes)

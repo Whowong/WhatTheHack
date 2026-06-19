@@ -21,16 +21,16 @@ In this hack, you will learn practical techniques to optimize GitHub Copilot usa
 
 - Challenge 00: **[Prerequisites](Student/Challenge-00.md)**
    - Set up the hack environment
-- Challenge 01: **[Context Engineering](Student/Challenge-01.md)**
-   - Audit and restructure global instructions into scoped files, and replace broad references with pinned attachments
-- Challenge 02: **[Model Selection & Output Constraints](Student/Challenge-02.md)**
-   - Compare credit costs across models and reasoning levels, and apply output constraints to reduce token spend
-- Challenge 03: **[Session Configuration (Tools + Cache)](Student/Challenge-03.md)**
-   - Prune unused MCP tools and understand cache invalidation patterns
-- Challenge 04: **[Context Window Management](Student/Challenge-04.md)**
-   - Use /compact proactively to manage growing context windows and avoid context rot
-- Challenge 05: **[Spec-Driven Development](Student/Challenge-05.md)**
+- Challenge 01: **[Spec-Driven Development](Student/Challenge-01.md)**
    - Demonstrate that deterministic controls (tests, specs) reduce trial-and-error token burn
+- Challenge 02: **[Context Engineering](Student/Challenge-02.md)**
+   - Audit and restructure global instructions into scoped files, and replace broad references with pinned attachments
+- Challenge 03: **[Model Selection & Output Constraints](Student/Challenge-03.md)**
+   - Compare credit costs across models and reasoning levels, and apply output constraints to reduce token spend
+- Challenge 04: **[Session Configuration (Tools + Cache)](Student/Challenge-04.md)**
+   - Prune unused MCP tools and understand cache invalidation patterns
+- Challenge 05: **[Context Window Management](Student/Challenge-05.md)**
+   - Use /compact proactively to manage growing context windows and avoid context rot
 - Challenge 06: **[Token Golf Competition](Student/Challenge-06.md)**
    - Complete a coding task with the lowest credit spend while meeting all acceptance criteria
 

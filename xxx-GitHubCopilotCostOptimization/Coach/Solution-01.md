@@ -1,145 +1,169 @@
-# Challenge 01 - Context Engineering - Coach's Guide 
+# Challenge 01 - Spec-Driven Development with Spec Kit - Coach's Guide
 
 [< Previous Solution](./Solution-00.md) - **[Home](./README.md)** - [Next Solution >](./Solution-02.md)
 
 ## Notes & Guidance
 
-This challenge teaches students that persistent context has recurring costs. The goal is to minimize always-on overhead while maintaining quality through scoped instructions and precise attachments.
+This challenge introduces students to **spec-driven development** by having them build the **same simple application twice**: first with ad-hoc prompting, then with **GitHub Spec Kit**. The hands-on comparison makes the benefits tangible.
+
+> **Note:** Spec Kit installation prerequisites are covered in Challenge 0. If students haven't completed setup, direct them there first.
+
+### The Application
+
+Students build a **simple notes app** with only 2 requirements:
+1. CRUD operations for notes
+2. Each note has a title (required) and content
+
+This is intentionally simple — the goal is to compare approaches, not build something complex.
 
 ### Key Concepts to Explain
 
-**The Three Types of Context Costs:**
+**Why Two Applications?**
 
-1. **Persistent Instructions (recurring cost):**
-   - `.github/copilot-instructions.md` loads on EVERY interaction
-   - Example: 1500-token global file = 1500 tokens × every chat/edit call
-   - Target: keep global instructions under 500-1000 tokens
+Building the same thing twice demonstrates:
+- How much context repetition happens with ad-hoc prompting
+- How structured specs reduce cognitive load and token usage
+- The difference in output consistency
 
-2. **GitHub Copilot Skills (conditional cost):**
-   - Only load when explicitly invoked
-   - Example: `@workspace /new` only loads creation templates when called
-   - Best for: task-specific patterns that don't apply to all work
+**Part 1 is Intentionally Unguided:**
 
-3. **Attachments (per-call cost):**
-   - You control exactly what's included each time
-   - Example: `#file:src/api/routes.ts` only loads when you attach it
-   - `#Codebase` can pull in thousands of unnecessary tokens
+Students don't get example prompts — they figure it out themselves. This:
+- Creates authentic frustration with ad-hoc prompting
+- Makes the Spec Kit workflow feel like a relief
+- Produces genuine observations for comparison
 
-### Part A: Instruction Scoping Strategy
+**Spec Kit is One Approach:**
 
-**Audit Process:**
+Emphasize that Spec Kit is **one of many** ways to do spec-driven development. The principle — structured context produces better results — applies regardless of tooling. Other approaches include:
+- Custom instruction files (.github/copilot-instructions.md)
+- Manual spec documents referenced in prompts
+- Project constitution patterns
+- Prompt template systems
 
-Help students categorize their bloated instructions:
+**Spec Kit Workflow:**
 
-- **Keep Global (under 500 tokens):**
-  - Code style preferences that apply universally (e.g., "prefer functional patterns")
-  - Quality standards (e.g., "always handle errors explicitly")
-  - Organization-wide conventions
+1. **Constitution:** Project-wide rules and constraints (architecture, standards, patterns)
+2. **Spec:** What to build (requirements, acceptance criteria, user stories)
+3. **Plan:** How to build it (architecture, stack, structure)
+4. **Tasks:** Actionable work items (small, ordered, executable)
+5. **Implement:** Execute tasks with Copilot
 
-- **Move to Language-Specific:**
-  - `.github/copilot-instructions-python.md` for Python-only rules
-  - `.github/copilot-instructions-typescript.md` for TypeScript-only rules
-  - These only load when working in that language
+**Why This Reduces Cost:**
 
-- **Move to Path-Specific:**
-  - `src/api/.github/copilot-instructions.md` for API-specific patterns
-  - `tests/.github/copilot-instructions.md` for testing conventions
-  - These only load when working in that directory
-
-- **Convert to Skills:**
-  - Task-specific templates (e.g., "how to write a migration")
-  - Conditional patterns (e.g., "when adding a new model, do X")
-
-**Expected Savings:**
-
-- Before: ~1500 tokens per interaction (global instructions)
-- After: ~400 tokens global + ~200 tokens scoped (only when in scope)
-- Result: 60-70% reduction in instruction overhead for most interactions
-
-### Part B: Attachment Precision
-
-**Common Anti-Pattern:**
-
-```
-Prompt: "Refactor the authentication logic"
-Attachments: #Codebase
-```
-This pulls in everything—potentially 50,000+ tokens for a large repo.
-
-**Optimized Pattern:**
-
-```
-Prompt: "Refactor the authentication logic"
-Attachments: 
-  - #file:src/auth/middleware.ts:1-50
-  - #file:src/auth/types.ts
-  - #file:tests/auth.test.ts
-```
-This pulls in exactly what's needed—perhaps 500 tokens.
-
-**Demonstration Exercise:**
-
-Have students complete the same refactor twice:
-1. With `#Codebase` (record token count from Output panel)
-2. With pinned files (record token count)
-
-Typical results: 10,000+ tokens → 800 tokens (90%+ reduction)
-
-### Common Blockers
-
-**Students Don't Know What to Keep Global:**
-
-Rule of thumb: If a rule only applies to 20% of your codebase, it shouldn't be global.
-
-**Path-Specific Instructions Not Loading:**
-
-GitHub Copilot walks up the directory tree looking for `.github/copilot-instructions.md` files. Ensure:
-- Directory structure is correct
-- File is named exactly `.github/copilot-instructions.md` (not `.github/copilot-instructions-api.md` in the api folder)
-
-**Can't Measure Token Reduction:**
-
-- VS Code Output panel (View → Output → "GitHub Copilot Chat") shows token counts
-- If not visible, update GitHub Copilot extension to latest version
+- Spec becomes persistent context — no need to repeat in every prompt
+- Constitution provides guardrails that apply automatically
+- Structured workflow prevents expensive backtracking
+- Small tasks produce more predictable outputs than large prompts
+- Clarification step catches ambiguity before implementation
 
 ### Expected Time
 
-60 minutes total:
-- 20 minutes: Audit and categorize global instructions
-- 20 minutes: Restructure into scoped files
-- 20 minutes: Test attachment precision and measure savings
+45-75 minutes:
+- 15-20 minutes: Part 1 — Build with ad-hoc prompting
+- 20-30 minutes: Part 2 — Build with Spec Kit workflow
+- 10-15 minutes: Part 3 — Compare results and discussion
+
+### Troubleshooting
+
+**Spec Kit Commands Not Appearing in Copilot Chat:**
+
+1. Verify `.github/prompts/` folder exists with Spec Kit files
+2. Reload VS Code window (Ctrl+Shift+P → "Developer: Reload Window")
+3. Ensure Copilot Chat extension is up to date
+
+**Integration Issues:**
+
+If `--integration copilot` fails, try initializing without integration first:
+```bash
+uvx --from git+https://github.com/github/spec-kit.git specify init my-project
+```
+Then manually copy prompt files to `.github/prompts/`.
 
 ### Success Criteria Validation
 
-Students should demonstrate:
-- Global `.github/copilot-instructions.md` reduced to under 500 tokens
-- At least one path-specific or language-specific instruction file created
-- Token comparison showing savings from pinned attachments vs. `#Codebase`
-- Same baseline task completed with reduced credit cost
+Students should be able to demonstrate:
+
+**Part 1 — Ad-Hoc Approach:**
+1. Created task-api-adhoc project
+2. Built the API using conversational prompts
+3. Documented observations (context repetition, inconsistencies)
+
+**Part 2 — Spec Kit Approach:**
+1. **Setup Complete:** `.specify/` and `.github/prompts/` folders exist
+2. **Constitution Created:** `constitution.md` with project rules
+3. **Spec Generated:** `spec.md` with requirements and acceptance criteria
+4. **Plan Produced:** Architecture and structure decisions documented
+5. **Tasks Listed:** Ordered list of small, actionable items
+6. **Implementation Started:** At least one task executed with Copilot
+
+**Part 3 — Comparison:**
+1. Completed the comparison table
+2. Can articulate differences between approaches
+3. Understands why structured specs reduce token usage
+
+### Common Blockers
+
+**Students Skip Steps:**
+
+Emphasize the workflow is sequential by design. Each step builds on the previous. Skipping to `/speckit.implement` without a spec produces the same results as ad-hoc prompting.
+
+**Vague Constitution:**
+
+Guide them to be specific. Bad: "Good code." Good: "Node.js with TypeScript, Express framework, repository pattern, input validation with Joi."
+
+**Spec Too Large:**
+
+If the spec covers too much, `/speckit.plan` and `/speckit.tasks` become unwieldy. Encourage smaller, focused specs for individual features.
+
+**Students Want to Edit Generated Files:**
+
+This is fine! The generated specs/plans are starting points. Encourage editing for accuracy before proceeding.
 
 ### Hints to Share
 
-- Start by asking: "Does this rule apply to ALL code I write?" If no, scope it
-- Use language-specific files for linting/formatting rules that vary by language
-- Use path-specific files for architectural patterns (e.g., API conventions in `src/api/`)
-- Pin files when you know exactly what you need; use `#Codebase` only for discovery
-- The goal isn't zero instructions—it's right-sized instructions
+- Use `/speckit.clarify` whenever you feel the spec is ambiguous — it's designed to ask the right questions
+- The constitution applies to everything — write it once, benefit everywhere
+- Review the plan before generating tasks — it's easier to fix architecture issues at the plan stage
+- Tasks should be small enough to complete in a single Copilot interaction
+- You can re-run any command to regenerate — the workflow is iterative
 
-### Reference Solutions
+### Reflection Discussion Points
 
-Typical restructuring:
+After completion, discuss with students:
 
-**Before (1500 tokens global):**
-```
-.github/copilot-instructions.md (all rules)
-```
+1. **Experience Difference:** How did Part 1 feel compared to Part 2?
+2. **Context Repetition:** How many times did they repeat requirements in each approach?
+3. **Consistency:** Was the Spec Kit output more predictable?
+4. **Token Impact:** Fewer retries, less context repetition = lower token usage
+5. **Other Approaches:** What other methods could achieve similar structured benefits?
 
-**After (400 tokens global + scoped):**
-```
-.github/copilot-instructions.md (universal rules, ~400 tokens)
-.github/copilot-instructions-python.md (Python-specific, ~300 tokens)
-.github/copilot-instructions-typescript.md (TypeScript-specific, ~250 tokens)
-src/api/.github/copilot-instructions.md (API patterns, ~200 tokens)
-```
+### Key Insight for Students
 
-Students working in `src/api/*.ts` now load: 400 + 250 + 200 = 850 tokens (vs. 1500 before)
+> **Spec becomes your context. Not the chat.**
+
+Traditional prompting requires repeating context every time. With Spec Kit, the spec IS the context that Copilot references. This is both better engineering and better token economics.
+
+### Coaching Part 1 (Ad-Hoc)
+
+Let students experience the frustration! Don't intervene too quickly. Common observations:
+- They had to repeat "use Node.js" multiple times
+- Copilot "forgot" earlier requirements
+- Code style was inconsistent between prompts
+- They felt like they were re-explaining constantly
+
+This pain is what makes Part 2 powerful.
+
+### Demo Script (If Students Struggle)
+
+1. Initialize project: Show the generated folder structure
+2. Run `/speckit.constitution` and show resulting file
+3. Run `/speckit.specify` with a simple requirement
+4. Show how `/speckit.plan` produces architecture from the spec
+5. Run `/speckit.tasks` and show the task breakdown
+6. Execute one task with `/speckit.implement`
+
+### Connection to Other Challenges
+
+- **Challenge 04 (Prompt Architecture):** Spec Kit is a formalized version of structured prompting
+- **Challenge 06 (Token Golf):** Spec Kit naturally reduces tokens by eliminating context repetition
+- **Challenge 07 (Infrastructure):** Constitution can encode infrastructure standards

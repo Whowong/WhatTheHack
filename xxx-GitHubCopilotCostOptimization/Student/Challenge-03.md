@@ -1,64 +1,50 @@
-# Challenge 03 - Session Configuration (Tools + Cache)
+# Challenge 03 - Model Selection & Output Constraints
 
 [< Previous Challenge](./Challenge-02.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-04.md)
 
 ## Introduction
 
-Every MCP tool you enable adds token overhead to every agent step. Each tool's name, description, and parameter schema are advertised to the model on every request—even if the tool is never invoked. A session with many unused tools burns credits before you've written a line of code.
+Not all tasks need the most powerful model. A cheaper model with tight output constraints can often outperform an expensive model that produces verbose responses. In this challenge, you'll learn to match models to task complexity and apply output constraints that reduce token generation without sacrificing quality.
 
-Meanwhile, changing configuration mid-session can trigger cache invalidation, forcing expensive cold restarts where previously cached context must be reprocessed.
-
-In this challenge, you'll measure the real cost of tool sprawl and observe how session hygiene affects your credit spend.
+The key insight: credit cost = (input tokens × input rate) + (output tokens × output rate). While you control input through context engineering, output constraints are your lever for controlling what the model generates.
 
 ## Description
 
-This challenge has two parts: measuring MCP tool overhead and observing cache invalidation behavior.
+Complete the same coding task from your baseline using different GitHub Copilot models and configurations. Your goal is to understand the cost-quality tradeoff and discover when cheaper models with constraints beat expensive models without them.
 
-### Part 1: Measure MCP Tool Overhead
+### Model Comparison
 
-Use GitHub Copilot to scan/find something in the `microsoft/TypeScript` repository and report back.
+Experiment with the available models in your GitHub Copilot configuration (GPT-4o, Claude Sonnet, Claude Haiku if available, etc.). Complete your baseline coding task with different models and record the total credits consumed, output quality, iteration count, and response verbosity for each.
 
-If you don't have MCP servers enabled already, try the GitHub MCP server with all its tools. Complete the task with all tools enabled and record your credit spend.
+### Reasoning Levels
 
-Next, identify which MCP tools were actually used.
+Explore how different reasoning levels affect credit utilization
 
-Disable the unused tools, repeat the scan, and measure the credit difference. Each unused tool adds token overhead on every agent step because its schema is included in the system prompt.
+### Auto Mode
 
-### Part 2: Observe Cache Invalidation
-
-Complete the repository scan twice more under different conditions:
-
-**Clean Session:** Configure your tools once, then complete the entire scan without making any configuration changes. Record total credits.
-
-**Messy Session:** Start the scan, but mid-way through deliberately make configuration changes—disable a tool, edit your `.github/copilot-instructions.md` file, or switch to a different reasoning effort level. Finish the scan and record total credits.
-
-Observe which configuration changes cause measurable credit spikes. These spikes indicate cache invalidation—when GitHub Copilot must reprocess previously cached context.
+If GitHub Copilot's Auto mode is available, try it on the same task. Observe which models it selects for different subtasks, when it leverages cache, and how total cost compares to manual model selection. Understand the tradeoffs of automatic routing vs. manual control.
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Show which MCP tools were enabled at the start using the `/context` command
-- Complete the TypeScript repository scan and generate a report with file paths and dependencies
-- Identify which tools were actually invoked by examining VS Code Output panel logs
-- Demonstrate measurable credit savings from disabling unused tools on the same scan task
-- Show comparative credit costs between clean session and messy session approaches
-- Explain which configuration changes you observed causing cache invalidation
-- Document your findings: tool count before/after, credits before/after, credit difference between clean/messy sessions
+- Demonstrate completion of the baseline task using multiple different models
+- Show measured credit costs for each model with comparable input conditions
+- Verify that output quality met acceptance criteria across model tests
+- Demonstrate credit cost reduction from applying output constraints
+- Show comparative data proving that a cheaper model with constraints can beat an expensive model without constraints
+- Explain when Auto mode provides value vs. manual model selection
 
 ## Learning Resources
 
-- [Managing Context in GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/context-management)
-- [Model Context Protocol Tools Specification](https://modelcontextprotocol.io/specification/2025-06-18/server/tools.md)
-- [Anthropic Prompt Caching](https://claude.com/blog/prompt-caching)
-- [GitHub Copilot Usage-Based Billing](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises)
+- [GitHub Copilot Model Selection Guide](https://docs.github.com/en/copilot)
+- [Prompt Engineering: Output Formatting Techniques](https://www.promptingguide.ai/)
+- [Understanding Model Pricing and Token Rates](https://docs.github.com/en/copilot/about-github-copilot)
 
 ## Tips
 
-- Use `/context` to see which tools are enabled and how much of your token budget they consume
-- The VS Code Output panel (View → Output → "GitHub Copilot") shows actual tool invocations
-- Each MCP tool's schema (name, description, parameters) is sent to the model on every request
-- System prompt changes (like editing instruction files or toggling tools) can invalidate cached context
-- Use `/usage` to see your credit breakdown after each task
-- The GitHub MCP server typically includes tools like: search_code, get_file_contents, create_issue, search_users, list_pull_requests
-- For this scanning task, you likely only need search_code and get_file_contents
+- Input tokens are cheaper than output tokens for most models
+- Verbose explanations cost credits—request code-only output when you don't need narration
+- Haiku-class models can be significantly cheaper than Sonnet/GPT-4 class models
+- Auto mode's discount comes from cache-aware routing, but only when task boundaries align with cache boundaries
+- The best model isn't always the smartest one—it's the one that solves your problem at the lowest cost
