@@ -33,50 +33,47 @@ Then compare the results.
 
 You will build:
 
-> **A REST API for a task management system**
+> **A simple notes application**
 
-Features:
-- Authentication (JWT)
-- CRUD operations for tasks
-- Task filtering
-- Basic validation
+Requirements:
+1. Create, read, update, and delete notes (CRUD)
+2. Each note must have a title (required) and content
+
+That's it — keep it simple!
 
 ---
 
 ## Part 1 — Build with Ad-Hoc Prompting
 
-First, build the application using traditional prompting.
+First, build the application using traditional conversational prompting with Copilot.
 
 ### Step 1 — Create a New Project Folder
 
 ```bash
-mkdir task-api-adhoc
-cd task-api-adhoc
+mkdir notes-app-adhoc
+cd notes-app-adhoc
 code .
 ```
 
-### Step 2 — Build Using Conversational Prompts
+### Step 2 — Build the Application
 
-Open Copilot Chat and use prompts like:
+Your goal: Create a working notes application that meets the 2 requirements above.
 
-```
-Create a REST API for task management with authentication, CRUD operations, 
-task filtering, and validation. Use Node.js with clean architecture.
-```
+**Rules:**
+- Use only Copilot Chat with ad-hoc prompts
+- No pre-written specs or documentation
+- Just start prompting and see what happens
 
-Continue prompting to:
-- Add endpoints
-- Implement authentication
-- Add validation logic
-- Create filtering
+**Try to complete the application on your own!**
 
 ### Step 3 — Track Your Experience
 
 As you work, note:
-- How many times you had to repeat context
-- How many times Copilot "forgot" requirements
-- Total number of prompts needed
-- Any inconsistencies in generated code
+- How many prompts did you need?
+- How many times did you repeat the same information?
+- Did Copilot "forget" what you asked earlier?
+- Was the generated code consistent in style?
+- How did it feel?
 
 ### Step 4 — Save Your Results
 
@@ -91,8 +88,8 @@ Now build the **same application** using the Spec Kit workflow.
 ### Step 1 — Initialize a New Spec Kit Project
 
 ```bash
-specify init task-api-speckit --integration copilot
-cd task-api-speckit
+specify init notes-app-speckit --integration copilot
+cd notes-app-speckit
 code .
 ```
 
@@ -118,11 +115,10 @@ In Copilot Chat, run:
 /speckit.constitution
 ```
 
-Then describe your rules:
+Then describe your rules. Example:
 
 ```
-Node.js project with clean architecture, strong validation, and performance focus.
-All endpoints must follow REST standards.
+Simple local application. Clean code with clear separation of concerns.
 ```
 
 This creates the `constitution.md` file containing your system rules.
@@ -135,11 +131,11 @@ Run:
 /speckit.specify
 ```
 
-Example input:
+Describe the same requirements as Part 1:
 
 ```
-Build a task management API with authentication, CRUD operations, and filtering.
-Focus on user experience and correctness.
+A notes application with CRUD operations. 
+Each note has a title (required) and content.
 ```
 
 This creates a `spec.md` file with:

@@ -4,9 +4,17 @@
 
 ## Notes & Guidance
 
-This challenge introduces students to **spec-driven development** by having them build the **same application twice**: first with ad-hoc prompting, then with **GitHub Spec Kit**. The hands-on comparison makes the benefits tangible.
+This challenge introduces students to **spec-driven development** by having them build the **same simple application twice**: first with ad-hoc prompting, then with **GitHub Spec Kit**. The hands-on comparison makes the benefits tangible.
 
 > **Note:** Spec Kit installation prerequisites are covered in Challenge 0. If students haven't completed setup, direct them there first.
+
+### The Application
+
+Students build a **simple notes app** with only 2 requirements:
+1. CRUD operations for notes
+2. Each note has a title (required) and content
+
+This is intentionally simple — the goal is to compare approaches, not build something complex.
 
 ### Key Concepts to Explain
 
@@ -16,6 +24,13 @@ Building the same thing twice demonstrates:
 - How much context repetition happens with ad-hoc prompting
 - How structured specs reduce cognitive load and token usage
 - The difference in output consistency
+
+**Part 1 is Intentionally Unguided:**
+
+Students don't get example prompts — they figure it out themselves. This:
+- Creates authentic frustration with ad-hoc prompting
+- Makes the Spec Kit workflow feel like a relief
+- Produces genuine observations for comparison
 
 **Spec Kit is One Approach:**
 
@@ -43,10 +58,10 @@ Emphasize that Spec Kit is **one of many** ways to do spec-driven development. T
 
 ### Expected Time
 
-60-90 minutes:
-- 20-30 minutes: Part 1 — Build with ad-hoc prompting
-- 30-40 minutes: Part 2 — Build with Spec Kit workflow
-- 10-20 minutes: Part 3 — Compare results and discussion
+45-75 minutes:
+- 15-20 minutes: Part 1 — Build with ad-hoc prompting
+- 20-30 minutes: Part 2 — Build with Spec Kit workflow
+- 10-15 minutes: Part 3 — Compare results and discussion
 
 ### Troubleshooting
 
