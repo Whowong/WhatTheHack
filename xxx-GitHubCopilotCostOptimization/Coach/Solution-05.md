@@ -4,9 +4,26 @@
 
 ## Notes & Guidance
 
-This challenge introduces students to **GitHub Spec Kit**, a tool that enables spec-driven development with GitHub Copilot. The core insight: when you give Copilot structured context (specs), it reduces token usage and improves output quality.
+This challenge introduces students to **spec-driven development** by having them build the **same application twice**: first with ad-hoc prompting, then with **GitHub Spec Kit**. The hands-on comparison makes the benefits tangible.
+
+> **Note:** Spec Kit installation prerequisites are covered in Challenge 0. If students haven't completed setup, direct them there first.
 
 ### Key Concepts to Explain
+
+**Why Two Applications?**
+
+Building the same thing twice demonstrates:
+- How much context repetition happens with ad-hoc prompting
+- How structured specs reduce cognitive load and token usage
+- The difference in output consistency
+
+**Spec Kit is One Approach:**
+
+Emphasize that Spec Kit is **one of many** ways to do spec-driven development. The principle — structured context produces better results — applies regardless of tooling. Other approaches include:
+- Custom instruction files (.github/copilot-instructions.md)
+- Manual spec documents referenced in prompts
+- Project constitution patterns
+- Prompt template systems
 
 **Spec Kit Workflow:**
 
@@ -26,42 +43,12 @@ This challenge introduces students to **GitHub Spec Kit**, a tool that enables s
 
 ### Expected Time
 
-45-60 minutes:
-- 10 minutes: Installation and setup
-- 10 minutes: Constitution and spec creation
-- 10 minutes: Plan and task generation
-- 15 minutes: Implementation with Copilot
-- 10 minutes: Reflection and discussion
+60-90 minutes:
+- 20-30 minutes: Part 1 — Build with ad-hoc prompting
+- 30-40 minutes: Part 2 — Build with Spec Kit workflow
+- 10-20 minutes: Part 3 — Compare results and discussion
 
-### Setup Troubleshooting
-
-**uv Not Installed:**
-
-Students need the `uv` package manager. Install with:
-```bash
-# macOS/Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Windows (PowerShell)
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-
-See: [Install uv](https://github.com/github/spec-kit/blob/main/docs/install/uv.md)
-
-**Specify CLI Installation:**
-
-```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
-```
-
-Replace `vX.Y.Z` with the latest tag from [Releases](https://github.com/github/spec-kit/releases).
-
-**Alternative Installation (pipx):**
-
-If students prefer pipx:
-```bash
-pipx install git+https://github.com/github/spec-kit.git@vX.Y.Z
-```
+### Troubleshooting
 
 **Spec Kit Commands Not Appearing in Copilot Chat:**
 
@@ -81,12 +68,23 @@ Then manually copy prompt files to `.github/prompts/`.
 
 Students should be able to demonstrate:
 
+**Part 1 — Ad-Hoc Approach:**
+1. Created task-api-adhoc project
+2. Built the API using conversational prompts
+3. Documented observations (context repetition, inconsistencies)
+
+**Part 2 — Spec Kit Approach:**
 1. **Setup Complete:** `.specify/` and `.github/prompts/` folders exist
 2. **Constitution Created:** `constitution.md` with project rules
 3. **Spec Generated:** `spec.md` with requirements and acceptance criteria
 4. **Plan Produced:** Architecture and structure decisions documented
 5. **Tasks Listed:** Ordered list of small, actionable items
 6. **Implementation Started:** At least one task executed with Copilot
+
+**Part 3 — Comparison:**
+1. Completed the comparison table
+2. Can articulate differences between approaches
+3. Understands why structured specs reduce token usage
 
 ### Common Blockers
 
@@ -118,16 +116,27 @@ This is fine! The generated specs/plans are starting points. Encourage editing f
 
 After completion, discuss with students:
 
-1. **What changed?** They didn't need to repeat context in every prompt
-2. **What was NOT repeated?** Requirements, architecture decisions, coding standards
-3. **Predictability:** Outputs should be more consistent when following the spec
-4. **Token impact:** Fewer retries, less context repetition = lower token usage
+1. **Experience Difference:** How did Part 1 feel compared to Part 2?
+2. **Context Repetition:** How many times did they repeat requirements in each approach?
+3. **Consistency:** Was the Spec Kit output more predictable?
+4. **Token Impact:** Fewer retries, less context repetition = lower token usage
+5. **Other Approaches:** What other methods could achieve similar structured benefits?
 
 ### Key Insight for Students
 
 > **Spec becomes your context. Not the chat.**
 
 Traditional prompting requires repeating context every time. With Spec Kit, the spec IS the context that Copilot references. This is both better engineering and better token economics.
+
+### Coaching Part 1 (Ad-Hoc)
+
+Let students experience the frustration! Don't intervene too quickly. Common observations:
+- They had to repeat "use Node.js" multiple times
+- Copilot "forgot" earlier requirements
+- Code style was inconsistent between prompts
+- They felt like they were re-explaining constantly
+
+This pain is what makes Part 2 powerful.
 
 ### Demo Script (If Students Struggle)
 

@@ -4,9 +4,11 @@
 
 ## Introduction
 
-In this challenge, you will use **GitHub Spec Kit** to implement a **Spec-Driven Development workflow** with GitHub Copilot.
+In this challenge, you will experience the difference between **ad-hoc prompting** and **spec-driven development** by building the same application twice — first without structure, then using **GitHub Spec Kit**.
 
-Instead of writing large prompts, you will:
+Spec Kit is one of several ways to implement spec-driven development with GitHub Copilot. The core principle applies regardless of tooling: **structured context produces better results than conversational prompts**.
+
+With Spec Kit, you will:
 
 - Define a **constitution (rules)**
 - Create a **spec (what to build)**
@@ -14,80 +16,20 @@ Instead of writing large prompts, you will:
 - Break it into **tasks**
 - Execute implementation
 
-**Goal:** Reduce token usage and improve output quality by using structured specs instead of ad-hoc prompts.
+**Goal:** Experience firsthand how structured specs reduce token usage and improve output quality compared to ad-hoc prompting.
 
 > **Key Concept:** Spec becomes your context. Not the chat.
 
-## Prerequisites
-
-Make sure you have:
-
-- VS Code installed
-- GitHub Copilot + Copilot Chat extension
-- Git installed
-- Python 3.11+ installed
-- Internet access (for installation)
-
 ## Description
 
-### Setup
+In this challenge, you will build **the same application twice**:
 
-#### Step 1 — Install Specify CLI
+1. **Part 1:** Build with ad-hoc prompting (no structure)
+2. **Part 2:** Build with Spec Kit workflow
 
-Requires **[uv](https://docs.astral.sh/uv/)** ([install uv](https://github.com/github/spec-kit/blob/main/docs/install/uv.md)). Replace `vX.Y.Z` with the latest tag from [Releases](https://github.com/github/spec-kit/releases):
+Then compare the results.
 
-```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
-```
-
-See the [Installation Guide](https://github.com/github/spec-kit/blob/main/docs/installation.md) for alternative methods, verification, upgrade, and troubleshooting.
-
-#### Step 2 — Initialize a Project
-
-```bash
-specify init my-project --integration copilot
-cd my-project
-```
-
-#### Step 3 — Open in VS Code
-
-```bash
-code .
-```
-
-> **Tip:** To check for updates or upgrade the CLI later, use:
-> ```bash
-> specify self check      # Check if newer release is available
-> specify self upgrade    # Upgrade to latest stable release
-> ```
-
-#### Step 4 — Verify Spec Kit is Ready
-
-In the project folder, you should see:
-
-- `.specify/`
-- `.github/prompts/`
-- Markdown files
-
-This confirms Spec Kit initialized the project successfully.
-
-#### Step 5 — Open Copilot Chat and Verify Commands
-
-1. Open Copilot Chat in VS Code
-2. Click in the chat input box
-3. Type: `/`
-
-You should see these commands available:
-
-- `/speckit.constitution`
-- `/speckit.specify`
-- `/speckit.plan`
-- `/speckit.tasks`
-- `/speckit.implement`
-
-If these appear, Spec Kit is working correctly.
-
-### Scenario
+### The Application
 
 You will build:
 
@@ -99,9 +41,76 @@ Features:
 - Task filtering
 - Basic validation
 
-### Workflow Instructions
+---
 
-#### Step 1 — Define Constitution
+## Part 1 — Build with Ad-Hoc Prompting
+
+First, build the application using traditional prompting.
+
+### Step 1 — Create a New Project Folder
+
+```bash
+mkdir task-api-adhoc
+cd task-api-adhoc
+code .
+```
+
+### Step 2 — Build Using Conversational Prompts
+
+Open Copilot Chat and use prompts like:
+
+```
+Create a REST API for task management with authentication, CRUD operations, 
+task filtering, and validation. Use Node.js with clean architecture.
+```
+
+Continue prompting to:
+- Add endpoints
+- Implement authentication
+- Add validation logic
+- Create filtering
+
+### Step 3 — Track Your Experience
+
+As you work, note:
+- How many times you had to repeat context
+- How many times Copilot "forgot" requirements
+- Total number of prompts needed
+- Any inconsistencies in generated code
+
+### Step 4 — Save Your Results
+
+Keep this project. You'll compare it later.
+
+---
+
+## Part 2 — Build with Spec Kit
+
+Now build the **same application** using the Spec Kit workflow.
+
+### Step 1 — Initialize a New Spec Kit Project
+
+```bash
+specify init task-api-speckit --integration copilot
+cd task-api-speckit
+code .
+```
+
+### Step 2 — Verify Spec Kit is Ready
+
+In the project folder, you should see:
+- `.specify/`
+- `.github/prompts/`
+- Markdown files
+
+In Copilot Chat, type `/` — you should see:
+- `/speckit.constitution`
+- `/speckit.specify`
+- `/speckit.plan`
+- `/speckit.tasks`
+- `/speckit.implement`
+
+### Step 3 — Define Constitution
 
 In Copilot Chat, run:
 
@@ -118,7 +127,7 @@ All endpoints must follow REST standards.
 
 This creates the `constitution.md` file containing your system rules.
 
-#### Step 2 — Create Spec
+### Step 4 — Create Spec
 
 Run:
 
@@ -138,7 +147,7 @@ This creates a `spec.md` file with:
 - Acceptance criteria
 - User stories
 
-#### Step 3 — (Optional) Clarify
+### Step 5 — (Optional) Clarify
 
 Run:
 
@@ -150,7 +159,7 @@ Spec Kit will ask clarifying questions to improve your spec. This:
 - Reduces ambiguity
 - Reduces rework later
 
-#### Step 4 — Generate Plan
+### Step 6 — Generate Plan
 
 Run:
 
@@ -163,7 +172,7 @@ This generates:
 - Technology stack
 - Project structure
 
-#### Step 5 — Generate Tasks
+### Step 7 — Generate Tasks
 
 Run:
 
@@ -175,7 +184,7 @@ This creates:
 - List of small, actionable tasks
 - Execution order
 
-#### Step 6 — Implement
+### Step 8 — Implement
 
 Run:
 
@@ -187,37 +196,63 @@ Now Copilot will:
 - Execute tasks sequentially
 - Generate code incrementally
 
+---
+
+## Part 3 — Compare Results
+
+Now compare both implementations.
+
+### Questions to Answer
+
+| Aspect | Ad-Hoc Approach | Spec Kit Approach |
+|--------|-----------------|-------------------|
+| Total prompts needed | ? | ? |
+| Times you repeated context | ? | ? |
+| Code consistency | ? | ? |
+| Time to complete | ? | ? |
+| Quality of output | ? | ? |
+
+### What to Look For
+
+- **Context retention:** Did Copilot remember requirements?
+- **Consistency:** Did the code follow the same patterns throughout?
+- **Completeness:** Were all requirements addressed?
+- **Token efficiency:** How much did you have to type?
+
 ## Rules
 
-- Always follow the Spec Kit workflow order
-- Do NOT skip steps
+- Complete Part 1 before starting Part 2
+- Do NOT skip steps in the Spec Kit workflow
 - Review each output before continuing
 - Make minimal edits — avoid rewriting everything
+- Document your observations for comparison
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Successfully install and initialize Spec Kit with Copilot integration
+- Build the task management API using ad-hoc prompting
+- Build the same API using Spec Kit workflow
 - Create a constitution that defines project rules and standards
 - Generate a spec from your requirements description
 - Produce a structured plan from the spec
 - Break the plan into executable tasks
-- Implement features using the spec-driven workflow
-- Demonstrate reduced token usage compared to ad-hoc prompting
+- Compare both approaches and articulate the differences
+- Demonstrate reduced token usage with spec-driven development
 - Show improved output consistency and predictability
 
 ## Learning Resources
 
 - [GitHub Spec Kit Repository](https://github.com/github/spec-kit)
-- [Spec Kit Installation Guide](https://deepwiki.com/github/spec-kit/2.1-installation)
+- [Spec Kit Installation Guide](https://github.com/github/spec-kit/blob/main/docs/installation.md)
 - [Spec-Driven Development with GitHub Spec Kit](https://medium.com/@vamshi.rapolu/spec-driven-development-with-github-spec-kit-copilot-in-vs-code-new-existing-projects-2531d10bd61d)
 - [Spec Kit Commands Reference](https://easyguides.net/guides/spec-kit/commands)
 - [Plan and Tasks Commands Tutorial](https://codestandup.com/posts/2025/github-spec-kit-tutorial-plan-tasks-commands/)
 
 ## Tips
 
-- Spec becomes your persistent context — no need to repeat requirements in every prompt
+- Part 1 intentionally feels inefficient — that's the point!
+- Spec becomes your persistent context — no need to repeat requirements
 - The constitution acts as guardrails that apply to all generated code
 - Use `/speckit.clarify` when requirements feel ambiguous
 - Each step builds on the previous — the workflow is designed to be sequential
@@ -228,10 +263,11 @@ To complete this challenge successfully, you should be able to:
 
 After completing this challenge, answer:
 
-1. What changed compared to normal prompting?
-2. What did you NOT have to repeat in your prompts?
-3. Did the outputs become more predictable?
-4. How would this workflow impact token usage in real scenarios?
+1. How did Part 1 (ad-hoc) feel compared to Part 2 (Spec Kit)?
+2. How many times did you repeat context in each approach?
+3. Did the outputs become more predictable with Spec Kit?
+4. How would spec-driven development impact token usage and costs in real projects?
+5. What other tools or methods could achieve similar spec-driven benefits?
 
 ## Advanced Challenges
 
@@ -239,5 +275,5 @@ Too comfortable? Try these:
 
 - Apply Spec Kit to an existing project instead of a new one
 - Create multiple specs for different features and observe how they interact
-- Measure credit consumption between spec-driven and traditional prompting for the same feature
+- Measure credit consumption between both approaches for the same feature
 - Customize the constitution for different project types (frontend, backend, full-stack)
