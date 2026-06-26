@@ -42,6 +42,7 @@ The Student/Resources folder should contain:
   - Multiple MCP tools enabled (some unnecessary) for Challenge 04
   - Sample code with opportunities for spec-first vs. trial-and-error comparison
 - **Baseline coding task** (baseline-task.md) for Challenge 00
+- **Model selection prompts + measurement template** (`Challenge-03-ModelSelection/`) for Challenge 03
 - **Token Golf task specification** for Challenge 06 with acceptance criteria
 
 Always refer students to the [What The Hack website](https://aka.ms/wth) for the student guide: [https://aka.ms/wth](https://aka.ms/wth)
