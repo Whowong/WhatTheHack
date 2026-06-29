@@ -1,49 +1,48 @@
-# Challenge 03 — Deferred Enhancements (TODO)
+# Challenge 03 — Author TODO / Deferred
 
-Coach/author notes. The challenge as committed is **complete and runnable**, but a review
-(walking it against Challenges 01/02 and running it live) flagged that the *concept* is strong
-while the *activity* is light (~10 min: 4 prompts + a table) compared to C01/C02 (30–60 min of
-hands-on building). The items below would bring it to C01-level depth without losing the crisp
-"cheap-per-token ≠ cheap-per-task" framing. Handle in a follow-up.
+Coach/author notes. The challenge is complete and runnable. This tracks follow-ups.
 
-## A. Add activity depth (fills the 45-min slot)
-- [ ] "**Classify your own task**" exercise: student writes 2 real tasks from their own work,
-      predicts easy→cheap vs hard→strong, runs each on both model tiers, and checks the
-      prediction. Makes the lesson personal and transferable.
-- [ ] Add an **Advanced Challenges** section (C01 has one; C03 currently doesn't):
-  - Try a **mid-tier / reasoning-tier** model on the hard task — where's the price/capability knee?
-  - Build a **two-model workflow**: cheap model drafts, strong model reviews — measure total cost.
-  - Try **Auto mode** (if the org exposes it) and compare routing + cost to manual selection.
+## Done (this revision)
+- [x] **Replaced the hard task** from letter-counting → the **car wash** ("walk or drive 40 m
+      to wash my car"). Letter-counting was a tokenization artifact whose results did **not**
+      track price (base model could beat premium — we observed Haiku right / Opus wrong). The
+      car wash tracks capability and is monotonic. See `results.md`.
+- [x] **Switched the base/premium pair** to Copilot-pickable models. The old `gpt-4.1-nano`
+      reliably failed the hard task but is **not selectable in the Copilot model picker**, so
+      students couldn't use it. New pair: base `gpt-4.1`, premium `gpt-5`.
+- [x] **Terminology:** removed "cheap/expensive"; now **base model** / **premium model**
+      (matches Copilot's included-vs-premium-request billing language).
+- [x] **Added depth:** Part 2 cost-of-retries reasoning ("how many base attempts to exceed one
+      premium call?" + capability-ceiling point); Part 4 "classify your own tasks"; a
+      "why this matters for coding" paragraph; a token-variance note.
+- [x] **Output-constraint section** rebuilt around a verbose task (palindrome function,
+      190→66 tok on gpt-4.1) — the old version-sort example showed no reduction.
 
-## B. Pre-empt the "gotcha" objection
-- [ ] Add ~1 paragraph: the letter-count task tests the model's **direct reasoning**, not its
-      ability to emit code. A sharp student will say "I'd just have it write code to count."
-      Connect it to agentic coding: the model constantly reasons *within* tasks (choosing logic,
-      comparing values, judging correctness) — and that is exactly where a weak model is
-      confidently wrong. Model selection governs reasoning quality, not just code emission.
+## Open
+- [ ] **Token-measurement alignment (hack-wide).** The student docs point to
+      `View → Output → "GitHub Copilot Chat"` / usage view for token counts, per Challenge 00's
+      setup. Verify that Copilot Chat actually surfaces a clean per-request token number in the
+      target VS Code/Copilot version. If it does **not**, this is a **Challenge 00** problem
+      affecting every challenge — fix it there (or standardize on a token source) rather than
+      only in Challenge 03. Coach harness + GitHub Models playground are reliable fallbacks.
+- [ ] **Advanced section (optional).** Add an "Advanced Challenges" block: try a mid-tier /
+      reasoning model on the hard task (where's the price/capability knee?); build a two-model
+      "base drafts → premium reviews" workflow and measure total cost.
+- [ ] **Scope decision — reasoning levels + Auto mode.** The *original* Challenge-03 included
+      comparing reasoning-effort levels and explaining when **Auto mode** beats manual
+      selection. Decide whether to re-add as optional/Advanced. Needs owner sign-off.
 
-## C. Token-count variance note
-- [ ] Add a note in the student doc: token counts vary run-to-run (strong models especially —
-      reasoning tokens). Observed gpt-5 on the easy task: 229 / 325 / 357 tokens across runs.
-      Tell students to **focus on the pattern / ratio, not the absolute number**, and to run a
-      task 2–3× if a result looks anomalous.
+## Validated data (basis for the answer key)
+Measured via GitHub Models API (`harness.py`), single-shot, no retries, n=4:
 
-## D. Scope decision (was in the ORIGINAL Challenge-03, dropped in the rewrite)
-- [ ] Decide whether to re-add, likely as **optional/Advanced**:
-  - **Reasoning levels** — compare credit use across reasoning-effort settings.
-  - **Auto mode** — when automatic routing beats manual model choice (original success criterion
-    was "Explain when Auto mode provides value vs. manual selection").
-- Options discussed: (1) re-add both as Advanced, (2) leave out for focus, (3) add Auto mode only.
-  Pending owner sign-off.
-
-## Validated data (do not lose — basis for the answer key)
-Measured via GitHub Models API (`harness.py`), single-shot, no retries:
-
-| Model | Easy (version sort) | Hard (letter count) |
+| Model | Easy (version sort) | Hard (car wash) |
 |---|---|---|
-| gpt-4.1-nano (cheap) | ✅ 4/4 pass, ~93 tok | ❌ 0/4 pass, ~31 tok (always "4") |
-| gpt-5 (strong) | ✅ 4/4 pass, ~229–357 tok | ✅ 4/4 pass, ~295–391 tok |
+| gpt-4.1 (base) | ✅ 4/4, ~106 tok | ❌ 0/4 — says "walk", ~166 tok |
+| gpt-5 (premium) | ✅ 4/4, ~293 tok | ✅ 4/4 — says "drive", ~1000 tok |
 
-Output constraint (gpt-5, easy task): 229 → 169 tok = **−26%**, identical answer.
-Rejected: ministral-3b (too weak — fails the easy task); coin-change greedy trap (modern small
-models pass it — no longer discriminates).
+Output constraint (gpt-4.1, palindrome function): ~190 → ~66 tok = **−65%**, identical code.
+Constraint showed **no** effect on the terse sort task and on gpt-5 (reasoning tokens dominate).
+
+Rejected: letter-count/decimal/"strawberry" (tokenization artifacts — don't track price);
+`ministral-3b` (fails easy task too); `gpt-4.1-nano` (not in Copilot picker); coin-change
+greedy trap (modern small models pass it).

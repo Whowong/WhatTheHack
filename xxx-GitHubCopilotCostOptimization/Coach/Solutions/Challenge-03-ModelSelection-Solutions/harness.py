@@ -21,8 +21,8 @@ ENDPOINT = "https://models.github.ai/inference/chat/completions"
 SORT_PROMPT = ("Sort these software version numbers from oldest to newest and "
                "list them in order separated by commas: 1.9.0, 1.10.0, 1.2.0, "
                "1.11.0, 1.9.5")
-LETTER_PROMPT = ("How many times does the letter l appear in the phrase "
-                 "'parallel lullaby'? Answer with only the number.")
+CARWASH_PROMPT = ("The car wash is 40 meters from my home. I want to wash my "
+                  "car. Should I walk or drive there?")
 
 
 def check_sort(ans: str) -> bool:
@@ -30,14 +30,26 @@ def check_sort(ans: str) -> bool:
     return versions == ["1.2.0", "1.9.0", "1.9.5", "1.10.0", "1.11.0"]
 
 
-def check_letter(ans: str) -> bool:
-    m = re.search(r"\d+", ans)
-    return m is not None and m.group() == "6"
+def check_carwash(ans: str) -> bool:
+    """Correct iff the model recommends DRIVING (the car must be at the wash).
+
+    Heuristic: look at the opening recommendation. Premium models lead with
+    'Drive...'; base models lead with 'Walk...' / 'Walking...'. We treat the
+    first mention of walk/drive as the recommendation.
+    """
+    low = ans.lower()
+    di = low.find("driv")
+    wi = low.find("walk")
+    if di == -1:
+        return False
+    if wi == -1:
+        return True
+    return di < wi
 
 
 TASKS = {
     "sort": {"prompt": SORT_PROMPT, "check": check_sort},
-    "letter": {"prompt": LETTER_PROMPT, "check": check_letter},
+    "carwash": {"prompt": CARWASH_PROMPT, "check": check_carwash},
 }
 
 
@@ -100,7 +112,7 @@ def run(token: str, model: str, task_key: str, n: int, sleep: float):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--models", nargs="+", required=True)
-    ap.add_argument("--tasks", nargs="+", default=["sort", "letter"])
+    ap.add_argument("--tasks", nargs="+", default=["sort", "carwash"])
     ap.add_argument("-n", type=int, default=50)
     ap.add_argument("--sleep", type=float, default=1.0)
     args = ap.parse_args()

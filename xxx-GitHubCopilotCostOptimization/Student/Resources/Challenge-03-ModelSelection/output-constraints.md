@@ -14,15 +14,25 @@ a cost lever you control on **every** model. Use these patterns when you don't n
 
 ## Why it matters
 
-A strong model asked an easy question will often spend most of its tokens *explaining* an
-answer you already trust. The constraint keeps the correctness and drops the cost.
+A model asked a question it would normally *explain* will spend most of its tokens narrating an
+answer you already trust. The constraint keeps the correctness and drops the cost. The effect is
+biggest on **verbose-by-default** tasks (e.g. "write a function") — there the model otherwise
+wraps the answer in explanation and markdown.
 
 ## Try it
 
-Take any Part 1 run on the strong model and re-run it with `"Answer with only the
-comma-separated list and nothing else."` appended. Compare total tokens — the answer is
-identical, the cost is lower.
+Take a verbose task on the base model and re-run it with an output constraint appended:
 
-> Note: constraints reduce **output** tokens. They do not fix a model that is *wrong*
-> (see Part 2). For a task the cheap model can't reason through, a constraint just gives you
-> a wrong answer faster — model selection, not output shape, is the fix there.
+```
+Write a Python function that checks whether a string is a palindrome.
+Output only the code. No explanation, no markdown fences.
+```
+
+Compare total tokens — the code is identical, the cost is much lower.
+
+> Notes:
+> - Constraints reduce **output** tokens. They do little when the output is already terse
+>   (e.g. a one-line answer) or when a reasoning model's hidden "thinking" tokens dominate.
+> - Constraints do **not** fix a model that is *wrong* (see Part 2). For a task the base model
+>   can't reason through, a constraint just gives you a wrong answer faster — model selection,
+>   not output shape, is the fix there.

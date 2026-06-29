@@ -8,28 +8,34 @@ Not every task needs the most powerful model. Under usage-based billing, cost is
 
 > **Total cost = token rate × tokens × attempts**
 
-That last term — *attempts* — is the one people forget. A cheap model that answers a simple task correctly in a few tokens is a bargain. But that same cheap model, set loose on a task it cannot actually reason through, will hand you a **confident, wrong answer**. Now you are paying again (and again) to notice it is wrong and redo the work. The "cheap" model just became the expensive one.
+That last term — *attempts* — is the one people forget. A **base model** that answers a simple task correctly in a few tokens is a bargain. But that same base model, set loose on a task it cannot actually reason through, will hand you a **confident, wrong answer**. Now you are paying again (and again) to notice it is wrong and redo the work. The model that looked lower-cost per request just became the costliest one.
 
-In this challenge you will run the **same prompt against a cheap model and an expensive model — twice.** First on an **easy** task, then on a **hard** task. Every run, you measure two things: **the outcome (did it get it right?)** and **the token cost**. From that data you will build the skill this challenge is really about: deciding *which model to use for which job.*
+In this challenge you will run the **same prompt against a base model and a premium model — twice.** First on an **easy** task, then on a **hard** task. Every run, you measure two things: **the outcome (did it get it right?)** and **the token cost**. From that data you will build the skill this challenge is really about: deciding *which model to use for which job.*
 
-> **Key Concept:** Cheap-per-token is not the same as cheap-per-task.
+> **Key Concept:** Lower cost per request is not the same as lower cost per *result*.
+
+### Why this matters for coding
+
+This challenge uses two short, easy-to-check prompts so the difference is obvious in seconds. But the lesson is the same one you face every time you code with Copilot: an agent constantly **reasons inside a task** — choosing logic, comparing values, judging whether its own output is correct. That is exactly where a weaker model is *confidently wrong*. Model selection governs the quality of that reasoning, not just whether code comes out. Pick the model that fits the *thinking* the task requires.
 
 ## Description
 
 You will run **two tasks**, each against **two models**:
 
-- A **cheap / lightweight model** — e.g. a "mini", "nano", "Haiku", or "Flash" tier model
-- An **expensive / frontier model** — e.g. a GPT-5, Claude Sonnet, or o-series tier model
+- A **base model** — included with your subscription, no premium-request multiplier (e.g. GPT-4.1, GPT-4o). Fast and economical.
+- A **premium model** — a frontier / reasoning model billed as a premium request with a cost multiplier (e.g. GPT-5, Claude Sonnet, an o-series model).
 
-> Use whatever cheap-tier and strong-tier models your organization exposes in the GitHub Copilot Chat **model picker**. The exact names don't matter — the *pattern* does.
+> Use whatever base-tier and premium-tier models your organization exposes in the GitHub Copilot Chat **model picker**. The exact names don't matter — the *pattern* does. The picker shows a multiplier (e.g. `1×`) next to premium models; base models show no multiplier.
 
-For every run, record the **outcome** (correct / incorrect) and the **token usage** from the VS Code Output panel (`View → Output → "GitHub Copilot Chat"`) and/or `/usage`.
+For every run, record the **outcome** (correct / incorrect) and the **token usage** (`View → Output → "GitHub Copilot Chat"`, and/or your Copilot usage view). If your environment doesn't surface an exact per-request token count, you can still see the pattern: the premium model produces far more text. Note *roughly how much more*.
 
-> **Rule — no retries:** When the cheap model gets it wrong, **do not coach it or try again.** Record the failure and move on. The whole point is to see what each model produces *on the first shot* for each kind of task.
+> **Rule — no retries:** When the base model gets it wrong, **do not coach it or try again.** Record the failure and move on. The whole point is to see what each model produces *on the first shot* for each kind of task. (You'll reason about the cost of retrying in Part 2.)
+
+> **A note on token counts:** Exact token numbers vary run to run — premium reasoning models especially. Focus on the **pattern and the ratio**, not the absolute number. If a result looks odd, run it 2–3 times.
 
 ---
 
-## Part 1 — An Easy Task (the cheap model should win)
+## Part 1 — An Easy Task (the base model should win)
 
 Give **both** models this exact prompt:
 
@@ -42,42 +48,53 @@ order separated by commas: 1.9.0, 1.10.0, 1.2.0, 1.11.0, 1.9.5
 
 ### Record
 
-| | Cheap model | Expensive model |
+| | Base model | Premium model |
 |---|---|---|
 | Correct? | ? | ? |
 | Total tokens | ? | ? |
 
 ### What to notice
 
-Both models should get this right. Now compare the **token counts**. The expensive model often produces far more output — restated reasoning, explanations — for the *exact same correct answer*. On an easy task, that extra spend buys you nothing.
+Both models should get this right. Now compare the **token counts**. The premium model often produces far more output — restated reasoning, explanations — for the *exact same correct answer*. On an easy task, that extra spend buys you nothing.
 
 ---
 
-## Part 2 — A Hard Task (the cheap model should fail)
+## Part 2 — A Hard Task (the base model should fail)
 
 Now give **both** models this exact prompt:
 
 ```
-How many times does the letter l appear in the phrase 'parallel lullaby'?
-Answer with only the number.
+The car wash is 40 meters from my home. I want to wash my car.
+Should I walk or drive there?
 ```
 
-✅ Correct answer: `6`  (count them yourself: para**ll**e**l** = 3, **l**u**ll**aby = 3)
+✅ Correct answer: **Drive.** You can't wash a car that isn't there — the car has to be *at* the car wash. Walking the 40 meters leaves your car (and the problem) at home. The distance is a deliberate distraction.
 
 ### Record
 
-| | Cheap model | Expensive model |
+| | Base model | Premium model |
 |---|---|---|
+| Answer (walk / drive) | ? | ? |
 | Correct? | ? | ? |
 | Total tokens | ? | ? |
 
 ### What to notice
 
-The cheap model will likely answer **confidently and incorrectly** (a very common answer is `4`). You can verify the right answer yourself in seconds — *that is the point.* The wrong answer is also **cheap in tokens**, which is exactly the trap: low token cost, zero value.
+The base model will very likely tell you to **walk** — "it's only 40 meters, it's greener, you'll get some exercise." It latches onto the short distance and misses the obvious point: *the car needs to come with you.* It is **confidently wrong**, and you can see it's wrong in one second — *that is the point.*
 
-The expensive model gets it right, and costs **more** tokens to do so. For this kind of task, those extra tokens are not waste — they are the price of a *correct* answer.
+The premium model reasons about the actual goal ("the car has to be at the wash to be cleaned → drive") and gets it right. Those extra tokens are not waste — they are the price of a *correct* answer.
 
-> Do **not** retry the cheap model. A wrong answer is the result. In the real world, the hidden cost of a cheap wrong answer is the time and tokens you burn discovering it is wrong and redoing the work.
+> Record the base model's wrong answer and stop — **don't rerun or rephrase it.** That single result is all you need. The next section is a calculation, not another run.
+
+### The cost of "just trying again"
+
+You won't actually retry here — but it's worth reasoning about, because in real work the temptation is "the base model costs less per call, I'll just rerun or rephrase until it gets it." Using the numbers you **already recorded above**:
+
+1. Take the base model's per-attempt cost and the cost of **one** premium-model call (use your org's per-request multipliers, or the token counts you just measured).
+   > **How many base-model attempts would it take to cost more than one premium-model call?**
+2. Now the harder question: on a task like this — where the base model hits a **reasoning ceiling** — *would any number of attempts reliably get you the right answer?* (You already saw its single answer; capability, not luck, is the limit.)
+
+The trap: you could burn several low-cost attempts, pass the cost of one premium call, **and still not have a correct answer.** For a task the base model can't reason through, the only fix is a more capable model — not more attempts.
 
 ---
 
@@ -85,40 +102,67 @@ The expensive model gets it right, and costs **more** tokens to do so. For this 
 
 Combine your measurements into one table:
 
-| Task | Cheap: correct? | Cheap: tokens | Strong: correct? | Strong: tokens | Which model should you use? |
-|------|-----------------|---------------|------------------|----------------|-----------------------------|
+| Task | Base: correct? | Base: tokens | Premium: correct? | Premium: tokens | Which model should you use? |
+|------|----------------|--------------|-------------------|-----------------|-----------------------------|
 | Part 1 (easy) | ? | ? | ? | ? | ? |
 | Part 2 (hard) | ? | ? | ? | ? | ? |
 
 ### Questions to Answer
 
 1. On the **easy** task, which model gave the better *value* (correct answer, fewest tokens)?
-2. On the **hard** task, what did the cheap model's wrong answer actually "cost" you — even though it used fewer tokens?
+2. On the **hard** task, what did the base model's wrong answer actually "cost" you, even though each attempt was low-cost?
 3. If you ran each task **10,000 times a day**, how would your model choice differ between Part 1 and Part 2?
-4. How would you decide, *before* running a task, whether it is a "Part 1" (easy → cheap) task or a "Part 2" (hard → strong) task?
+4. How would you decide, *before* running a task, whether it is a "Part 1" (easy → base) or a "Part 2" (hard → premium) task?
+
+---
+
+## Part 4 — Classify Your Own Tasks
+
+The skill this challenge builds is *prediction*: knowing which tier a task needs **before** you spend anything.
+
+1. Write down **two real tasks** from your own work — one you think a base model can handle, one you think needs a premium model.
+2. For each, predict the tier and **why** (Is it well-defined, or does it need multi-step reasoning / judgment?).
+3. Run each task on **both** tiers and check your prediction. Were you right? Note any surprises.
+
+| Your task | Predicted tier | Actual best tier | Was your prediction right? |
+|---|---|---|---|
+| 1. | | | |
+| 2. | | | |
 
 ---
 
 ## Optional — Output Constraints
 
-Output tokens usually cost more than input tokens. Re-run **Part 1 with the expensive model**, but add an output constraint to the prompt:
+Output tokens usually cost more than input tokens, and constraining what a model *produces* is a lever you control on **every** model.
+
+Pick a task where the model is **verbose by default** — for example, asking for a small function:
 
 ```
-...Answer with only the comma-separated list and nothing else.
+Write a Python function that checks whether a string is a palindrome.
 ```
 
-Record the token difference vs. your earlier Part 1 run. Constraining output — "answer only", "code only", "explain in under 50 words", or a JSON schema — is a lever you control on **every** model, cheap or expensive.
+Run it on the base model, then run it again with an output constraint added:
+
+```
+Write a Python function that checks whether a string is a palindrome.
+Output only the code. No explanation, no markdown fences.
+```
+
+Record the token difference. Constraining output — "code only", "answer only", "explain in under 50 words", a JSON schema — drops the cost while keeping the correct result.
+
+> Note: constraints reduce **output** tokens. They help most when the model would otherwise pad the answer with explanation. They do **not** make a wrong model right (see Part 2), and they do little when the output is already terse or when a reasoning model's hidden "thinking" tokens dominate.
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Run the same prompt against a cheap and an expensive model for both tasks
+- Run the same prompt against a base and a premium model for both tasks
 - Record outcome (correct/incorrect) and token usage for all four runs
-- Show that on the easy task the cheap model was correct **and** cheaper
-- Show that on the hard task the cheap model was confidently wrong while the expensive model was correct
-- Demonstrate a token reduction on the expensive model by adding an output constraint
-- Articulate a rule of thumb for deciding which model to use for a given task
+- Show that on the easy task the base model was correct **and** used fewer tokens
+- Show that on the hard task the base model was confidently wrong while the premium model was correct
+- Reason about how many base-model retries it would take to cost more than one premium call — and why retries can't fix a reasoning-ceiling task
+- Classify two of your own real tasks by tier and verify your prediction
+- (Optional) Demonstrate a token reduction by adding an output constraint to a verbose task
 
 ## Learning Resources
 
@@ -128,14 +172,14 @@ To complete this challenge successfully, you should be able to:
 
 ## Tips
 
-- Cost = token rate × tokens × **attempts**. A cheap *wrong* answer can be the most expensive option.
-- The cheap model is great for well-defined, low-ambiguity work — and it is wasteful to *avoid* it there.
-- The expensive model earns its price on tasks that need real reasoning, where a wrong first answer is costly.
+- Cost = token rate × tokens × **attempts**. A *wrong* answer you have to chase down is the costliest option.
+- The base model is great for well-defined, low-ambiguity work — and it is wasteful to *avoid* it there.
+- The premium model earns its multiplier on tasks that need real reasoning, where a wrong first answer is costly.
 - Output constraints reduce cost on *any* model — ask for the answer only when you don't need narration.
 - The best model is not the smartest one — it is the one that returns a *correct* answer at the lowest total cost.
 
 ## Reflection Questions
 
 1. Describe a real task from your own work that is a "Part 1" task. Which model would you use and why?
-2. Describe a real "Part 2" task. How would you justify the higher per-token cost to your team?
-3. How could you combine cheap and expensive models in a single workflow to minimize total cost (e.g., cheap model drafts, strong model reviews)?
+2. Describe a real "Part 2" task. How would you justify the premium multiplier to your team?
+3. How could you combine base and premium models in a single workflow to minimize total cost (e.g., base model drafts, premium model reviews)?
