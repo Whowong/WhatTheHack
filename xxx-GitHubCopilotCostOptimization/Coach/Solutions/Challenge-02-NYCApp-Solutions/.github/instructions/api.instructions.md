@@ -1,9 +1,11 @@
-
 ---
 applyTo: "src/routes/**/*.ts"
 ---
 
 # API Rules
-- Use REST conventions
+
+- Use RESTful conventions
 - Return structured JSON responses
-- Validate inputs
+- Include a `count` field for list responses
+- Validate request inputs
+- Use appropriate HTTP status codes

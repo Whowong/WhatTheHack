@@ -1,6 +1,5 @@
+# Copilot Instructions (GLOBAL)
 
-# ✅ Optimized Global Instructions
-
-- Write clean, readable code
+- Write clean, readable, maintainable code
 - Prefer clarity over complexity
 - Return structured JSON responses
