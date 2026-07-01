@@ -1,0 +1,32 @@
+{
+  "name": "xxx-GitHubCopilotCostOptimization",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "workspaceFolder": "/workspace/xxx-GitHubCopilotCostOptimization/Student/Resources",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "features": {},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.copilot",
+        "github.copilot-chat",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    },
+    "codespaces": {
+      "openFiles": [
+        "xxx-GitHubCopilotCostOptimization/Student/Resources/README.md"
+      ]
+    }
+  },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "CityScout NYC App",
+      "onAutoForward": "notify"
+    }
+  }
+}
