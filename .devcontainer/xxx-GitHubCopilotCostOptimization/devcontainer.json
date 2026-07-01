@@ -22,6 +22,8 @@
       ]
     }
   },
+  "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && ~/.local/bin/uv tool install specify-cli --from git+https://github.com/github/spec-kit.git",
+
   "forwardPorts": [3000],
   "portsAttributes": {
     "3000": {
