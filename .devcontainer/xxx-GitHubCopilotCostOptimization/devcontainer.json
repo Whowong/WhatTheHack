@@ -1,12 +1,14 @@
 {
   "name": "xxx-GitHubCopilotCostOptimization",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
   "workspaceFolder": "/workspace/xxx-GitHubCopilotCostOptimization/Student/Resources",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   "hostRequirements": {
     "cpus": 2
   },
-  "features": {},
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
