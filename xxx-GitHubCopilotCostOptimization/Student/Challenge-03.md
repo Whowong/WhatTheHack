@@ -98,7 +98,50 @@ The trap: you could burn several low-cost attempts, pass the cost of one premium
 
 ---
 
-## Part 3 — Compare Results & Decide
+## Part 3 — An Open-Ended Task (judge the *quality*, not a right answer)
+
+Parts 1 and 2 each had a checkable answer. **Most real work doesn't.** When you plan a feature, design a schema, or scope a project with Copilot, there's no answer key — *you* have to judge whether the output is any good. That judgment is the skill this part builds, and it's where model choice matters most.
+
+Give **both** models this exact prompt:
+
+```
+I want to build a pickleball app. Produce an implementation plan.
+First, ask me any clarifying questions you need. Then identify the
+top 5 risks or hidden complexities that could derail this project,
+and highlight them in the plan.
+```
+
+Notice the prompt is **deliberately vague** ("a pickleball app" — to do *what*?). That's on purpose: a strong model should *notice the gap and ask* before it plans. The risk question then forces the model to actually **think**, not just fill in a template.
+
+### Record & Score
+
+There's no correct answer, so score each response against this rubric instead:
+
+| Criterion | Base model | Premium model |
+|---|---|---|
+| Asked clarifying questions *before* planning? (how many, how sharp) | ? | ? |
+| Top-5 risks: generic ("scope creep, budget") or genuinely insightful? | ? | ? |
+| Plan specific to *pickleball* — or a generic "any app" template? | ? | ? |
+| Would you trust it enough to start building? | ? | ? |
+| Total tokens | ? | ? |
+
+### What to notice
+
+The base model tends to **charge straight ahead**: it assumes what the app is, produces a plausible-but-generic plan, and lists generic risks (budget, timeline, scope creep). It rarely stops to ask what you're actually building.
+
+The premium model is more likely to **ask sharp clarifying questions first** (court booking? player matchmaking/ranking? score tracking? league scheduling? who are the users?) and to surface **deeper, domain-specific risks** — double-booking / concurrency on court reservations, ranking fairness, real-time score sync, geolocation privacy, no-show and cancellation handling. Those are exactly the risks that quietly derail a project.
+
+> **The cost tie-in:** the premium plan costs more tokens up front. But a shallow plan isn't cheap — it's **deferred cost.** Every risk the base model *didn't* flag becomes rework, a rewrite, or a bug you pay for at execution time. On open-ended, high-leverage work, paying more for *deeper thinking* is usually the economical choice — the mirror image of Part 1, where paying more bought you nothing.
+
+### Questions to Answer
+
+1. Which model's plan would you actually trust enough to start building from — and why?
+2. Did the extra tokens the premium model spent buy you real value here (unlike Part 1)? What specifically?
+3. This task has no "right answer." How did you decide which output was *better*? What made the difference?
+
+---
+
+## Part 4 — Compare Results & Decide
 
 Combine your measurements into one table:
 
@@ -106,6 +149,7 @@ Combine your measurements into one table:
 |------|----------------|--------------|-------------------|-----------------|-----------------------------|
 | Part 1 (easy) | ? | ? | ? | ? | ? |
 | Part 2 (hard) | ? | ? | ? | ? | ? |
+| Part 3 (open-ended) | judge quality | ? | judge quality | ? | ? |
 
 ### Questions to Answer
 
@@ -116,7 +160,7 @@ Combine your measurements into one table:
 
 ---
 
-## Part 4 — Classify Your Own Tasks
+## Part 5 — Classify Your Own Tasks
 
 The skill this challenge builds is *prediction*: knowing which tier a task needs **before** you spend anything.
 
@@ -160,6 +204,7 @@ To complete this challenge successfully, you should be able to:
 - Record outcome (correct/incorrect) and token usage for all four runs
 - Show that on the easy task the base model was correct **and** used fewer tokens
 - Show that on the hard task the base model was confidently wrong while the premium model was correct
+- On the open-ended planning task, judge each model's *quality* against the rubric (clarifying questions, depth of the top-5 risks, specificity, trust-to-start) and explain which you'd build from
 - Reason about how many base-model retries it would take to cost more than one premium call — and why retries can't fix a reasoning-ceiling task
 - Classify two of your own real tasks by tier and verify your prediction
 - (Optional) Demonstrate a token reduction by adding an output constraint to a verbose task
