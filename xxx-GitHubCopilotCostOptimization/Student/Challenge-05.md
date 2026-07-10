@@ -11,7 +11,7 @@
 
 Context windows grow with every interaction. As a session accumulates messages, attachments, and generated code, the model has more history to process each turn.
 
-When context grows too large, quality often drops: missed requirements, repeated questions, inconsistent edits, and higher credit spend. In this challenge, you will compare proactive `/compact` against unmanaged context growth, then practice when `/clear` is the correct recovery move.
+When context grows too large, quality often drops: missed requirements, repeated questions, inconsistent edits, and higher credit spend. In this challenge, you will compare proactive proactive context management to not performing these actions.
 
 ## Description
 
