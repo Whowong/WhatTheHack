@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Every MCP tool you enable adds token overhead to every agent step. Each tool's name, description, and parameter schema are advertised to the model on every request—even if the tool is never invoked. A session with many unused tools burns credits before you've written a line of code.
+Every MCP tool and Skill you enable adds token overhead to every agent step. Each tool's name, description, and parameter schema are advertised to the model on every request—even if the tool is never invoked. A session with many unused tools burns credits before you've written a line of code.
 
 Meanwhile, changing configuration mid-session can trigger cache invalidation, forcing expensive cold restarts where previously cached context must be reprocessed.
 
@@ -14,15 +14,15 @@ In this challenge, you'll measure the real cost of tool sprawl and observe how s
 
 This challenge has two parts: measuring MCP tool overhead and observing cache invalidation behavior.
 
-### Part 1: Measure MCP Tool Overhead
+### Part 1: Measure MCP Tool and Skills Overhead
 
 Use GitHub Copilot to scan/find something in the `microsoft/TypeScript` repository and report back.
 
 If you don't have MCP servers enabled already, try the GitHub MCP server with all its tools. Complete the task with all tools enabled and record your credit spend.
 
-Next, identify which MCP tools were actually used.
+Next, identify which MCP tools and skills were actually used.
 
-Disable the unused tools, repeat the scan, and measure the credit difference. Each unused tool adds token overhead on every agent step because its schema is included in the system prompt.
+Disable the unused tools and skills, repeat the scan, and measure the credit difference. Each unused tool adds token overhead on every agent step because its schema is included in the system prompt.
 
 ### Part 2: Observe Cache Invalidation
 
