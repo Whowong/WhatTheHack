@@ -11,11 +11,11 @@
 
 Context windows grow with every interaction. As a session accumulates messages, attachments, and generated code, the model has more history to process each turn.
 
-When context grows too large, quality often drops: missed requirements, repeated questions, inconsistent edits, and higher credit spend. In this challenge, you will compare proactive proactive context management to not performing these actions.
+When context grows too large, quality often drops: missed requirements, repeated questions, inconsistent edits, and higher credit spend. In this challenge, you will compare unmanaged context growth against proactive context management and measure the credit difference.
 
 ## Description
 
-You will extend the **CityScout NYC App** (from Challenge 02) with four new features, then compare two session strategies side-by-side. The features deliberately span all three routes and force topic switching—exactly the conditions that grow context fast.
+You will extend the **CityScout NYC App** (from Challenge 02) with four new features, then compare two session strategies side-by-side: one where you let context grow unchecked, and one where you actively manage it. The features deliberately span all three routes and force topic switching—exactly the conditions that grow context fast.
 
 ### The Task: CityScout Feature Sprint
 
@@ -53,20 +53,6 @@ Implement the same four features, but actively manage context throughout. You ch
 
 The goal is to keep context lean and credit spend low. Track total credits across the entire sprint (including any new sessions you start) and compare with Run A. Document which context management actions you took and why.
 
-### Run C – Emergency Reset (`/clear`)
-
-This run uses a **separate, short task** (not the full feature sprint):
-
-- Start a new session and ask Copilot to refactor the restaurants route into a class-based controller pattern
-- After a few turns, "realize" the approach is wrong (perhaps your team uses functional handlers, or the refactor conflicts with your pagination design from Runs A/B)
-- Attempt one correction prompt to see if the session can recover
-- When incremental correction is clearly more expensive than starting over, use `/clear`
-- Restart with a corrected approach and finish the refactor
-- Record what changed after reset:
-  - What useful context was lost (file contents, decisions, naming conventions)
-  - What had to be re-established before you could continue
-  - Credit and time cost of the cold restart vs. what you spent trying to fix the session
-
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
@@ -74,9 +60,8 @@ To complete this challenge successfully, you should be able to:
 - Demonstrate at least two concrete quality degradation signals from Run A
 - Show a side-by-side credit comparison between Run A and Run B for the same four features
 - Verify that your Run B context management strategy reduced total credit spend compared to Run A
-- Demonstrate a valid scenario where `/clear` was the correct decision in Run C
 - Explain the trade-offs between `/compact`, `/clear`, and starting a new session
-- Show a concise evidence log for all three runs (context management actions taken, credits per feature, total credits)
+- Show a concise evidence log for both runs (context management actions taken, credits per feature, total credits)
 
 ## Learning Resources
 
