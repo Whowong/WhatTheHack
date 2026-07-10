@@ -1,5 +1,5 @@
 
-# CityScout NYC - ✅ Challenge 1 Complete Solution (v2)
+# CityScout NYC - ✅ Challenge 2 Complete Solution (v2)
 
 This is the fully optimized version showing:
 - Reduced global instructions ✅

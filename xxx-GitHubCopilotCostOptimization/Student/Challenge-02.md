@@ -1,52 +1,113 @@
-# Challenge 02 - Context Engineering
+# Challenge 02 - Context Engineering (NYC App)
 
 [< Previous Challenge](./Challenge-01.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-03.md)
 
 ## Introduction
 
-Every token sent to GitHub Copilot has a cost. Context that persists across every interaction—like global `.github/copilot-instructions.md` files—creates recurring costs that compound quickly. Meanwhile, broad workspace references like `#Codebase` pull in unnecessary files, adding tokens you don't need.
+In this challenge, you will optimize Copilot context using a real code task in the NYC starter app under Resources/Challenge-02-NYCApp.
 
-In this challenge, you'll learn to engineer your context precisely. You'll audit an over-stuffed global instructions file, restructure it into scoped path-specific files, and replace broad references with pinned attachments. The goal: reduce the base cost of every Copilot interaction while maintaining quality.
+The app intentionally includes an oversized global `.github/copilot-instructions.md` file and multiple routes (`events`, `restaurants`, `neighborhoods`) so you can compare broad context (`#Codebase`) against precise, task-focused attachments.
+
+Every token sent to GitHub Copilot has a cost. Context that persists across interactions, such as global instruction files or broad workspace references, can increase recurring spend by adding tokens that are not needed for the current task.
+
+You will audit the over-stuffed global instructions file, restructure it into scoped path-specific files, and replace broad references with pinned attachments to reduce the base cost of each Copilot interaction while maintaining output quality.
 
 ## Description
 
-The starter codebase includes an intentionally bloated `.github/copilot-instructions.md` file that loads on every GitHub Copilot interaction. Your challenge is to reduce the base cost of every interaction through context optimization.
+Use the project in:
 
-### Instruction Scoping
+`Resources/Challenge-02-NYCApp`
 
-Audit the global instructions file and restructure it for efficiency:
+### Part 1 - Scope Instructions
 
-- Identify which rules apply universally vs. only to specific languages or directories
-- Minimize the global file by moving scoped rules to appropriate locations
-- Consider converting task-specific patterns to GitHub Copilot Skills that activate conditionally
-- Discover how language-specific and path-specific instruction files work
+1. Audit `.github/copilot-instructions.md` and identify what is:
+	 - universally useful
+	 - specific to events
+	 - irrelevant for this task (for example, restaurants/neighborhoods/frontend/testing rules)
+2. Shrink the global file to only truly global guidance.
+3. Create scoped instruction files under `.github/instructions/` for rules that should apply only to specific paths/tasks. For example, create an `api.instructions.md` file and an `events.instructions.md` file.
+4. Keep the events-specific logic discoverable for work in `src/routes/events.ts`.
+5. Create a reusable Copilot skill under `.github/skills/free-events-endpoint/SKILL.md` that captures the pattern for implementing a free events endpoint. This skill should only load when explicitly invoked, making it a conditional cost rather than a recurring one.
 
-### Attachment Precision
+### Part 2 - Implement the Baseline Route Task
 
-Experiment with workspace references to understand their token cost:
+Implement `GET /events/free-this-week` in `src/routes/events.ts` with this behavior:
 
-- Compare using `#Codebase` vs. pinning specific files for the same coding task
-- Measure the token difference between broad and precise attachment strategies
-- Verify that output quality remains equivalent with more precise attachments
+- include events where `price === 0`
+- include only events within the next 7 days
+- sort ascending by date
+- return JSON in the shape `{ count, events }`
 
-Use the baseline coding task from Challenge 00 to measure the impact of your optimizations. Compare credit consumption before and after restructuring to demonstrate measurable savings.
+Important:
+
+- modify `src/routes/events.ts`
+- do not modify `src/routes/restaurants.ts`
+- do not modify `src/routes/neighborhoods.ts`
+
+### Part 3 - Attachment Precision and Token Usage Check
+
+In the GitHub Copilot Chat interface, run this exact query twice and compare results:
+
+"What data or features does this application support?"
+
+Run it twice and record the token usage each time:
+
+1. Without scoped files (broad context, such as `#Codebase`)
+2. With scoped files pinned (only task-relevant files, for example: `src/routes/events.ts`, `src/data/events.ts`, and relevant instruction files)
+
+Capture both token counts from the Copilot Chat usage details/output, compare answer quality, and calculate the difference.
+
+For each run, record context window stats in this format:
+
+- Used tokens / Total context window tokens
+- Context window utilization percentage
+
+Example format:
+
+- Run A (broad): 8,200 / 32,000 (25.6%)
+- Run B (scoped): 2,100 / 32,000 (6.6%)
+
+Then compute:
+
+- Used-token delta (A - B)
+- Utilization delta in percentage points
+
+Use this table to record your measurements:
+
+| Run | Context Strategy | Query | Used Tokens | Total Context Window Tokens | Utilization % | Notes |
+|-----|------------------|-------|-------------|-----------------------------|---------------|-------|
+| A | Broad (`#Codebase` or equivalent) | What data or features does this application support? | | | | |
+| B | Scoped pinned files | What data or features does this application support? | | | | |
+
+| Comparison Metric | Value |
+|-------------------|-------|
+| Used-token delta (A - B) | |
+| Utilization delta percentage points (A - B) | |
+
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Demonstrate that your restructured global `.github/copilot-instructions.md` is significantly smaller than the original
-- Show path-specific or language-specific instruction files you created with rules moved from the global file
-- Verify that at least one task-specific pattern has been converted to a GitHub Copilot Skill
-- Show token count comparison between using `#Codebase` vs. pinned file attachments for a specific task
-- Demonstrate measurable credit reduction on the baseline coding task
-- Verify that code quality remained equivalent after optimization
+- Show that `.github/copilot-instructions.md` is significantly smaller than the original
+- Show scoped instruction files created in `.github/instructions/`
+- Show a reusable skill created at `.github/skills/free-events-endpoint/SKILL.md`
+- Demonstrate a correct `/events/free-this-week` implementation in `src/routes/events.ts`
+- Demonstrate that `src/routes/restaurants.ts` and `src/routes/neighborhoods.ts` remained unchanged
+- Show token comparison between `#Codebase` and pinned attachments for the same task
+- Show Part 3 token and context-window comparison for the query "What data or features does this application support?" in Copilot Chat:
+	- without scoped files
+	- with scoped pinned files
+	- with documented context window stats (used / total)
+	- with documented utilization percentage for both runs
+	- with documented token and utilization deltas
+- Show measurable credit reduction while preserving output quality
 
 ## Learning Resources
 
 - [GitHub Copilot Instructions Documentation](https://docs.github.com/en/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot)
+- [GitHub Copilot Prompt Files and Attachments](https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide#reference-files-in-your-prompts)
 - [GitHub Copilot Skills Overview](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-skills)
-- [Understanding Context Windows in Large Language Models](https://www.anthropic.com/index/prompting-long-context)
 
 ## Tips
 
