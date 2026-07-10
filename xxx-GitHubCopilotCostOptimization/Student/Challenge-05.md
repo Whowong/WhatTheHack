@@ -26,7 +26,7 @@ Using the NYC App you worked with in Challenge 02 (in `Resources/Challenge-02-NY
 - **Feature 3 – Pagination (cross-cutting):** Add `?page=N&limit=N` support to all three list endpoints (`/events/free-this-week`, `/restaurants`, `/neighborhoods`). Default to page 1, limit 10. Return `{ page, limit, total, data }`.
 - **Feature 4 – Input Validation & Error Handling:** Add proper `400 Bad Request` responses for invalid query params and `404 Not Found` for missing resources across all routes.
 
-These four features touch multiple files, require cross-file references, and create natural breakpoints between each feature—ideal for testing context management strategies.
+These four features touch multiple files, require cross-file references, and create natural breakpoints between each feature—ideal for testing context management strategies.  We recommend not committing these files to make it easier to revert.
 
 ### Run A – Unmanaged Context Growth
 
