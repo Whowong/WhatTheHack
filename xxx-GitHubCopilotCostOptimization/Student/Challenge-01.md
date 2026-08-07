@@ -266,13 +266,3 @@ After completing the challenge, you should be able to:
 - Time may be affected by installations, network conditions, and familiarity with the tools
 - The results do not demonstrate that SDD is always better or worse
 
-## Additional Challenge
-
-After completing both versions, give both of them the same requirements change:
-
-```text
-Add a status field with the values draft and published. New notes must start
-as draft, and published notes cannot be edited until changed back to draft.
-```
-
-For the SDD version, update the `sdd.md` file first. Then compare time, credits, questions, and rework again. This second round helps evaluate whether the specification provides more value as the software evolves.
