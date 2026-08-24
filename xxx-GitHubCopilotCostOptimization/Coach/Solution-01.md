@@ -2,168 +2,237 @@
 
 [< Previous Solution](./Solution-00.md) - **[Home](./README.md)** - [Next Solution >](./Solution-02.md)
 
-## Notes & Guidance
+# Coach Guide: Direct Prompt vs. Spec-Driven Development
 
-This challenge introduces students to **spec-driven development** by having them build the **same simple application twice**: first with ad-hoc prompting, then with **GitHub Spec Kit**. The hands-on comparison makes the benefits tangible.
+## Purpose
 
-> **Note:** Spec Kit installation prerequisites are covered in Challenge 0. If students haven't completed setup, direct them there first.
+This guide helps coaches facilitate an experiment comparing two ways of building the same React and TypeScript application with GitHub Copilot:
 
-### The Application
+1. A direct implementation prompt.
+2. A structured Markdown specification using Spec-Driven Development (SDD).
 
-Students build a **simple notes app** with only 2 requirements:
-1. CRUD operations for notes
-2. Each note has a title (required) and content
+The goal is not to prove that one approach is universally better. Participants should observe how context influences implementation time, credit consumption, interruptions, interventions, rework, and the delivered application.
 
-This is intentionally simple — the goal is to compare approaches, not build something complex.
+## Learning Outcomes
 
-### Key Concepts to Explain
+By the end of the activity, participants should be able to:
 
-**Why Two Applications?**
+- Explain the role of a specification as implementation context.
+- Compare direct prompting and SDD under equivalent conditions.
+- Distinguish functional effectiveness from implementation efficiency.
+- Include specification preparation when evaluating full-cycle efficiency.
+- Discuss experimental results without generalizing from a single run.
 
-Building the same thing twice demonstrates:
-- How much context repetition happens with ad-hoc prompting
-- How structured specs reduce cognitive load and token usage
-- The difference in output consistency
+## Recommended Duration
 
-**Part 1 is Intentionally Unguided:**
+| Activity | Suggested time |
+|---|---:|
+| Introduction and environment check | 10 minutes |
+| Direct prompt implementation | 20–30 minutes |
+| SDD implementation | 20–30 minutes |
+| Comparison and discussion | 20 minutes |
+| Total | 70–90 minutes |
 
-Students don't get example prompts — they figure it out themselves. This:
-- Creates authentic frustration with ad-hoc prompting
-- Makes the Spec Kit workflow feel like a relief
-- Produces genuine observations for comparison
+Do not impose an implementation time limit if it would prevent participants from completing and manually verifying the application.
 
-**Spec Kit is One Approach:**
+## Coach Preparation
 
-Emphasize that Spec Kit is **one of many** ways to do spec-driven development. The principle — structured context produces better results — applies regardless of tooling. Other approaches include:
-- Custom instruction files (.github/copilot-instructions.md)
-- Manual spec documents referenced in prompts
-- Project constitution patterns
-- Prompt template systems
+Before the session:
 
-**Spec Kit Workflow:**
+- Confirm that VS Code, Node.js, npm, and GitHub Copilot are available.
+- Select one GitHub Copilot model to use in both runs.
+- Keep the provided `sdd.md` content available.
+- Prepare a timer and measurement worksheet.
+- Ensure participants can inspect Copilot credit consumption.
+- Ask participants to close unrelated conversations and projects.
+- Explain that generated files cannot be reused between runs.
 
-1. **Constitution:** Project-wide rules and constraints (architecture, standards, patterns)
-2. **Spec:** What to build (requirements, acceptance criteria, user stories)
-3. **Plan:** How to build it (architecture, stack, structure)
-4. **Tasks:** Actionable work items (small, ordered, executable)
-5. **Implement:** Execute tasks with Copilot
+The folders must begin empty. Existing scaffolds, templates, or files may affect the comparison and should be recorded if used.
 
-**Why This Reduces Cost:**
+## Fairness Rules
 
-- Spec becomes persistent context — no need to repeat in every prompt
-- Constitution provides guardrails that apply automatically
-- Structured workflow prevents expensive backtracking
-- Small tasks produce more predictable outputs than large prompts
-- Clarification step catches ambiguity before implementation
+The coach must enforce the following controls:
 
-### Expected Time
+- Same computer and environment.
+- Same VS Code and GitHub Copilot versions.
+- Same Copilot model.
+- Same application scope and manual verification checklist.
+- Separate empty folders and new conversations.
+- No reuse of generated code between runs.
+- No additional implementation instructions unless required to unblock progress.
+- Every clarification, correction, or intervention must be recorded.
 
-45-75 minutes:
-- 15-20 minutes: Part 1 — Build with ad-hoc prompting
-- 20-30 minutes: Part 2 — Build with Spec Kit workflow
-- 10-15 minutes: Part 3 — Compare results and discussion
+Do not steer Copilot toward a specific framework choice, package, UI design, or solution unless the participant is blocked. Any such assistance counts as an intervention.
 
-### Troubleshooting
+## Facilitation Flow
 
-**Spec Kit Commands Not Appearing in Copilot Chat:**
+### 1. Introduce the Experiment
 
-1. Verify `.github/prompts/` folder exists with Spec Kit files
-2. Reload VS Code window (Ctrl+Shift+P → "Developer: Reload Window")
-3. Ensure Copilot Chat extension is up to date
+Explain that the experiment evaluates three dimensions:
 
-**Integration Issues:**
+- **Effectiveness:** whether the application satisfies the requirements.
+- **Implementation efficiency:** effort after the prompt or specification is ready.
+- **Full-cycle efficiency:** implementation effort plus specification preparation.
 
-If `--integration copilot` fails, try initializing without integration first:
-```bash
-uvx --from git+https://github.com/github/spec-kit.git specify init my-project
-```
-Then manually copy prompt files to `.github/prompts/`.
+Remind participants that a functional tie can still reveal differences in time, cost, ambiguity, and rework.
 
-### Success Criteria Validation
+### 2. Run the Direct Prompt Approach
 
-Students should be able to demonstrate:
+Before the participant submits the prompt:
 
-**Part 1 — Ad-Hoc Approach:**
-1. Created task-api-adhoc project
-2. Built the API using conversational prompts
-3. Documented observations (context repetition, inconsistencies)
+- Confirm the folder is empty.
+- Confirm a new Copilot conversation is open.
+- Record the selected model.
+- Prepare the timer.
 
-**Part 2 — Spec Kit Approach:**
-1. **Setup Complete:** `.specify/` and `.github/prompts/` folders exist
-2. **Constitution Created:** `constitution.md` with project rules
-3. **Spec Generated:** `spec.md` with requirements and acceptance criteria
-4. **Plan Produced:** Architecture and structure decisions documented
-5. **Tasks Listed:** Ordered list of small, actionable items
-6. **Implementation Started:** At least one task executed with Copilot
+Start timing when the implementation prompt is sent. During execution, observe without directing the participant.
 
-**Part 3 — Comparison:**
-1. Completed the comparison table
-2. Can articulate differences between approaches
-3. Understands why structured specs reduce token usage
+Record:
 
-### Common Blockers
+- Start and end time.
+- Credits consumed.
+- Questions asked by Copilot.
+- Dependency or tooling decisions requested.
+- Participant interventions.
+- Errors, failed commands, and rework.
+- Any functionality added beyond the requested scope.
 
-**Students Skip Steps:**
+Stop timing only after the application is running and the full manual checklist has been completed.
 
-Emphasize the workflow is sequential by design. Each step builds on the previous. Skipping to `/speckit.implement` without a spec produces the same results as ad-hoc prompting.
+### 3. Run the SDD Approach
 
-**Vague Constitution:**
+Before the second run:
 
-Guide them to be specific. Bad: "Good code." Good: "Node.js with TypeScript, Express framework, repository pattern, input validation with Joi."
+- Confirm a different empty folder is being used.
+- Create the provided `sdd.md` in the project root.
+- Open a new Copilot conversation.
+- Select the same model.
+- Verify that no files from the first implementation were reused.
 
-**Spec Too Large:**
+Start timing when the participant sends the instruction to read and implement `sdd.md`.
 
-If the spec covers too much, `/speckit.plan` and `/speckit.tasks` become unwieldy. Encourage smaller, focused specs for individual features.
+Apply the same observation and stopping rules used in the direct prompt run. Do not give the SDD implementation credit for additional features that were not required by the specification.
 
-**Students Want to Edit Generated Files:**
+### 4. Perform Manual Verification
 
-This is fine! The generated specs/plans are starting points. Encourage editing for accuracy before proceeding.
+Use exactly the same checklist for both applications:
 
-### Hints to Share
+- [ ] Create a note with a title and content.
+- [ ] Create a note without content.
+- [ ] Reject creation when the title is empty or whitespace-only.
+- [ ] Display all notes created during the session.
+- [ ] Update an existing note’s title and content.
+- [ ] Reject an update with an empty title.
+- [ ] Update without creating a duplicate note.
+- [ ] Delete an existing note.
+- [ ] Confirm that the deleted note disappears.
+- [ ] Reload the page and confirm that notes may be lost.
+- [ ] Confirm no backend, database, or persistent storage is used.
+- [ ] Confirm no automated tests were added.
 
-- Use `/speckit.clarify` whenever you feel the spec is ambiguous — it's designed to ask the right questions
-- The constitution applies to everything — write it once, benefit everywhere
-- Review the plan before generating tasks — it's easier to fix architecture issues at the plan stage
-- Tasks should be small enough to complete in a single Copilot interaction
-- You can re-run any command to regenerate — the workflow is iterative
+Record failures and corrections instead of silently fixing them.
 
-### Reflection Discussion Points
+## Measurement Definitions
 
-After completion, discuss with students:
+Use consistent definitions across both runs:
 
-1. **Experience Difference:** How did Part 1 feel compared to Part 2?
-2. **Context Repetition:** How many times did they repeat requirements in each approach?
-3. **Consistency:** Was the Spec Kit output more predictable?
-4. **Token Impact:** Fewer retries, less context repetition = lower token usage
-5. **Other Approaches:** What other methods could achieve similar structured benefits?
+- **Question:** Copilot explicitly requests information or a decision.
+- **Interruption:** progress pauses because participant input is required.
+- **Intervention:** the participant supplies a correction, additional instruction, command, or code change.
+- **Error:** a build, runtime, dependency, or functional failure.
+- **Rework:** work required to correct a missing or incorrect result.
+- **Implementation time:** time from sending the implementation instruction until the application runs and passes manual verification.
+- **Specification preparation cost:** time and credits used to author or refine the specification, excluding implementation.
 
-### Key Insight for Students
+If the specification was supplied ready-made, record its known preparation cost separately. If that cost is unavailable, mark it as “not measured” rather than treating it as zero.
 
-> **Spec becomes your context. Not the chat.**
+## Results Worksheet
 
-Traditional prompting requires repeating context every time. With Spec Kit, the spec IS the context that Copilot references. This is both better engineering and better token economics.
+| Aspect | Direct prompt | SDD with ready specification |
+|---|---:|---:|
+| Model used | | |
+| Implementation time | | |
+| Implementation credits | | |
+| Questions asked | | |
+| Interruptions | | |
+| User interventions | | |
+| Errors | | |
+| Rework actions | | |
+| Requirements passed | /12 | /12 |
+| Out-of-scope features | | |
+| Qualitative UX score | /5 | /5 |
 
-### Coaching Part 1 (Ad-Hoc)
+Record SDD preparation separately:
 
-Let students experience the frustration! Don't intervene too quickly. Common observations:
-- They had to repeat "use Node.js" multiple times
-- Copilot "forgot" earlier requirements
-- Code style was inconsistent between prompts
-- They felt like they were re-explaining constantly
+| Specification metric | Result |
+|---|---:|
+| Preparation time | |
+| Preparation credits | |
+| Number of revisions | |
 
-This pain is what makes Part 2 powerful.
+Calculate full-cycle SDD values as:
 
-### Demo Script (If Students Struggle)
+$$
+T_{\mathrm{SDD\ total}}
+=
+T_{\mathrm{specification}}
++
+T_{\mathrm{implementation}}
+$$
 
-1. Initialize project: Show the generated folder structure
-2. Run `/speckit.constitution` and show resulting file
-3. Run `/speckit.specify` with a simple requirement
-4. Show how `/speckit.plan` produces architecture from the spec
-5. Run `/speckit.tasks` and show the task breakdown
-6. Execute one task with `/speckit.implement`
+$$
+C_{\mathrm{SDD\ total}}
+=
+C_{\mathrm{specification}}
++
+C_{\mathrm{implementation}}
+$$
 
-### Connection to Other Challenges
+## Qualitative UX Guidance
 
-- **Challenge 04 (Prompt Architecture):** Spec Kit is a formalized version of structured prompting
-- **Challenge 06 (Token Golf):** Spec Kit naturally reduces tokens by eliminating context repetition
-- **Challenge 07 (Infrastructure):** Constitution can encode infrastructure standards
+To reduce subjectivity, score both applications from 1 to 5 using the same criteria:
+
+- Form and action clarity.
+- Validation feedback.
+- Note readability.
+- Discoverability of edit and delete actions.
+- Overall consistency and usability.
+
+Visual polish is secondary. It must not compensate for missing functional requirements.
+
+## Debrief Questions
+
+Ask participants:
+
+1. Did both applications satisfy the same requirements?
+2. Which approach required more decisions during implementation?
+3. Which ambiguities appeared in the direct prompt run?
+4. Did SDD eliminate ambiguity or move decisions to specification preparation?
+5. Which approach used less implementation time and fewer credits?
+6. Does the conclusion change when specification preparation is included?
+7. What specification content had the greatest implementation impact?
+8. Which parts of the specification could be reused?
+9. How might a larger application change the outcome?
+10. How might later requirement changes affect each approach?
+
+## Coaching Notes
+
+Avoid announcing an expected winner. Common valid outcomes include:
+
+- Both approaches deliver equivalent applications.
+- SDD reduces interruptions but costs more overall for a small application.
+- The direct prompt is faster but requires more decisions or corrections.
+- The structured specification improves consistency without reducing credits.
+- Natural model variation outweighs the difference between approaches.
+
+Treat every result as an observation, not proof. Encourage participants to describe what happened, identify contributing factors, and state the experiment’s limitations.
+
+## Completion Criteria
+
+The challenge is complete when:
+
+- Both applications have been built independently.
+- Both have been evaluated with the same checklist.
+- All measurements and interventions have been recorded.
+- Implementation and specification preparation costs remain separate.
+- Participants can explain the observed tradeoffs and limitations.
