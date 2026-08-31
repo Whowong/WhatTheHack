@@ -60,7 +60,7 @@ Takeaways to draw out:
 Tell students explicitly: when the base model fails Part 2, **do not coach or retry it** for the
 measurement. Then have them reason about retries:
 - *How many base-model attempts would cost more than one premium call?* (Plug in token counts or
-  your org's multipliers.)
+  your organizations multipliers.)
 - *Would any number of attempts reliably get the right answer here?* (No — it's a capability
   ceiling. This is the key insight: retrying the lower-cost model is throwing good money after
   bad on tasks it can't reason through.)
@@ -79,11 +79,11 @@ base-tier and premium-tier model, paste the two prompts from
 `Student/Resources/Challenge-03-ModelSelection/prompts.md`, and read tokens from the Output
 panel / usage view. They fill in `measurements-template.md`.
 
-> Orgs expose different models. Coach students to pick *any* base-tier vs premium-tier pair
-> their picker offers — the pattern holds. If your org only exposes one tier, use the coach
+> Organizations expose different models. Coach students to pick *any* base-tier vs premium-tier pair
+> their picker offers — the pattern holds. If your organization only exposes one tier, use the coach
 > answer key above as the demonstration, or run the harness live.
 
-> **Token visibility caveat:** depending on Copilot version/org, the Output panel may not show a
+> **Token visibility caveat:** depending on Copilot version/organization, the Output panel may not show a
 > clean per-request token number. If so, students can still observe the *pattern* (premium model
 > emits much more text). For exact counts, the coach harness (or the GitHub Models playground)
 > reports `usage.total_tokens` directly. See `TODO.md` — aligning the token-measurement
@@ -114,7 +114,7 @@ constraint on a verbose task.
   recommends walking the large majority of the time. (If a student's base model reliably gets it
   right, their "base" model may actually be fairly strong — have them drop to the smallest model
   the picker offers.)
-- **Org exposes only one model tier.** Fall back to the answer key, or use the coach harness.
+- **Organization exposes only one model tier.** Fall back to the answer key, or use the coach harness.
 - **Token counts not visible.** Premium model still visibly produces much more text — record the
   pattern. For exact numbers use the harness. (See token-visibility caveat above.)
 - **Premium model token counts vary a lot.** Reasoning models have variable hidden token use;

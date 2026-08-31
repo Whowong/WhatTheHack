@@ -16,7 +16,7 @@ Coach/author notes. The challenge is complete and runnable. This tracks follow-u
       premium call?" + capability-ceiling point); Part 4 "classify your own tasks"; a
       "why this matters for coding" paragraph; a token-variance note.
 - [x] **Output-constraint section** rebuilt around a verbose task (palindrome function,
-      190→66 tok on gpt-4.1) — the old version-sort example showed no reduction.
+      190→66 tokens on gpt-4.1) — the old version-sort example showed no reduction.
 
 ## Open
 - [ ] **Token-measurement alignment (hack-wide).** The student docs point to
@@ -37,10 +37,10 @@ Measured via GitHub Models API (`harness.py`), single-shot, no retries, n=4:
 
 | Model | Easy (version sort) | Hard (car wash) |
 |---|---|---|
-| gpt-4.1 (base) | ✅ 4/4, ~106 tok | ❌ 0/4 — says "walk", ~166 tok |
-| gpt-5 (premium) | ✅ 4/4, ~293 tok | ✅ 4/4 — says "drive", ~1000 tok |
+| gpt-4.1 (base) | ✅ 4/4, ~106 tokens | ❌ 0/4 — says "walk", ~166 tokens |
+| gpt-5 (premium) | ✅ 4/4, ~293 tokens | ✅ 4/4 — says "drive", ~1000 tokens |
 
-Output constraint (gpt-4.1, palindrome function): ~190 → ~66 tok = **−65%**, identical code.
+Output constraint (gpt-4.1, palindrome function): ~190 → ~66 tokens = **−65%**, identical code.
 Constraint showed **no** effect on the terse sort task and on gpt-5 (reasoning tokens dominate).
 
 Rejected: letter-count/decimal/"strawberry" (tokenization artifacts — don't track price);
