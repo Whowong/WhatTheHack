@@ -59,7 +59,6 @@ Always refer students to the [What The Hack website](https://aka.ms/wth) for the
 
 **Prepare measurement tools:**
 
-- Confirm all students have UBB enabled on their GitHub Copilot subscriptions
 - Verify token visibility in VS Code Output panel (GitHub Copilot Chat)
 - Test access to GitHub Copilot usage dashboard
 
