@@ -1,5 +1,5 @@
 
-# CityScout NYC - Challenge 01 Starter (FULL VERSION)
+# CityScout NYC - Challenge 02 Starter (FULL VERSION)
 
 ## ✅ WHERE YOU SHOULD MAKE CHANGES
 
