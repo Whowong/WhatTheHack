@@ -1,5 +1,5 @@
 {
-  "name": "xxx-GitHubCopilotCostOptimization",
+  "name": "076-GitHubCopilotCostOptimization",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
   "hostRequirements": {
     "cpus": 2

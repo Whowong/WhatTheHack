@@ -1,7 +1,7 @@
 {
-  "name": "xxx-GitHubCopilotCostOptimization",
+  "name": "076-GitHubCopilotCostOptimization",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
-  "workspaceFolder": "/workspace/xxx-GitHubCopilotCostOptimization/Student/Resources",
+  "workspaceFolder": "/workspace/076-GitHubCopilotCostOptimization/Student/Resources",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   "hostRequirements": {
     "cpus": 2
@@ -20,7 +20,7 @@
     },
     "codespaces": {
       "openFiles": [
-        "xxx-GitHubCopilotCostOptimization/Student/Resources/README.md"
+        "076-GitHubCopilotCostOptimization/Student/Resources/README.md"
       ]
     }
   },
