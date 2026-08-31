@@ -48,3 +48,7 @@ In this hack, you will learn practical techniques to optimize GitHub Copilot usa
 ## Contributors
 
 - Andy Huang
+- Andressa Siqueira
+- Anastasia Nefedova
+- Anahita Afshari
+- Devanshi Thakar
