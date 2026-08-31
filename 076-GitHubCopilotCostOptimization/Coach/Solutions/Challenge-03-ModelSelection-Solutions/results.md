@@ -4,7 +4,7 @@ Source: GitHub Models inference API. Method: `harness.py`, **n=4 trials per (mod
 single-shot (no retries). Exact token counts vary by model version; the **pattern is stable.**
 
 Models used as the demonstration pair:
-- **Base:** `openai/gpt-4.1` (included tier, no premium multiplier — pickable in Copilot Chat)
+- **Base:** `openai/gpt-4.1` (included tier, no premium multiplier — selectable in Copilot Chat)
 - **Premium:** `openai/gpt-5` (frontier/reasoning tier)
 
 ## Summary

@@ -19,3 +19,7 @@ discoverable
 checkable
 pickleball
 breakpoint
+differentiator
+selectable
+NYCApp
+geolocation

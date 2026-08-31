@@ -7,7 +7,7 @@ Coach/author notes. The challenge is complete and runnable. This tracks follow-u
       to wash my car"). Letter-counting was a tokenization artifact whose results did **not**
       track price (base model could beat premium — we observed Haiku right / Opus wrong). The
       car wash tracks capability and is monotonic. See `results.md`.
-- [x] **Switched the base/premium pair** to Copilot-pickable models. The old `gpt-4.1-nano`
+- [x] **Switched the base/premium pair** to Copilot-selectable models. The old `gpt-4.1-nano`
       reliably failed the hard task but is **not selectable in the Copilot model picker**, so
       students couldn't use it. New pair: base `gpt-4.1`, premium `gpt-5`.
 - [x] **Terminology:** removed "cheap/expensive"; now **base model** / **premium model**
@@ -24,7 +24,7 @@ Coach/author notes. The challenge is complete and runnable. This tracks follow-u
       setup. Verify that Copilot Chat actually surfaces a clean per-request token number in the
       target VS Code/Copilot version. If it does **not**, this is a **Challenge 00** problem
       affecting every challenge — fix it there (or standardize on a token source) rather than
-      only in Challenge 03. Coach harness + GitHub Models playground are reliable fallbacks.
+      only in Challenge 03. Coach harness + GitHub Models playground are reliable fallback.
 - [ ] **Advanced section (optional).** Add an "Advanced Challenges" block: try a mid-tier /
       reasoning model on the hard task (where's the price/capability knee?); build a two-model
       "base drafts → premium reviews" workflow and measure total cost.

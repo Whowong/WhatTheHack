@@ -24,7 +24,7 @@ Using the NYC App you worked with in Challenge 02 (in `Resources/Challenge-02-NY
 - **Feature 1 – Restaurant Filtering:** Add query-parameter support to `GET /restaurants` so callers can filter by `borough` and/or `cuisine` (e.g., `/restaurants?borough=Brooklyn&cuisine=Mexican`). Return the full list when no filters are provided.
 - **Feature 2 – Neighborhood Detail with Restaurants:** Add `GET /neighborhoods/:name` that returns the matching neighborhood object plus an embedded array of restaurants in that neighborhood (a cross-file join between `neighborhoods.ts` and `restaurants.ts` data).
 - **Feature 3 – Pagination (cross-cutting):** Add `?page=N&limit=N` support to all three list endpoints (`/events/free-this-week`, `/restaurants`, `/neighborhoods`). Default to page 1, limit 10. Return `{ page, limit, total, data }`.
-- **Feature 4 – Input Validation & Error Handling:** Add proper `400 Bad Request` responses for invalid query params and `404 Not Found` for missing resources across all routes.
+- **Feature 4 – Input Validation & Error Handling:** Add proper `400 Bad Request` responses for invalid query parameters and `404 Not Found` for missing resources across all routes.
 
 These four features touch multiple files, require cross-file references, and create natural breakpoints between each feature—ideal for testing context management strategies.  We recommend not committing these files to make it easier to revert.
 
