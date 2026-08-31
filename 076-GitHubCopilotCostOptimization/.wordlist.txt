@@ -23,3 +23,10 @@ differentiator
 selectable
 NYCApp
 geolocation
+unmanaged
+useEffect
+useState
+YYYY
+priceLevel
+bestFor
+walkability
