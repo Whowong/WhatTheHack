@@ -38,7 +38,7 @@ Observe which configuration changes cause measurable credit spikes. These spikes
 
 To complete this challenge successfully, you should be able to:
 
-- Show which MCP tools were enabled at the start using the `/context` command
+- Show which MCP tools were enabled at the start
 - Complete the TypeScript repository scan and generate a report with file paths and dependencies
 - Identify which tools were actually invoked by examining VS Code Output panel logs
 - Demonstrate measurable credit savings from disabling unused tools on the same scan task
@@ -55,10 +55,8 @@ To complete this challenge successfully, you should be able to:
 
 ## Tips
 
-- Use `/context` to see which tools are enabled and how much of your token budget they consume
 - The VS Code Output panel (View → Output → "GitHub Copilot") shows actual tool invocations
 - Each MCP tool's schema (name, description, parameters) is sent to the model on every request
 - System prompt changes (like editing instruction files or toggling tools) can invalidate cached context
-- Use `/usage` to see your credit breakdown after each task
 - The GitHub MCP server typically includes tools like: search_code, get_file_contents, create_issue, search_users, list_pull_requests
 - For this scanning task, you likely only need search_code and get_file_contents
