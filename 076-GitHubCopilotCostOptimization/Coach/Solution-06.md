@@ -10,7 +10,7 @@ Token Golf is the capstone challenge where teams apply all optimization techniqu
 
 **You must complete the Token Golf task yourself before the hack:**
 
-1. Implement the coding task specified in `/Student/Resources/Challenge06/token-golf-task.md`
+1. Build the weather dashboard app described in the student's Challenge 06 (frontend only, no backend, city search with temperature/condition/humidity/wind speed, last five searched cities persisted to local storage)
 2. Use optimization techniques from Challenges 1-5
 3. Record your total credit consumption—this becomes "par"
 4. Document your approach: prompt sequence, model choices, techniques used
@@ -58,34 +58,29 @@ Teams must document their complete approach, not just final credits. This preven
 
 ### Task Design Guidance
 
-The Token Golf task should:
-- Be completable in 45-60 minutes by an experienced developer
-- Have clear, measurable acceptance criteria (tests pass, docs exist, etc.)
-- Offer multiple solution approaches (so there's no single "right" path)
-- Require enough complexity that optimization techniques matter
+All teams build the same weather dashboard, a frontend-only app with no backend and no starter codebase. It is designed to be:
+- Completable in 45-60 minutes by an experienced developer
+- Judged on completeness against the requirements below plus a screenshot and credit usage, rather than passing pre-written tests
+- Open to multiple solution approaches (weather data source, styling, component structure, prompting strategy, model choice)
+- Complex enough that optimization techniques matter (state management, external data, persistence)
 
-**Example Task Structure:**
+**Task Requirements:**
 
 ```markdown
-# Token Golf Task: Build a Rate-Limiting Middleware
+# Token Golf Task: Build a Weather Dashboard
 
 ## Functional Requirements
-- Implement rate limiting middleware that tracks requests per IP address
-- Support configurable limits (requests per minute)
-- Return HTTP 429 when limit exceeded
-- Clean up expired entries periodically
+- Let a user search for a city and see its weather
+- Display city name, temperature, weather condition, humidity, and wind speed
+- Show the last five cities the user searched for
+- Persist recent searches using local storage (no backend)
 
 ## Acceptance Criteria
-- All provided unit tests pass
-- Middleware handles concurrent requests correctly
-- Documentation includes usage examples
+- Frontend only, no backend
+- Searching a city displays all required weather fields
+- Recent searches (last five) persist across a page refresh
 - Code passes linting and type checking
-- No security vulnerabilities in rate tracking logic
-
-## Provided Files
-- tests/rate-limiter.test.ts (failing tests you must make pass)
-- types/middleware.ts (type definitions)
-- example-usage.md (what the docs should look like)
+- Screenshot of the working dashboard plus final credit usage submitted
 ```
 
 ### Competition Format Options
@@ -110,8 +105,8 @@ The Token Golf task should:
 **Teams Don't Know Where to Start:**
 
 Hint: Apply the research → plan → implement loop:
-1. Research: Read requirements, understand acceptance criteria
-2. Plan: Write failing tests, define types, establish spec
+1. Research: Read requirements, pick a weather data source, understand acceptance criteria
+2. Plan: Define types and component structure, establish a spec
 3. Implement: Use GitHub Copilot to code against the spec
 
 **Teams Optimize for Speed, Not Cost:**
@@ -131,14 +126,15 @@ Encourage `/clear` when stuck—start fresh rather than spending credits digging
 
 ### Judging Criteria
 
-**Primary:** Lowest credit cost meeting all acceptance criteria
+**Primary:** Most complete solution (all functional requirements met) for the lowest credit cost—a bare-bones UI that technically passes should not beat a polished one at similar cost
 
 **Tiebreakers (in order):**
 1. Completion time (earliest submission)
 2. Code quality (subjective coach judgment)
 
 **Disqualifications:**
-- Missing acceptance criteria (tests fail, docs missing, linting errors)
+- Missing functional requirements (city search, all required fields, last five searches, local storage persistence)
+- No screenshot or credit usage submitted
 - Scorecard not documented (can't verify techniques used)
 
 ### Debrief Discussion Points

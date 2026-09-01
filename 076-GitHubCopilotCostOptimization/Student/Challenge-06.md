@@ -10,28 +10,26 @@ Your coach has already completed this task and established a "par" score—the c
 
 ## Description
 
-All teams will receive the same coding task with defined acceptance criteria from your coach. The task specification (found in the `/Challenge06/` folder of Resources.zip) includes functional requirements, tests that must pass, required documentation, and code quality standards.
+Every team builds the same app from scratch: a weather dashboard. There is no starter codebase and no pre-written spec handed to you—you decide the project structure, prompting approach, model choice, and any Copilot instructions or context files you set up. Multiple winners will be selected based on lowest token but also the best ROI of tokens as well.
 
-### Competition Rules
+### App Requirements
 
-Complete all functional requirements, ensure provided tests pass, include required documentation, and meet code quality standards. Document your complete approach in a "scorecard" showing total credits consumed, prompt sequence used, models selected, and optimization techniques applied from Challenges 1-5.
+Build a weather dashboard. A user should be able to search for a city and see its current weather, and the dashboard should also show the last five cities the user searched for.
 
-Track every GitHub Copilot interaction throughout the challenge: inline completions, chat, edits, workspace references, and cumulative total credits. The team with the lowest total credit score that meets all acceptance criteria wins (tie-breaker: fastest completion time).
+- Let a user search for a city and display its weather: city name, temperature, weather condition, humidity, and wind speed
+- Show the last five cities the user searched for
+- Use whatever frontend stack, weather data source, styling approach, and component structure you think is most cost-effective to build
 
-### Strategy
-
-Consider applying techniques from previous challenges: scoped instructions, efficient model selection, pruned MCP tools, strategic `/compact` usage, and spec-first development with tests written before implementation.
 
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
 
-- Verify that all functional requirements from the task specification are implemented
-- Demonstrate that all provided tests pass
-- Show that required documentation exists and meets standards
-- Verify that code meets quality standards (no linting errors, proper types)
-- Show your documented scorecard with total credits consumed and techniques applied
-- Demonstrate that your solution meets or beats the coach's "par" score (bonus achievement!)
+- Demonstrate a working weather dashboard with no backend
+- Verify that searching for a city displays its city name, temperature, weather condition, humidity, and wind speed
+- Show that the last five searched cities are displayed and persist across a page refresh using local storage
+- Demonstrate the techniques used to achieve your final credit usage score
+- Show a screenshot of your working dashboard alongside your final credit usage
 
 ## Learning Resources
 
