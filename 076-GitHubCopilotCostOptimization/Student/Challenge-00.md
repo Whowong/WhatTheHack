@@ -24,18 +24,6 @@ Please complete the following setup steps:
 5. Confirm you can access your GitHub Copilot usage dashboard to view cumulative credit spend
 6. Open the starter codebase in VS Code and familiarize yourself with its structure
 
-### Baseline Measurement
-
-Once your environment is configured, complete the baseline coding task:
-
-1. Locate the `baseline-task.md` file in the `/Challenge00/` folder of the Resources.zip
-2. Complete the coding task described using GitHub Copilot Chat in your normal working style (don't optimize yet!)
-3. Record the total credits consumed for this task from the VS Code Output panel
-4. Document your approach: which features you used (inline completions, chat, edits, workspace references)
-5. Save your baseline measurements—you'll compare all future challenges against this
-
-This baseline represents your "before" state. In subsequent challenges, you'll apply optimization techniques and measure the credit reduction compared to this baseline.
-
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
