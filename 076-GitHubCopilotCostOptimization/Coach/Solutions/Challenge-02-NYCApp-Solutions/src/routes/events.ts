@@ -7,7 +7,7 @@ export const eventsRouter = Router();
 const isWithin7Days = (dateStr) => {
   const today = new Date();
   const eventDate = new Date(dateStr);
-  const diff = (eventDate - today) / (1000 * 60 * 60 * 24);
+  const diff = (eventDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
   return diff >= 0 && diff <= 7;
 };
 
