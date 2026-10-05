@@ -14,14 +14,12 @@ comes back.
 
 ## How to run it (VS Code + GitHub Copilot Chat)
 
-1. Open GitHub Copilot Chat in VS Code.
-2. Use the **model picker** (bottom of the chat box) to select a **base-tier** model — one with
-   *no* premium-request multiplier (e.g. GPT-4.1 / GPT-4o).
-3. Paste a prompt from `prompts.md` exactly as written. Record the answer and the token
-   usage (`View → Output → "GitHub Copilot Chat"`, and/or your Copilot usage view).
-4. Switch the model picker to a **premium-tier** model — one that shows a cost multiplier
-   (e.g. GPT-5 / Claude Sonnet / an o-series model) — and run the **same** prompt. Record again.
-5. Repeat for both the easy and the hard prompt.
+1. Open GitHub Copilot Chat in VS Code. Start a **new conversation for every model/prompt pair**.
+2. Use the **model picker** to select a lower-cost model available to your organization.
+3. Paste a prompt from `prompts.md` exactly as written. Record the answer and measured token usage.
+4. Start another **new conversation**, select a stronger model, and run the **same** prompt.
+   Keep attachments and instructions identical to the first run. Record the answer and measured token usage.
+5. Repeat this procedure for both prompts, using a fresh conversation for each run.
 6. Fill in `measurements-template.md` and answer the Part 3 questions, then do the Part 4
    "classify your own tasks" exercise.
 
